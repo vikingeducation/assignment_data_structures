@@ -31,5 +31,19 @@ class Stack
   end
 end
 
-# Add methods for empty? and size? which use nothing but simple array methods (so no helper methods!). You'll get to practice your iteration!
-# Verify that you can reverse a string with your stack.
+# TESTING REVERSAL OF STRING
+
+s = Stack.new
+string = "hello"
+
+string.each_char do |char|
+  s.push char
+end
+
+reversed_string = ""
+
+until s.empty?
+  reversed_string += s.pop
+end
+
+puts reversed_string # => 'olleh'
