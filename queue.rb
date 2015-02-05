@@ -1,16 +1,20 @@
 class Queue
+  attr_reader :size
+
   def initialize
     @queue = []
+    @size = 0
   end
 
   def enqueue(item)
     @queue += [item]
-    return nil
+    @size += 1
   end
 
   def dequeue
     dequeued = @queue[0]
-    @queue = @queue[1..-1]
+    @queue = @queue[1..(size-1)]
+    @size -= 1
     return dequeued
   end
 
@@ -19,19 +23,11 @@ class Queue
   end
 
   def peek_last
-    @queue[-1]
+    @queue[(size-1)]
   end
 
   def empty?
-    @queue[0].nil?
-  end
-
-  def size
-    size = 0
-    @queue.each do |item|
-      size += 1
-    end
-    size
+    size == 0
   end
 end
 

@@ -1,33 +1,29 @@
 class Stack
+  attr_reader :size
+
   def initialize
     @stack = []
+    @size = 0
   end
 
   def push(item)
     @stack += [item]
-    return nil
+    @size += 1
   end
 
   def pop
-    popped = @stack[-1]
+    popped = @stack[@size-1]
     @stack = @stack[0..-2]
+    @size -= 1
     return popped
   end
 
   def peek
-    @stack[-1]
+    @stack[@size-1]
   end
 
   def empty?
-    @stack[0].nil?
-  end
-
-  def size
-    size = 0
-    @stack.each do |item|
-      size += 1
-    end
-    size
+    size == 0
   end
 end
 
@@ -42,7 +38,7 @@ end
 
 reversed_string = ""
 
-until s.empty?
+while s.size > 0
   reversed_string += s.pop
 end
 
