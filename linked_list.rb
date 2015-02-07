@@ -107,15 +107,3 @@ class LinkedList
     end
   end
 end
-
-# a = LinkedList.new
-# a.add_node("a", "a letter")
-# a.add_node("b", "a letter")
-# a.add_node("c", "a letter")
-# a.add_node("d", "a letter")
-# a.print_list
-# a.remove_node(2)
-# a.print_list
-# a.display_linked_list
-# a.find_word("d")
-# a.find_word("c")

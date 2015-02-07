@@ -40,15 +40,3 @@ class HashTable
     end
   end
 end
-
-# a = HashTable.new
-# a.insert("a", "a letter")
-# a.insert("b", "a letter")
-# a.insert("c", "a letter")
-# a.insert("d", "a letter")
-# a.insert("e", "a letter")
-# a.render
-# a.insert("apple", "a fruit")
-# a.insert("august", "a month")
-# a.insert("angles", "a concept")
-# a.render
