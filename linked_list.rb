@@ -72,6 +72,29 @@ class LinkedList
     current_node
   end
 
+  def find_word(word)
+    current_node = @head
+    steps = 0
+    until current_node.word == word  || current_node.next.nil?
+      current_node = current_node.next
+      steps += 1
+    end
+
+    if current_node.word == word
+      puts "#{current_node.word}, #{current_node.definition}, steps: #{steps}"
+    else
+      puts "Error, that word does not exist!"
+    end
+  end
+
+  def display_linked_list
+    current_node = @head
+    until current_node.next.nil?
+      puts "#{current_node.word}, #{current_node.definition}"
+      current_node = current_node.next
+    end
+  end
+
   def print_list
     counter = 0
     current_node = @head
