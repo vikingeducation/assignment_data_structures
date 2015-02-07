@@ -1,0 +1,71 @@
+Node = Struct.new(:word, :definition, :next)
+
+class LinkedList
+
+  attr_accessor :head, :last
+
+  def initialize(first_node = nil)
+    @head = first_node
+    @last = first_node
+  end
+
+  def add_first_node(word, definition)
+    @head = Node.new(word, definition, nil)
+    @last = @head
+  end
+
+  def add_node(word, definition)
+    if @head.nil?
+      add_first_node
+    else
+      new_node = Node.new(word, definition)
+      @last.next = new_node
+      @lsat = new_node
+    end
+
+    puts "Successfully added node #{word} defined as #{definition}"
+  end
+
+  def remove_node(index)
+    counter = 0
+    current_node = @head
+    prev_node = nil
+
+    while counter < index
+      prev_node = current_node
+      current_node = current_node.next
+      counter += 1
+    end
+
+    prev_node.next = current_node.next
+    puts "Removed node #{word} at index #{index}, defined as #{definition}"
+  end
+
+  def find_node(index)
+
+    counter = 0
+    current_node = @head
+
+    while counter < index
+      current_node = current_node.next
+      counter += 1
+    end
+
+    puts "Found node #{current_node.word} at index #{counter}, defined as #{definition}"
+    current_node
+  end
+
+  def print_list
+    counter = 0
+    current_node = @head
+    loop do
+      puts "Node #{current_node.word} at index #{counter}, defined as #{definition}"
+      break if current_node.next.nil?
+      current_node = current_node.next
+      counter += 1
+    end
+  end
+end
+
+class HashTable
+end
