@@ -32,11 +32,10 @@ class HashTable
 
   def define word
     index = hash(word)
-    step = 0
     if @bucket[index].nil?
       puts "Error, that word does not exist"
     else
-      step +=  1
+      @bucket[index].find_word(word)
     end
   end
 end
