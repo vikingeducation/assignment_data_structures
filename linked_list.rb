@@ -74,7 +74,7 @@ class LinkedList
 
   def find_word(word)
     current_node = @head
-    steps = 0
+    steps = 1
     until current_node.word == word  || current_node.next.nil?
       current_node = current_node.next
       steps += 1
@@ -89,8 +89,9 @@ class LinkedList
 
   def display_linked_list
     current_node = @head
-    until current_node.next.nil?
+    loop do
       puts "#{current_node.word}, #{current_node.definition}"
+      break if current_node.next.nil?
       current_node = current_node.next
     end
   end
@@ -106,3 +107,15 @@ class LinkedList
     end
   end
 end
+
+# a = LinkedList.new
+# a.add_node("a", "a letter")
+# a.add_node("b", "a letter")
+# a.add_node("c", "a letter")
+# a.add_node("d", "a letter")
+# a.print_list
+# a.remove_node(2)
+# a.print_list
+# a.display_linked_list
+# a.find_word("d")
+# a.find_word("c")

@@ -13,7 +13,8 @@ class HashTable
   def insert (word, definition)
     index = hash(word)
     if @bucket[index].nil?
-      @bucket[index] = LinkedList.new(word, definition)
+      @bucket[index] = LinkedList.new
+      @bucket[index].add_node(word, definition)
     else
       @bucket[index].add_node(word, definition)
     end
@@ -39,3 +40,15 @@ class HashTable
     end
   end
 end
+
+# a = HashTable.new
+# a.insert("a", "a letter")
+# a.insert("b", "a letter")
+# a.insert("c", "a letter")
+# a.insert("d", "a letter")
+# a.insert("e", "a letter")
+# a.render
+# a.insert("apple", "a fruit")
+# a.insert("august", "a month")
+# a.insert("angles", "a concept")
+# a.render
