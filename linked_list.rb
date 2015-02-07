@@ -1,3 +1,5 @@
+require 'pry'
+
 Node = Struct.new(:word, :definition, :next)
 
 class LinkedList
@@ -16,14 +18,29 @@ class LinkedList
 
   def add_node(word, definition)
     if @head.nil?
-      add_first_node
+      add_first_node(word, definition)
     else
       new_node = Node.new(word, definition)
       @last.next = new_node
-      @lsat = new_node
+      @last = new_node
     end
 
-    puts "Successfully added node #{word} defined as #{definition}"
+    puts "Successfully added node '#{word}' defined as '#{definition}'"
+  end
+
+  def insert_node (word, definition, index)
+    counter = 0
+    current_node = @head
+    prev_node = nil
+
+    while counter < index
+      prev_node = current_node
+      current_node = current_node.next
+      counter += 1
+    end
+
+    new_node = Node.new(word, definition, current_node)
+    prev_node.next = new_node
   end
 
   def remove_node(index)
@@ -38,7 +55,7 @@ class LinkedList
     end
 
     prev_node.next = current_node.next
-    puts "Removed node #{word} at index #{index}, defined as #{definition}"
+    puts "Removed node '#{current_node.word}' at index #{index}, defined as '#{current_node.definition}'"
   end
 
   def find_node(index)
@@ -51,7 +68,7 @@ class LinkedList
       counter += 1
     end
 
-    puts "Found node #{current_node.word} at index #{counter}, defined as #{definition}"
+    puts "Found node '#{current_node.word}' at index #{counter}, defined as '#{current_node.definition}'"
     current_node
   end
 
@@ -59,13 +76,10 @@ class LinkedList
     counter = 0
     current_node = @head
     loop do
-      puts "Node #{current_node.word} at index #{counter}, defined as #{definition}"
+      puts "Node '#{current_node.word}' at index #{counter}, defined as '#{current_node.definition}'"
       break if current_node.next.nil?
       current_node = current_node.next
       counter += 1
     end
   end
-end
-
-class HashTable
 end
