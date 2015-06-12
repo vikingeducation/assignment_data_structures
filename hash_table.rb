@@ -5,6 +5,17 @@ class HashTable
 
   def initialize
     @buckets = []
+
+    load_dictionary
+  end
+
+
+  def load_dictionary
+    dictionary = File.readlines("./5desk.txt")
+
+    dictionary.each do |line|
+      insert(line.strip)
+    end
   end
 
   # Is this efficient? Or should I be defining
