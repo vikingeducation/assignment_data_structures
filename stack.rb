@@ -12,13 +12,13 @@ class Stack
       @array[0] = new_item
 
     else
-      count = 0
+      counter = 0
 
-      until @array[count] == @last_item
-        count += 1
+      until @array[counter] == @last_item
+        counter += 1
       end
 
-      @array[count + 1] = new_item
+      @array[counter + 1] = new_item
     end
 
     @last_item = new_item
@@ -32,16 +32,16 @@ class Stack
       puts "Stack is empty!"
 
     else
-      count = 0
+      counter = 0
       previous_item = nil
 
-      until @array[count] == @last_item
-        previous_item = @array[count]
-        count += 1
+      until @array[counter] == @last_item
+        previous_item = @array[counter]
+        counter += 1
       end
 
       @last_item = previous_item
-      @array.delete_at(count)
+      @array.delete_at(counter)
 
     end
 
@@ -60,11 +60,25 @@ class Stack
 
 
   def empty?
-
+    @last_item.nil?
   end
 
 
   def size
+
+    if self.empty?
+      size = 0
+
+    else
+      size = 1
+
+      until @array[size - 1] == @last_item
+        size += 1
+      end
+
+      size
+
+    end
 
   end
 
