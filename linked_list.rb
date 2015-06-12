@@ -108,4 +108,43 @@ class LinkedList
   end
 
 
+  def count_nodes
+    if @head.nil?
+      0
+
+    else
+      current_node = @head
+      size = 1
+
+      loop do
+        break if current_node.next == nil
+        current_node = current_node.next
+        size += 1
+      end
+
+      size
+    end
+
+  end
+
+
+  def find_node(index)
+
+    counter = 0
+    current_node = @head
+
+    until counter == index do
+      current_node = current_node.next
+      counter += 1
+    end
+
+    if current_node.nil?
+      puts "No node here!"
+    else
+      current_node
+    end
+
+  end
+
+
 end
