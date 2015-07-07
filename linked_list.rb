@@ -66,6 +66,33 @@ class LinkedList
 
   end
 
+  # Big O time = O(n) - is "in place" and iterates once through list
+
+  def reverse
+
+    #Get the last item in the new reversed list
+    temp_head = self.shift
+    temp_head.next_node = nil
+    @last = temp_head
+
+    until @head == nil
+      temp = self.shift
+      temp.next_node = temp_head
+      temp_head = temp
+    end
+
+    @head = temp_head
+
+  end
+
+  def shift
+
+    temp = @head
+    @head = @head.next_node
+    temp
+
+  end
+
 end
 
 
@@ -77,14 +104,12 @@ end
 
 list.read(51)
 
+list.reverse
 
-first.next_node = second
-second.next = third
-...
+list.read(100)
 
-third.next = second
-sec.nex = first
-first.nex = nil
+
+   nil  9 -> 8 -> 7 ... 4 -> 3 -> 2 -> 1
 
 
 
