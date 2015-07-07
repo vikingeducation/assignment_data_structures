@@ -20,7 +20,12 @@ class LinkedList
   def reverse
     # start at the head
     counter = 0
+    #Node1 - Node2 - Node3
+
     current_node = @head
+
+    previous_node=current_node
+    current_node=current_node.next
 
     
 
