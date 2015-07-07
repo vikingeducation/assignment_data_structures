@@ -50,41 +50,48 @@ class LinkedList
       current_node = current_node.next
       counter += 1
     end
-    current_node.next = Word.new(word, definition, current_node.next.next)
+    old_node = current_node.next
+    current_node.next = Word.new(word, definition, old_node)
   end
 
+  # Runs in O(n) time. (In place reversal)
   def reverse
-#   (nil->)1<-2->3->4->5->6->7->nil
-# nil<-1<-2<-3<-4<-5<-6<-7
-
     #initial setup
     old_start = @head
     old_end = @tail
-    current_node = @head #1
-    next_node = current_node.next #2
-    current_node.next = nil #1 -> nil
+    current_node = @head
+    next_node = current_node.next
+    current_node.next = nil
 
-    #loop
 
-    node_after = next_node.next  #3
-    until node_after.next == @tail
-      #p current_node.word, next_node.word, node_after.word
-      puts "inside loop"
-      next_node.next = current_node #2 -> 1, 3->2
+    node_after = next_node.next
+    until node_after == @tail
 
-      current_node = next_node #2, 3
-      next_node = node_after #3, 4
-      node_after = next_node.next #4, 5
+      next_node.next = current_node
+      current_node = next_node
+      next_node = node_after
+      node_after = next_node.next
+
     end
-    puts "outside loop"
-    #p current_node.word, next_node.word
-    next_node.next = current_node #4->3
+    next_node.next = current_node
+    node_after.next = next_node
 
-    node_after.next = next_node #5-> 4
-    p @tail, @head
     @tail = old_start
     @head = old_end
-    p @tail, @head
+  end
+
+  def search(word)
+    counter = 0
+    current_node = @head
+    until current_node.nil?
+      counter += 1
+      if current_node.word == word
+        puts "It took #{counter} steps to locate #{word}!"
+        return current_node.definition
+      end
+      current_node = current_node.next
+    end
+    "Sorry, #{word} was not found"
   end
 
   def prints
@@ -97,15 +104,54 @@ class LinkedList
 
 end
 
-test = LinkedList.new
+# test = LinkedList.new
 
-test.add_node("a", "a")
-test.add_node("b", "b")
-test.add_node("c", "c")
-test.add_node("d", "d")
-test.add_node("e", "e")
-test.prints
-test.reverse
-puts "after reverse"
-# test.read_node(4)
-test.prints
+# test.add_node("a", "a")
+# test.add_node("b", "b")
+# test.add_node("c", "c")
+# test.add_node("e", "e")
+# test.insert_at_position("d","d", 3)
+# test.prints
+# test.reverse
+# puts "List should now be reversed!"
+# test.prints
+
+class HashTable
+
+  def initialize
+    @buckets = Array.new(26){ }
+  end
+
+  def hash(word)
+    return word[0].downcase.ord - 97
+  end
+
+  def insert(word, definition)
+    if @buckets[hash(word)].nil?
+      @buckets[hash(word)] = LinkedList.new
+      @buckets[hash(word)].insert_node(word, definition)
+    else
+      @buckets[hash(word)].insert_node(word, definition)
+    end
+  end
+
+  def render_list
+    @buckets.each do |bucket|
+      bucket.prints
+    end
+  end
+
+  def define(input)
+    puts @buckets[hash(input)].search(input)
+  end
+
+end
+
+htable = HashTable.new
+
+lines = File.readlines("5desk.txt")
+lines.map! {|line| line.strip}
+
+lines.each_with_index do |line, index|
+  htable.insert(line, "This is word \##{index}!")
+end
