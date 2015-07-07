@@ -27,21 +27,60 @@ class Stack
   end
 
   def size
-    count = 0
-    until @el[count].nil?
-      count +=1
-    end
-    count
+    @el.length
   end
 
 end
 
-string = Stack.new
-word = "good"
-new_word= ""
-word.split("").each {|letter| string.push(letter)}
+# stack_string = Stack.new
+# word = "good"
+# new_word= ""
+# word.split("").each {|letter| stack_string.push(letter)}
 
-until string.empty?
-  new_word += string.pop
+# until stack_string.empty?
+#   new_word += stack_string.pop
+# end
+# puts new_word
+
+class Queue
+
+  def initialize
+    @order = []
+  end
+
+  def enqueue(input)
+    @order << input
+  end
+
+  def dequeue
+    first_item = @order[0]
+    if size > 1
+      @order = @order[1..@order.length-1]
+    else
+      @order = []
+    end
+    first_item
+  end
+
+  def peek
+    @order[0]
+  end
+
+  def empty?
+    @order.length == 0
+  end
+
+  def size
+    @order.length
+  end
+
 end
-puts new_word
+
+# queue_string = Queue.new
+# word = "good"
+# new_word= ""
+# word.split("").each {|letter| queue_string.enqueue(letter)}
+# until queue_string.empty?
+#   new_word += queue_string.dequeue
+# end
+# puts new_word
