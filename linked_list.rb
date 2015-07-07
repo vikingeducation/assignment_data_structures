@@ -5,6 +5,7 @@ class LinkedList
   def initialize(first_node = nil)
     @head = first_node
     @last = first_node
+    @length = 0
   end
 
   def create_head_node(word, definition)
@@ -31,6 +32,8 @@ class LinkedList
       @last = new_node
 
     end
+
+    @length += 1
 
     puts "Added node for: #{word}"
     #time for operation = O(1)
@@ -64,19 +67,28 @@ class LinkedList
     node_to_insert.next = next_node
 
     #time for operation = O(n)
+    @length += 1
 
   end
 
   def reverse
 
     #a -> b -> c -> d -> e
+    cur_node = @last
 
-    previous_last = 
-    previous_head = 
+    for i in (2..@length) do
+      cur_node.next = find_node(@length-i)
+      
+      cur_node = cur_node.next
+    end
 
+    cur_node.next = nil
 
+    cur_node = @last
+    @last =@head
+    @head = cur_node
 
-
+    # time complexity of the operation id O(n^2)
   end
 
 
