@@ -11,7 +11,7 @@ class LinkedList
 
   def add_first_node(word, definition)
     @head = Word.new(word, definition, nil)
-    @last = @head
+    @tail = @head
   end
 
   # If at end of list O(1)
@@ -20,8 +20,8 @@ class LinkedList
       add_first_node(word, definition)
     else
       new_node = Word.new(word, definition, nil)
-      @last.next = new_node
-      @last = new_node
+      @tail.next = new_node
+      @tail = new_node
     end
     puts "Added new word: #{word} with definition: #{definition}."
   end
@@ -58,21 +58,54 @@ class LinkedList
 # nil<-1<-2<-3<-4<-5<-6<-7
 
     #initial setup
-    current_node = @head
-    next_node = current_node.next
-    current_node.next = nil
+    old_start = @head
+    old_end = @tail
+    current_node = @head #1
+    next_node = current_node.next #2
+    current_node.next = nil #1 -> nil
 
     #loop
 
-    node_after = next_node.next
-    until node_after == @tail
-      next_node.next = current_node
-      current_node = next_node
+    node_after = next_node.next  #3
+    until node_after.next == @tail
+      #p current_node.word, next_node.word, node_after.word
+      puts "inside loop"
+      next_node.next = current_node #2 -> 1, 3->2
 
-      next_node = node_after
-      node_after = next_node.next
+      current_node = next_node #2, 3
+      next_node = node_after #3, 4
+      node_after = next_node.next #4, 5
     end
+    puts "outside loop"
+    #p current_node.word, next_node.word
+    next_node.next = current_node #4->3
 
+    node_after.next = next_node #5-> 4
+    p @tail, @head
+    @tail = old_start
+    @head = old_end
+    p @tail, @head
+  end
+
+  def prints
+    current_node = @head
+    until current_node.nil?
+      puts "Found word #{current_node.word} with definition #{current_node.definition}"
+      current_node = current_node.next
+    end
   end
 
 end
+
+test = LinkedList.new
+
+test.add_node("a", "a")
+test.add_node("b", "b")
+test.add_node("c", "c")
+test.add_node("d", "d")
+test.add_node("e", "e")
+test.prints
+test.reverse
+puts "after reverse"
+# test.read_node(4)
+test.prints
