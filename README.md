@@ -16,3 +16,11 @@ Alok and Nick
 5. O(n)
 
 6. O(n)
+
+7. O(n)
+
+8. O(n)
+
+9. O(1)
+
+10. O(n)
