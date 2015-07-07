@@ -2,7 +2,7 @@ Word = Struct.new(:word,:definition, :next)
 
 class LinkedList
 
-  attr_accessor :head, :tail, :nodes
+  attr_reader :head, :tail, :nodes
 
   def initialize(first_node = nil)
     @head = first_node
@@ -55,33 +55,40 @@ class LinkedList
     end
     old_node = current_node.next
     current_node.next = Word.new(word, definition, old_node)
-    @node +=1
+    @nodes +=1
   end
 
   # Runs in O(n) time. (In place reversal)
   def reverse
-    #initial setup
-    old_start = @head
-    old_end = @tail
-    current_node = @head
-    next_node = current_node.next
-    current_node.next = nil
+    return if @nodes < 2
+    if @nodes == 2
+      @tail.next = @head
+      @head.next = nil
+      @head, @tail = @tail, @head
+    else
+      #initial setup
+      old_start = @head
+      old_end = @tail
+      current_node = @head
+      next_node = current_node.next
+      current_node.next = nil
 
 
-    node_after = next_node.next
-    until node_after == @tail
-
-      next_node.next = current_node
-      current_node = next_node
-      next_node = node_after
       node_after = next_node.next
+      until node_after == @tail
 
+        next_node.next = current_node
+        current_node = next_node
+        next_node = node_after
+        node_after = next_node.next
+
+      end
+      next_node.next = current_node
+      node_after.next = next_node
+
+      @tail = old_start
+      @head = old_end
     end
-    next_node.next = current_node
-    node_after.next = next_node
-
-    @tail = old_start
-    @head = old_end
   end
 
   def search(word)
@@ -89,7 +96,7 @@ class LinkedList
     current_node = @head
     until current_node.nil?
       counter += 1
-      if current_node.word == word
+      if current_node.word.downcase == word.downcase
         puts "It took #{counter} steps to locate #{word}!"
         return current_node.definition
       end
@@ -143,6 +150,10 @@ class HashTable
     @buckets.each do |bucket|
       bucket.prints
     end
+  end
+
+  def bucket_size(n)
+    puts "The size of bucket #{n} is #{@buckets[n].nodes}"
   end
 
   def define(input)
