@@ -2,16 +2,18 @@ Word = Struct.new(:word,:definition, :next)
 
 class LinkedList
 
-  attr_accessor :head, :tail
+  attr_accessor :head, :tail, :nodes
 
   def initialize(first_node = nil)
     @head = first_node
     @tail = first_node
+    @nodes = 0
   end
 
   def add_first_node(word, definition)
     @head = Word.new(word, definition, nil)
     @tail = @head
+    @nodes +=1
   end
 
   # If at end of list O(1)
@@ -22,6 +24,7 @@ class LinkedList
       new_node = Word.new(word, definition, nil)
       @tail.next = new_node
       @tail = new_node
+      @nodes +=1
     end
     puts "Added new word: #{word} with definition: #{definition}."
   end
@@ -52,6 +55,7 @@ class LinkedList
     end
     old_node = current_node.next
     current_node.next = Word.new(word, definition, old_node)
+    @node +=1
   end
 
   # Runs in O(n) time. (In place reversal)
@@ -145,13 +149,15 @@ class HashTable
     puts @buckets[hash(input)].search(input)
   end
 
+
+
 end
 
-htable = HashTable.new
+# htable = HashTable.new
 
-lines = File.readlines("5desk.txt")
-lines.map! {|line| line.strip}
+# lines = File.readlines("5desk.txt")
+# lines.map! {|line| line.strip}
 
-lines.each_with_index do |line, index|
-  htable.insert(line, "This is word \##{index}!")
-end
+# lines.each_with_index do |line, index|
+#   htable.insert(line, "This is word \##{index}!")
+# end
