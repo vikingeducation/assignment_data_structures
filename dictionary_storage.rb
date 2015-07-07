@@ -153,6 +153,10 @@ class HashTable
   end
 
   def bucket_size(n)
+    @buckets[n].nodes
+  end
+
+  def print_bucket_size(n)
     puts "The size of bucket #{n} is #{@buckets[n].nodes}"
   end
 
@@ -160,6 +164,9 @@ class HashTable
     puts @buckets[hash(input)].search(input)
   end
 
+  def num_buckets
+    @buckets.length
+  end
 
 
 end

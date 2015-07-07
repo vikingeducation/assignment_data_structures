@@ -88,7 +88,34 @@ end
 
 describe HashTable do
 
+  let(:hhash){HashTable.new}
+
   describe "#initialize" do
+
+    it 'should have 26 elements' do
+      expect(hhash.num_buckets).to eq(26)
+    end
+
+  end
+
+  describe '#hash' do
+
+    it 'should return a integer' do
+      expect(hhash.hash("l")).to be_a(Integer)
+    end
+
+    it 'should return the correct bucket' do
+      expect(hhash.hash("j")).to eq(9)
+    end
+
+  end
+
+  describe '#insert' do
+
+    it 'should insert word into correct bucket' do
+      hhash.insert("a", "test")
+      expect(hhash.bucket_size(0)).to eq(1)
+    end
 
   end
 
