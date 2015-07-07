@@ -21,11 +21,18 @@ class Stack
 
   def pop
 
-    temp = @stack[self.size - 1]
+    temp = []
 
-    @stack[self.size - 1] = nil
+    ((self.size) - 1).times do |i|
+      temp[i] = @stack[i]
+    end
 
-    temp
+
+    @stack = temp
+
+    @stack
+
+    
 
   end
 
@@ -54,6 +61,9 @@ end
 # test = Stack.new(["h","e","l","l","o"])
 # result = Stack.new
 
+# test.pop
+
+# p test.stack
 
 # test.size.times do
 #   result.stack.push(test.stack.pop)
@@ -72,18 +82,23 @@ class Queue
 
   def enqueue(item)
 
-    @queue[self.size - 1] = item
+    @queue[self.size] = item
 
   end
 
 
   def dequeue
 
-    temp = @queue[0]
+    temp = []
 
-    @queue[0] = nil
+    ((self.size) - 1).times do |i|
+      temp[i] = @queue[i+1]
+    end
 
-    temp
+    @queue = temp
+
+    @queue
+    
 
   end
 
@@ -106,4 +121,25 @@ class Queue
 
   end
 
+  def queue
+    @queue
+  end
+
 end
+
+
+# test = Queue.new(%w[h e l l o])
+
+# test.enqueue("!")
+# test.dequeue
+
+
+
+# p test.queue
+
+
+
+
+
+
+
