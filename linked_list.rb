@@ -21,18 +21,23 @@ class LinkedList
     # start at the head
     counter = 0
     current_node = @head
+    reverse_list = LinkedList.new
 
     
 
     until @last == nil
       previous_node=current_node
       current_node = current_node.next
-      counter += 1
+      # counter += 1
     end
 
-    reverese_list.add_note(current_node.data)
-    previous_node.next=nil
-    reverse
+    until @last == @head
+      reverse_list.add_node(current_node.data)
+      current_node = previous_node
+      # previous_node.next=nil
+
+    end
+    reverse_list
 
   end
 
@@ -129,3 +134,5 @@ end
 L=LinkedList.new()
 puts L.add_node(["earth","planet"])
 L.print_list
+L.reverse.print_list
+
