@@ -23,3 +23,12 @@ O(n)
 
 6.) The Enumerable#include method.
 O(n)
+
+7.) Find the max of an array.
+O(n), if unsorted
+O(1), if sorted
+
+8.) splitting a String.
+O(n)
+
+
