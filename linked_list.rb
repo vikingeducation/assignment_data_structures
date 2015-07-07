@@ -13,32 +13,27 @@ class LinkedList
   def initialize(first_node = nil)
     @head = first_node
     @last = first_node
-    add_first_node
+    
     
   end
 
+# Node at index 0: ["sun", "star"]
+# Node at index 1: ["earth", "planet"]
+
+#O(n)
   def reverse
-    # start at the head
-    counter = 0
-    #Node1 - Node2 - Node3
-
     current_node = @head
-
-    previous_node=current_node
-    current_node=current_node.next
-
-    
-
-    until @last == nil
-      previous_node=current_node
-      current_node = current_node.next
-      counter += 1
+    reverse_list = LinkedList.new
+    arr=[]
+    until current_node == nil
+      arr << current_node
+      current_node = current_node.next 
     end
-
-    reverese_list.add_note(current_node.data)
-    previous_node.next=nil
-    reverse
-
+    
+    until arr.empty?
+      reverse_list.add_node(arr.pop.data)
+    end
+    reverse_list
   end
 
 
@@ -132,5 +127,8 @@ class LinkedList
 end
 
 L=LinkedList.new()
+puts L.add_node(["sun","star"])
 puts L.add_node(["earth","planet"])
 L.print_list
+L.reverse.print_list
+
