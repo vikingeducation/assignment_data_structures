@@ -21,7 +21,7 @@ Buckets and buckets of data!
 8. splitting a String.
   O(n)
 9. Inserting a value to a Hash
-  O(n)
+  O(1)
 10. Retrieving the keys of a Hash ({ foo: "bar" }.keys)
   O(n)
 
