@@ -64,17 +64,17 @@ class LinkedList
 
     @length.times do
       counter += 1
-      if @current_node.word == searched_word
-        puts "The definition of #{searched_word} is #{@current_node.definition}"
+      if current_node.word == searched_word
+        puts "The definition of #{searched_word} is #{current_node.definition}"
         puts "It took #{counter} iterations to find it"
-        break
+        return
       else
         current_node = current_node.next
       end
 
     end
 
-    puts "Not found (word not in list)"
+    puts "#{searched_word} Not found (word not in list)"
     puts "It took #{counter} iterations to do this"
 
   end
