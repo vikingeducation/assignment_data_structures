@@ -2,6 +2,8 @@ Node = Struct.new(:word, :definition, :next)
 
 class LinkedList
 
+    attr_reader :length
+
   def initialize(first_node = nil)
     @head = first_node
     @last = first_node
@@ -55,7 +57,37 @@ class LinkedList
 
   end
 
+  def define_node(searched_word)
+
+    current_node = @head
+    counter = 0
+
+    @length.times do
+      counter += 1
+      if @current_node.word == searched_word
+        puts "The definition of #{searched_word} is #{@current_node.definition}"
+        puts "It took #{counter} iterations to find it"
+        break
+      else
+        current_node = current_node.next
+      end
+
+    end
+
+    puts "Not found (word not in list)"
+    puts "It took #{counter} iterations to do this"
+
+  end
+
   def insert_node(index, word, definition) 
+
+    if index > @length - 1 
+      raise "The list has only #{@length} nodes"
+
+    elsif index == @length - 1
+      add_node(word, definition)
+
+    else #actually insert node
 
     previous_node = find_node(index)
 
@@ -68,6 +100,8 @@ class LinkedList
 
     #time for operation = O(n)
     @length += 1
+
+    end
 
   end
 
@@ -91,6 +125,19 @@ class LinkedList
     # time complexity of the operation id O(n^2)
   end
 
+  def print_list
+    counter = 0
+    current_node = @head
+    puts "\n CURRENT LIST"
+    loop do
+      puts "Node at index #{counter}: #{current_node.word}"
+      break if current_node.next.nil?
+      current_node = current_node.next
+      counter += 1
+    end
+  end
 
 end
+
+
 
