@@ -20,7 +20,7 @@ class LinkedList
 # Node at index 0: ["sun", "star"]
 # Node at index 1: ["earth", "planet"]
 
-#O(n)
+#We created new nodes, complexity is O(n)
   def reverse
     current_node = @head
     reverse_list = LinkedList.new
@@ -124,11 +124,12 @@ class LinkedList
     end
   end
 
+ 
 end
 
-L=LinkedList.new()
-puts L.add_node(["sun","star"])
-puts L.add_node(["earth","planet"])
-L.print_list
-L.reverse.print_list
+# L=LinkedList.new()
+# puts L.add_node(["sun","star"])
+# puts L.add_node(["earth","planet"])
+# L.print_list
+# L.reverse_rec.print_list
 
