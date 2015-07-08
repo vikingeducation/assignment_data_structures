@@ -52,11 +52,23 @@ attr_accessor :head, :last
 		# @head.next = nil
 		current = @head
 		switch = []
-		until current == nil
+		len = switch.length
+		while current != nil
 			switch << current
 			current = current.next
 		end
-
+		#
+		# switch.each_with_index do |n,i|
+		# 	puts n
+		# 	n[i+1].next = n unless i+1 > len-1
+		# 	#n[i+1].next = n
+		# end
+		current = @head
+			len.times do
+				hold = switch.pop
+				current.next = hold
+				current = hold
+			end
 	end
 
 #insert nodes at a particular index
