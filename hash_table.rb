@@ -37,38 +37,24 @@ attr_accessor :head, :last
 
 #reverse
 	def reverse
-		# # @head, @last = @last, @head
-		# l = self.length
-		# counter = 2
-		# previous_node = read_node(l - counter)
-		# current_node = @last
-		# while counter <= l
-		# 	puts current_node
-		# 	counter += 1 # 3
-		# 	current_node.next = previous_node
-		# 	current_node = previous_node
-		# 	previous_node = read_node(l - counter) #-3, -4, -5
-		# end
-		# @head.next = nil
 		current = @head
 		switch = []
-		len = switch.length
 		while current != nil
 			switch << current
 			current = current.next
 		end
-		#
-		# switch.each_with_index do |n,i|
-		# 	puts n
-		# 	n[i+1].next = n unless i+1 > len-1
-		# 	#n[i+1].next = n
-		# end
+
+		len = switch.length
+		@head = switch.pop
 		current = @head
-			len.times do
-				hold = switch.pop
-				current.next = hold
-				current = hold
-			end
+		(len-2).times do
+			hold = switch.pop
+			current.next = hold
+			current = hold
+		end
+		@last = switch.pop
+		current.next = @last
+		@last.next = nil
 	end
 
 #insert nodes at a particular index
