@@ -205,11 +205,11 @@ class HashTable
     false
   end
 
-  def tic(method)
-    start = Time.now
-    method
-    puts start - Time.now
-  end
+  # def tic(method)
+  #   start = Time.now
+  #   method
+  #   puts start - Time.now
+  # end
 
 end
 

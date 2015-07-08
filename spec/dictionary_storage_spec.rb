@@ -92,7 +92,7 @@ describe HashTable do
 
   describe "#initialize" do
 
-    it 'should have 26 elements' do
+    it 'should have 62 elements' do
       expect(hhash.num_buckets).to eq(62)
     end
 
