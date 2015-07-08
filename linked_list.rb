@@ -89,7 +89,6 @@ class LinkedList
       counter += 1
     end
     current_node.definition = definition
-    puts "It took #{counter+1} steps to find #{word}."
     current_node
 
   end
@@ -106,7 +105,7 @@ class LinkedList
       current_node = current_node.next_node
       counter += 1
     end
-    puts "It took #{counter+1} steps to find #{word}."
+    puts "It took #{counter+1} steps to find #{word}." unless current_node.next_node.nil?
     current_node
 
   end
@@ -144,16 +143,20 @@ end
 
 class HashTable
 
+  attr_reader :counter, :buckets
+
   def initialize(buckets = [])
 
     @buckets = buckets
     @render = {}
+    @counter = 0
 
   end
 
   def hash(word)
 
     word[0].downcase.ord - 97
+
 
   end
 
@@ -181,6 +184,7 @@ class HashTable
     if definition.nil?
       puts "Sorry, definition not found"
     else
+      puts "The definition of #{word} is '#{definition}'."
       definition
     end
 
@@ -191,6 +195,8 @@ class HashTable
     @buckets[hash(word)].add_definition(word,definition)
 
   end
+
+  
 
 end
 
@@ -215,6 +221,8 @@ class Dictionary_Loader
 
 end
 
+
+
 table = HashTable.new
 dictionary = Dictionary_Loader.new("dictionary.txt")
 
@@ -224,9 +232,21 @@ end
 
 table.render_list
 
-table.add_definition("Apostle", "Follower of Jesus")
+word = "Szechwan"
 
-puts table.define("Apostle")
+
+t = Time.now
+
+10000.times {|i| table.buckets[table.hash(word)].find(word); puts i}
+
+total = Time.now - t
+print "It took an average of #{(Time.now - t)/10000} seconds"
+print " and a total time of #{total} seconds\n"
+
+
+
+
+
 
 
 
