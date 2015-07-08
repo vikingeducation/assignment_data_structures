@@ -26,7 +26,7 @@ class LinkedList
       @tail = new_node
       @nodes +=1
     end
-    puts "Added new word: #{word} with definition: #{definition}."
+    #puts "Added new word: #{word} with definition: #{definition}."
   end
 
   # Big O time: O(n)
@@ -130,11 +130,14 @@ end
 class HashTable
 
   def initialize
-    @buckets = Array.new(26){ }
+    @bucket_count = 26
+    @buckets = Array.new(@bucket_count){ }
+    @max_size = 1000
   end
 
   def hash(word)
-    return word[0].downcase.ord - 97
+    word.split("").reduce(0) {|acc, char| acc += char.ord}
+    #return word[0].downcase.ord - 97
   end
 
   def insert(word, definition)
@@ -165,17 +168,26 @@ class HashTable
   end
 
   def num_buckets
-    @buckets.length
+    @bucket_count
   end
 
+  def populate
+    lines = File.readlines("5desk.txt")
+    lines.map! {|line| line.strip}
+
+    lines.each_with_index do |line, index|
+      insert(line, "This is word \##{index}!")
+    end
+  end
+
+  def buckets_too_large
+    @bucket_count.times do |bucket|
+      if bucket_size.bucket
+    end
+  end
 
 end
 
 # htable = HashTable.new
 
-# lines = File.readlines("5desk.txt")
-# lines.map! {|line| line.strip}
 
-# lines.each_with_index do |line, index|
-#   htable.insert(line, "This is word \##{index}!")
-# end
