@@ -14,7 +14,7 @@ class LinkedList
 
 
 # Big O time = O(n)
-  def read(index)
+  def read(index = 99999999999)
     counter = 0
     current_node = @head
     while index >= counter
@@ -23,6 +23,19 @@ class LinkedList
       current_node = current_node.next_node
       counter += 1
     end
+
+
+  end
+
+  def count
+    counter = 1
+    current_node = @head
+    loop do
+      break if current_node.next_node.nil?
+      current_node = current_node.next_node
+      counter += 1
+    end
+    counter
 
   end
 
@@ -62,7 +75,7 @@ class LinkedList
       @last = new_node
     end
 
-    puts "Added a node with value #{word}"
+    # puts "Added a node with value #{word}"
 
   end
 
@@ -96,20 +109,52 @@ class LinkedList
 end
 
 
-list = LinkedList.new
+class HashTable
 
-50.times do |i|
-  list.add_node("#{i}")
+  def initialize(buckets = [])
+
+    @buckets = buckets
+    @render = {}
+
+  end
+
+  def hash(word)
+
+    word[0].downcase.ord - 97
+
+  end
+
+  def insert(word)
+
+    @buckets[hash(word)] = LinkedList.new if @buckets[hash(word)].nil?
+    @buckets[hash(word)].add_node(word)
+
+  end
+
+  def render_list
+
+   
+    26.times do |i|
+      next if @buckets[i].nil?
+      @render[(i + 97).chr] = @buckets[i].count
+    end
+    p @render
+
+  end
+
+
+
 end
 
-list.read(51)
+table = HashTable.new
 
-list.reverse
+50.times do |i|
+  table.insert("number: #{i}")
+end
 
-list.read(100)
+table.insert("Apostle")
 
-
-   nil  9 -> 8 -> 7 ... 4 -> 3 -> 2 -> 1
+table.render_list
 
 
 
