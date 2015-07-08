@@ -93,7 +93,7 @@ describe HashTable do
   describe "#initialize" do
 
     it 'should have 26 elements' do
-      expect(hhash.num_buckets).to eq(26)
+      expect(hhash.num_buckets).to eq(62)
     end
 
   end
@@ -105,7 +105,7 @@ describe HashTable do
     end
 
     it 'should return the correct bucket' do
-      expect(hhash.hash("j")).to eq(9)
+      expect(hhash.hash("j")).to eq(44)
     end
 
   end
@@ -114,7 +114,7 @@ describe HashTable do
 
     it 'should insert word into correct bucket' do
       hhash.insert("a", "test")
-      expect(hhash.bucket_size(0)).to eq(1)
+      expect(hhash.bucket_size(35)).to eq(1)
     end
 
   end

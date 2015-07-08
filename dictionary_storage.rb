@@ -130,22 +130,27 @@ end
 class HashTable
 
   def initialize
-    @bucket_count = 26
-    @buckets = Array.new(@bucket_count){ }
+    @bucket_count = 62
+    initialize_buckets
     @max_size = 1000
+    @lines = []
+  end
+
+  def initialize_buckets
+    @buckets = Array.new(@bucket_count){ }
   end
 
   def hash(word)
-    word.split("").reduce(0) {|acc, char| acc += char.ord}
-    #return word[0].downcase.ord - 97
+    word.split("").reduce(0) {|acc, char| acc += char.ord} % @bucket_count
   end
 
   def insert(word, definition)
-    if @buckets[hash(word)].nil?
-      @buckets[hash(word)] = LinkedList.new
-      @buckets[hash(word)].insert_node(word, definition)
+    hashed_word = hash(word)
+    if @buckets[hashed_word].nil?
+      @buckets[hashed_word] = LinkedList.new
+      @buckets[hashed_word].insert_node(word, definition)
     else
-      @buckets[hash(word)].insert_node(word, definition)
+      @buckets[hashed_word].insert_node(word, definition)
     end
   end
 
@@ -156,6 +161,7 @@ class HashTable
   end
 
   def bucket_size(n)
+    return 0 if @buckets[n].nil?
     @buckets[n].nodes
   end
 
@@ -171,19 +177,38 @@ class HashTable
     @bucket_count
   end
 
-  def populate
-    lines = File.readlines("5desk.txt")
-    lines.map! {|line| line.strip}
+  def load_file
+    @lines = File.readlines("5desk.txt")
+    @lines.map! {|line| line.strip}
+    populate
+  end
 
-    lines.each_with_index do |line, index|
+  def populate
+    initialize_buckets
+    @lines.each_with_index do |line, index|
       insert(line, "This is word \##{index}!")
+      if buckets_too_large
+        puts "Too large, repopulating!"
+        break
+      end
+    end
+    if buckets_too_large
+      @bucket_count *= 2
+      populate
     end
   end
 
   def buckets_too_large
     @bucket_count.times do |bucket|
-      if bucket_size.bucket
+      return true if bucket_size(bucket) > @max_size
     end
+    false
+  end
+
+  def tic(method)
+    start = Time.now
+    method
+    puts start - Time.now
   end
 
 end
