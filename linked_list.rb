@@ -1,6 +1,4 @@
-Node = Struct.new(:word, :next_node)
-
-
+Node = Struct.new(:word, :definition, :next_node)
 
 
 class LinkedList
@@ -24,7 +22,6 @@ class LinkedList
       counter += 1
     end
 
-
   end
 
   def count
@@ -42,7 +39,7 @@ class LinkedList
 # Big O time = O(1)
 
   def add_first_node(word)
-    @head = Node.new(word,nil)
+    @head = Node.new(word, nil)
     @last = @head
   end
 
@@ -57,7 +54,7 @@ class LinkedList
         current_node.next_node = new_node
         current_node = new_node
         break
-        
+
       end
       current_node = current_node.next_node
       counter += 1
@@ -76,6 +73,41 @@ class LinkedList
     end
 
     # puts "Added a node with value #{word}"
+
+  end
+
+  def add_definition(word, definition)
+
+    counter = 0
+    current_node = @head
+    until current_node.word == word
+      if current_node.next_node.nil?
+        puts "Cannot find #{word}"
+        break
+      end
+      current_node = current_node.next_node
+      counter += 1
+    end
+    current_node.definition = definition
+    puts "It took #{counter+1} steps to find #{word}."
+    current_node
+
+  end
+
+  def find(word)
+
+    counter = 0
+    current_node = @head
+    until current_node.word == word
+      if current_node.next_node.nil?
+        puts "Cannot find #{word}"
+        break
+      end
+      current_node = current_node.next_node
+      counter += 1
+    end
+    puts "It took #{counter+1} steps to find #{word}."
+    current_node
 
   end
 
@@ -109,6 +141,7 @@ class LinkedList
 end
 
 
+
 class HashTable
 
   def initialize(buckets = [])
@@ -133,7 +166,6 @@ class HashTable
 
   def render_list
 
-   
     26.times do |i|
       next if @buckets[i].nil?
       @render[(i + 97).chr] = @buckets[i].count
@@ -142,19 +174,59 @@ class HashTable
 
   end
 
+  def define(word)
 
+    definition = @buckets[hash(word)].find(word).definition
+
+    if definition.nil?
+      puts "Sorry, definition not found"
+    else
+      definition
+    end
+
+  end
+
+  def add_definition(word, definition)
+
+    @buckets[hash(word)].add_definition(word,definition)
+
+  end
+
+end
+
+
+
+
+class Dictionary_Loader
+
+  def initialize(file)
+
+    @file = file
+
+  end
+
+  def load
+
+   dict = File.open(@file, "r")
+   words = dict.readlines
+   words.map! { |word| word.strip }
+
+  end
 
 end
 
 table = HashTable.new
+dictionary = Dictionary_Loader.new("dictionary.txt")
 
-50.times do |i|
-  table.insert("number: #{i}")
+dictionary.load.each do |word|
+  table.insert(word)
 end
 
-table.insert("Apostle")
-
 table.render_list
+
+table.add_definition("Apostle", "Follower of Jesus")
+
+puts table.define("Apostle")
 
 
 
