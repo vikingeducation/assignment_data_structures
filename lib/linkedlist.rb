@@ -54,13 +54,12 @@ class LinkedList
 
       raise "#{word} not found, searched #{node_number} nodes" if current_node.next == nil
 
-      #puts "#{current_node.word}: #{current_node.definition} at index #{crawler_location}"
       current_node = current_node.next
       node_number += 1
 
     end
 
-    puts "Word found after #{node_number} steps!"
+    puts "Word found after searching #{node_number} nodes!"
     current_node unless current_node == nil    
     
   end

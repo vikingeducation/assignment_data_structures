@@ -37,19 +37,17 @@ class Hashtable
 
 
   def render_table
-
     (0..25).each do |index|
 
       next if @buckets[index] == nil
 
-      #print "\n"
+      print "\n"
       print "There are #{@buckets[index].node_count} words beginning"
       print " with the letter \"#{@letters[index].upcase}\":\n"
 
-      #@buckets[index].render_list
+      @buckets[index].render_list
 
     end    
-
   end
 
 
@@ -62,6 +60,7 @@ class Hashtable
   end
   
 end
+
 
 
 class DictionaryLoader
