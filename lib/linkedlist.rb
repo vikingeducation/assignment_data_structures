@@ -4,12 +4,24 @@ Node = Struct.new(:word, :definition, :next)
 
 class LinkedList
 
-  attr_accessor :head, :last
+  attr_accessor :head, :last, :node_count
 
   def initialize(first_node = nil)
     # can initialize with a first node, or just be an empty list
     @head = first_node
     @last = first_node
+    first_node ? @node_count = 1 : @node_count = 0
+  end
+
+
+  def render_list
+    current_node = @head
+
+    until current_node == nil
+      puts "#{current_node.word} - #{current_node.definition}"
+      current_node = current_node.next
+    end
+
   end
 
   
@@ -36,17 +48,20 @@ class LinkedList
   def find_word(word)
 
     current_node = @head
+    node_number = 1
 
     until current_node.word == word
 
-      raise "#{word} not found" if current_node == nil
+      raise "#{word} not found, searched #{node_number} nodes" if current_node.next == nil
 
       #puts "#{current_node.word}: #{current_node.definition} at index #{crawler_location}"
       current_node = current_node.next
+      node_number += 1
 
     end
 
-    current_node.definition unless current_node == nil    
+    puts "Word found after #{node_number} steps!"
+    current_node unless current_node == nil    
     
   end
 
@@ -64,6 +79,8 @@ class LinkedList
       @head = new_node
 
       @last = new_node if @last == nil
+
+      @node_count += 1
     
     # handle an insert at an arbitrary index 
     else
@@ -76,6 +93,8 @@ class LinkedList
       insertion_node.next = new_node
 
       @last = new_node if @last == insertion_node
+
+      @node_count += 1
 
     end
   end
@@ -91,12 +110,16 @@ class LinkedList
     
       @head = new_node
       @last = new_node
+
+      @node_count += 1
     
     # normal append at the end of the list
     else 
 
       @last.next = new_node
       @last = new_node
+
+      @node_count += 1
 
     end
   end

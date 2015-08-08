@@ -13,6 +13,13 @@ describe Hashtable do
       subject.insert("dixie", "a fat cat")
       expect( subject.define("dixie") ).to eq("a fat cat")
     end
+
+    it "adds multiple words with the same first letter" do
+      subject.insert("dixie", "a fat cat")
+      subject.insert("doug", "a cartoon character")
+      expect( subject.define("dixie") ).to eq("a fat cat")
+      expect( subject.define("doug") ).to eq("a cartoon character")
+    end
   end
 
   describe "#define" do
