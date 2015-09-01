@@ -1,0 +1,1 @@
+Node = Struct.new(:word, :definition, :next)
