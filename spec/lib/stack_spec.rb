@@ -3,6 +3,18 @@ require 'spec_helper'
 describe Stack do
 	let(:stack){Stack.new}
 
+	it 'can be used to reverse a string' do
+		"Hello Stack!".chars.each do |c|
+			stack.push(c)
+		end
+		str = c = ''
+		until (c == nil)
+			str = "#{str}#{c}"
+			c = stack.pop
+		end
+		expect(str).to eq("Hello Stack!".reverse)
+	end
+
 	describe '#push' do
 		it 'adds a value to the top of the stack' do
 			stack.push(1)

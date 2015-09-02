@@ -3,6 +3,18 @@ require 'spec_helper'
 describe Queue do
 	let(:queue){Queue.new}
 
+	it 'can print a string in the same order it was given' do
+		"Hello Queue!".chars.each do |c|
+			queue.enqueue(c)
+		end
+		str = c = ''
+		until (c == nil)
+			str += c
+			c = queue.dequeue
+		end
+		expect(str).to eq("Hello Queue!")
+	end
+
 	describe '#enqueue' do
 		it 'adds a value onto the back of the queue' do
 			queue.enqueue(10)

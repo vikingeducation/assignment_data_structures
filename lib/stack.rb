@@ -21,7 +21,7 @@ class Stack
 		unless empty?
 			@length -= 1
 			a = Array.new(@length)
-			i = @length
+			i = 0
 			while (i < @length)
 				a[i] = @stack[i]
 				i += 1

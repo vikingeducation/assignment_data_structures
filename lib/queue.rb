@@ -18,16 +18,18 @@ class Queue
 	end
 
 	def dequeue
-		@length -= 1
-		value = @queue[@length]
-		a = Array.new(@length)
-		i = 0
-		while (i < @length)
-			a[i] = @queue[i]
-			i += 1
+		unless empty?
+			@length -= 1
+			value = @queue[@length]
+			a = Array.new(@length)
+			i = 0
+			while (i < @length)
+				a[i] = @queue[i]
+				i += 1
+			end
+			@queue = a
+			value
 		end
-		@queue = a
-		value
 	end
 
 	def peek
