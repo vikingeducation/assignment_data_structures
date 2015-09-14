@@ -1,3 +1,5 @@
+# queue adt implemented using basic static array
+
 class Queue
   attr_accessor :queue
 
