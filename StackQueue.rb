@@ -40,11 +40,60 @@ class Stack
 end
 
 
-s = Stack.new
-puts s.my_push("abc")
-puts s.my_push("def")
-puts s.my_push("you")
-puts s.my_reverse
+# s = Stack.new
+# puts s.my_push("abc")
+# puts s.my_push("def")
+# puts s.my_push("you")
+# puts s.my_reverse
 
 # puts s.my_push("def")
 # puts s.my_pop
+
+
+class Queue
+
+  attr_reader :arr
+
+  def initialize
+    @arr = []
+  end
+
+
+  def empty?
+    length == 0
+  end
+
+
+  # insert item into front of array, 0th position
+  def my_enqueue(element)
+    new_arr = []
+    new_arr[0] = element
+    @arr.length.times do |idx|
+      new_arr[idx+1] = @arr[idx]
+    end
+    @arr = new_arr.join
+  end
+
+
+  # insert item into back of array, last position
+  def my_dequeue
+    unless @arr.empty?
+      last = @arr[@arr.length-1]
+      @arr = @arr[0..@arr.length-2]
+      last
+    end
+  end
+
+end
+
+
+q = Queue.new
+puts q.my_enqueue("1")
+puts q.my_enqueue("2")
+puts q.my_enqueue("3")
+puts q.my_enqueue("4")
+puts q.my_dequeue
+puts q.my_dequeue
+puts q.my_dequeue
+puts q.my_dequeue
+# puts q.arr
