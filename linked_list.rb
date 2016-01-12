@@ -42,7 +42,10 @@ class LinkedList
   end
 end
 
-Node = Struct.new(:word, :definition, :next)
+Node = Struct.new(:word, :definition, :next) do def inspect
+    "#{word} -> #{self.next.inspect || "nil"}"
+  end
+end
 
 listy = LinkedList.new
 listy.add_node("Baby", "Tiny Baby")
@@ -50,3 +53,5 @@ listy.add_node("Grampa", "Old Baby")
 listy.add_node("Dragon", "Scaly Baby")
 
 listy.insert_node_at("Chupacabra", "Not A Baby", 1)
+listy # => #<LinkedList:0x007fce4a88df90 @head=Baby -> Chupacabra -> Grampa -> Dragon -> nil, @tail=Dragon -> nil>
+# >> returning node at 0
