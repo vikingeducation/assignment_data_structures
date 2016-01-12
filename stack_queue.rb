@@ -51,6 +51,7 @@ end
 
 
 class Queue
+  # note that we followed the (somewhat confusing) diagram for enqueue and dequeue, so they might be switched logically
 
   attr_reader :arr
 
