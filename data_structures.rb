@@ -112,41 +112,40 @@ end
 ###########
 #LinkedList
 
-Node = Struct.new(:word,:definition) do 
+Node = Struct.new(:word, :definition, :next_node ) do 
   def display_node
-    puts word, definition
+    puts "word: #{word}"
+    puts "def'n: #{definition}"
   end
 end
 
 class LinkedList
   attr_accessor :head
   
-  def initialize(head, next_node = nil)
+  def initialize(head)
     @head = head
-    @next_node = next_node
-    @@counter = 0
   end
 
   def display_list
-    current_node = self
+    current_node = @head
+    counter = 0
     while current_node != nil
-      current_node.head.display_node
-      current_node = @next_node
-      puts "node number #{@@counter}"
-      @@counter += 1
+      current_node.display_node
+      current_node = current_node.next_node
+      puts "node number #{counter}"
+      counter += 1
+      puts
     end
   end
 end
 
-node1 = Node.new("go", "to move forward")
-node2 = Node.new("stop", "to not go forward")
-node3 = Node.new("jump", "to rise up")
+node1 = Node.new("go", "to move forward", nil )
+node2 = Node.new("stop", "to not go forward", node1 )
+node3 = Node.new("jump", "to rise up", node2 )
 
-jump_node = LinkedList.new(node3, nil)
-stop_node = LinkedList.new(node2, jump_node)
-go_node = LinkedList.new(node1, stop_node)
+ll = LinkedList.new( node3 )
 
-go_node.display_list
+ll.display_list
 
 
 
