@@ -11,7 +11,11 @@ class HashTable
   end
 
   def hash(word)
-    LETTER_ARRAY.index(word.word[0])
+    if word.is_a?(String)
+       LETTER_ARRAY.index(word[0])
+    else         
+       LETTER_ARRAY.index(word.word[0])
+    end   
   end
 
   def insert(word) # examine case where you insert an element already in the list
@@ -35,13 +39,17 @@ class HashTable
     end
   end
 
-  def define(word)
-    label = word.word
-    index = hash(word)
+  def define(label)
+    index = hash(label)
     if @buckets[index] == nil
       puts "No definition exists"
     else
-      
+      ll_index = @buckets[index].find_word(label)
+      if ll_index > 0
+         puts "Found the worrd in index #{ll_index}"
+      else
+         puts "Definition #{label} not found!"
+      end      
     end
   end
 end
@@ -53,3 +61,4 @@ h.insert(word1)
 h.insert(word2)
 
 h.render_list
+h.define("hello")
