@@ -11,13 +11,16 @@ class Stack
   end
 
   # push element to end of array
-  def push(element)
-    @arr[arr.length] = element
+  def my_push(element)
+    @arr[@arr.length] = element
+    @arr.join('')
   end
 
-  # pop @element ouf of array
-  def pop
-    @arr[0..arr.length-2] unless arr.empty?
+  # pop element ouf of array
+  def my_pop
+    last = @arr[@arr.length-1]
+    @arr = @arr[0..@arr.length-2] unless arr.empty?
+    last
   end
 
   # peek @at last element in the array
@@ -25,9 +28,23 @@ class Stack
     @arr[length-1] unless arr.empty?
   end
 
+  # reverse string
+  def my_reverse
+    reversed = []
+    @arr.length.times do |idx|
+      reversed[idx] = my_pop
+    end
+    reversed.join('')
+  end
 
 end
 
 
 s = Stack.new
-puts s.push("abc")
+puts s.my_push("abc")
+puts s.my_push("def")
+puts s.my_push("you")
+puts s.my_reverse
+
+# puts s.my_push("def")
+# puts s.my_pop
