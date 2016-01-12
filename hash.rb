@@ -30,25 +30,42 @@ class LinkedList
   end
 
 
-
+  # Big O(n) because the worst case would be to traverse through entire list of nodes.
   def read_node(index)
     counter = 0
     current_node = @head
 
     while counter < index
+      puts "#{current_node.data}"
       current_node = current_node.next
       counter += 1
     end
-    puts "found node at index #{index} with value #{current_node.data}"
+    puts "Found node at index #{index} with value #{current_node.data}"
     current_node
   end
 
 
   def insert_node(data, index)
     # {data|next=1} {data|next=2} {data|next=3}
+    counter = 0
+    current_node = @head
+    new_node = Node.new(data)
+    prev_node = nil
+
+    while counter < index
+      prev_node = current_node
+      current_node = current_node.next
+      counter += 1
+    end
+
+    prev_node.next = new_node
+    new_node.next = current_node
 
   end
 
-
-
 end
+
+l1 = LinkedList.new(Node.new("first", nil))
+l1.add_node("Second node!")
+l1.read_node(0)
+l1.read_node(1)
