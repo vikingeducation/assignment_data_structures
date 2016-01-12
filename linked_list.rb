@@ -94,9 +94,13 @@ class LinkedList
     end
   end
 
+  # runs in O(n) time because it traverses the whole list
   def reverse
+    # [1, 2, 3]
       first_node = @head
+      # first_node = 1
       next_node = first_node.next
+      #next_node = 2
       first_node.next = nil
   
       #reverse_list = LinkedList.new
@@ -104,18 +108,22 @@ class LinkedList
       #reverse_list.head = @last
 
       while (next_node != @last )
-        puts "First #{first_node.data}, Last #{next_node.data}"
         x = next_node.next
+        #x = 3
         next_node.next = first_node
+        #2.next = 1
         
         first_node = next_node
+        #first_node = 2
         next_node = x
+        #next_node = 3
        
       end
+
+      next_node.next = first_node
        
       @head,@last = @last,@head
-      puts "Head #{head.data}, Last #{last.data}"
-      print_list
+      self
   end
   
 
@@ -130,21 +138,38 @@ class LinkedList
     counter+1
   end
 
+  def find_word(word)
+    counter = 0
+    current_node = @head
+    # crawl to the index position
+    # outputs each node value for visibility
+    while current_word.word < index
+      puts "Iterating node at #{counter}"
+      current_node = current_node.next
+      counter += 1
+    end
+    #puts "Found node at index #{index} with value: #{current_node.data}"
+    current_node
+  end
+
 end
 
 L = LinkedList.new
-L.add_node("hello")
-L.add_node("there")
-L.add_node("kelsey")
-L.add_node("deepa")
-puts  "#{L.print_list}"
-L.find_node(2)
-L.insert_node(0,"temp")
-puts  "#{L.print_list}"
-L.insert_node(4,"item at 4")
-puts  "#{L.print_list}"
-puts "Insert at position 6: #{L.insert_node(6,"item at 6")}"
-puts  "#{L.print_list}"
+# L.add_node("hello")
+# L.add_node("there")
+# L.add_node("kelsey")
+# L.add_node("deepa")
+# puts  "#{L.print_list}"
+# L.find_node(2)
+# L.insert_node(0,"temp")
+# puts  "#{L.print_list}"
+# L.insert_node(4,"item at 4")
+# puts  "#{L.print_list}"
+# puts "Insert at position 6: #{L.insert_node(6,"item at 6")}"
+# puts  "#{L.print_list}"
 
-puts "----------REVERSE---------"
-puts "REVERSE LIST #{L.reverse}"
+# puts "#{L.add_node(1)}"
+# puts "#{L.add_node(2)}"
+# puts "#{L.add_node(3)}"
+# puts "----------REVERSE---------"
+# L.reverse.print_list
