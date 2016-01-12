@@ -140,16 +140,25 @@ class LinkedList
 
   def find_word(word)
     counter = 0
+    is_found = false
     current_node = @head
     # crawl to the index position
     # outputs each node value for visibility
     until current_node.data.word == word
       puts "Iterating node at #{counter}"
+      if current_node.next == nil
+        break
+      end
       current_node = current_node.next
       counter += 1
     end
-    counter
+    
+    if current_node.data.word == word
+      is_found = true
+    end
+    is_found ? counter : false
   end
+
 
 end
 

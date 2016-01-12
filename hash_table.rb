@@ -31,6 +31,17 @@ class HashTable
     end
   end
 
+  def open_dictionary
+    dict = File.readlines("5desk.txt", "r")
+    dict.each do |item|
+      item = item.chomp
+      puts "#{item}"
+      new_word = Word.new(item, "placeholder for #{item}")
+      insert(new_word)
+    end
+    dict.close
+  end
+
   def render_list
     @buckets.each_with_index do |item, index|
       unless item == nil
@@ -45,8 +56,8 @@ class HashTable
       puts "No definition exists"
     else
       ll_index = @buckets[index].find_word(label)
-      if ll_index > 0
-         puts "Found the worrd in index #{ll_index}"
+      if ll_index
+         puts "Found #{label} in index #{ll_index} taking #{ll_index + 1} steps"
       else
          puts "Definition #{label} not found!"
       end      
@@ -55,10 +66,16 @@ class HashTable
 end
 
 h = HashTable.new
-word1 = Word.new("hello", "a common greeting")
-word2 = Word.new("house", "a structure to live in")
-h.insert(word1)
-h.insert(word2)
+# word1 = Word.new("hello", "a common greeting")
+# word2 = Word.new("house", "a structure to live in")
+# word3 = Word.new("cat", "a small furry animal")
+# h.insert(word1)
+# h.insert(word2)
+# h.insert(word3)
 
-h.render_list
+h.open_dictionary
 h.define("hello")
+h.define("house")
+h.define("help")
+h.define("cat")
+h.define("car")
