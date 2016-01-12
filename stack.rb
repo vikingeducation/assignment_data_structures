@@ -47,4 +47,3 @@ puts "POP #{s.pop}, STACK is #{s.stack}"
 puts "PEEK #{s.peek}"
 puts "POP #{s.pop}, STACK is #{s.stack}"
 puts "PEEK #{s.peek}"
-
