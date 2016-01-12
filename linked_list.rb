@@ -40,6 +40,21 @@ class LinkedList
     new_node = Node.new(word, definition, after_node)
     before_node.next = new_node
   end
+
+  # This is O(n), since you have to traverse the length of the linked lisk to rearrange the "links" to point in the opposite direction. This method uses existing nodes and simply rearranges the links.
+  def reverse
+    current_node = @head
+    @tail, @head = @head, @tail
+    last_node = nil
+    until current_node == nil
+      next_node = current_node.next
+      current_node.next = last_node
+
+      last_node = current_node
+      current_node = next_node
+    end
+
+  end
 end
 
 Node = Struct.new(:word, :definition, :next) do def inspect
@@ -55,3 +70,6 @@ listy.add_node("Dragon", "Scaly Baby")
 listy.insert_node_at("Chupacabra", "Not A Baby", 1)
 listy # => #<LinkedList:0x007fce4a88df90 @head=Baby -> Chupacabra -> Grampa -> Dragon -> nil, @tail=Dragon -> nil>
 # >> returning node at 0
+p listy
+listy.reverse
+p listy
