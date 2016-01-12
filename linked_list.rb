@@ -143,13 +143,12 @@ class LinkedList
     current_node = @head
     # crawl to the index position
     # outputs each node value for visibility
-    while current_word.word < index
+    until current_node.word == word
       puts "Iterating node at #{counter}"
       current_node = current_node.next
       counter += 1
     end
-    #puts "Found node at index #{index} with value: #{current_node.data}"
-    current_node
+    
   end
 
 end
