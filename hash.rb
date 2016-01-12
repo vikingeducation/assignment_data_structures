@@ -7,6 +7,7 @@ class LinkedList
   def initialize(first_node=nil)
     @head = first_node
     @last = first_node
+    @length = first_node.nil? ? 0 : 1
   end
 
 
@@ -26,6 +27,7 @@ class LinkedList
       # new node is now last node
       @last = new_node
     end
+    @length += 1
     puts "added node with value: #{data}"
   end
 
@@ -44,9 +46,8 @@ class LinkedList
     current_node
   end
 
-
+  # Big O(n) because you might be inserting at the end, have to traverse the whole list to get there
   def insert_node(data, index)
-    # {data|next=1} {data|next=2} {data|next=3}
     counter = 0
     current_node = @head
     new_node = Node.new(data)
@@ -63,9 +64,56 @@ class LinkedList
 
   end
 
+  def reverse
+    #              item a        item b       item c
+    # original {data|next=b} {data|next=c} {data|next=nil}
+    # reverse {data|next=nil} {data|next=a} {data|next=b}
+    
+    
+
+
+  end
+
 end
 
-l1 = LinkedList.new(Node.new("first", nil))
+
+
+l1 = LinkedList.new(Node.new("First node!", nil))
 l1.add_node("Second node!")
-l1.read_node(0)
-l1.read_node(1)
+l1.add_node("Third node!")
+# l1.add_node("Fourth node!")
+# l1.add_node("Fifth node!")  # 4
+# l1.add_node("Sixth node!")  # 5
+# l1.read_node(5)
+# l1.read_node(1)
+# l1.insert_node("I was inserted", 2)
+# l1.read_node(5)
+
+l1.reverse
+
+
+
+# notes: 
+#     current = @head
+#     # puts "debug is here"
+#     # puts "#{@head.data}"
+#     # puts "#{@head.next}"
+    
+#     next_node = current.next
+
+#     until current.next.nil? do
+#       prev_node = current
+#       current = next_node
+#       puts "debug is here"
+#       puts "#{next_node.next}"
+#       next_node = current.next
+
+#       if prev_node == @head
+#         prev_node.next = nil
+#       end
+#       current.next = prev_node
+#     end
+
+#     # switch head to point to nil, be the end of the list
+#     @head = current.next  # same as nil
+#   end
