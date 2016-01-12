@@ -23,6 +23,8 @@ Finding the max of an array: O(n), because you have to go through each element t
 
 Splitting a string: O(n), because if you're splitting a string by a given character, you have to first traverse the string and find all instances of that character. If you're splitting by an empty string, you still have to access every character in the string and insert it into an array.
 
-Inserting a value into a Hash: O(1), because finding the "bucket" in the array takes O(1) time, and then adding an item to the associated linked list also takes O(1) time because you only have to modify two nodes.
+Inserting a value into a Hash: O(1), because finding the "bucket" in the array takes O(1) time, and then adding an item to the associated linked list also takes O(1) time because you only have to modify two nodes. 
+(caveat - constant may be large, assumption on ordered and unordered lists)
 
 Retrieving all the keys of a hash: O(n), because you have to access every key to retrieve it.
+()

@@ -96,27 +96,26 @@ class LinkedList
 
   def reverse
       first_node = @head
-      middle_node = first_node.next
-      last_node = middle_node.next
+      next_node = first_node.next
       first_node.next = nil
-      puts "First #{first_node.data}, Sec #{middle_node.data}, Last #{last_node.data}"
+  
       #reverse_list = LinkedList.new
       #reverse_list.last = @head 
       #reverse_list.head = @last
 
-      while (middle_node != nil)
+      while (next_node != @last )
+        puts "First #{first_node.data}, Last #{next_node.data}"
+        x = next_node.next
+        next_node.next = first_node
         
-        x = middle_node.next
-        middle_node.next = first_node
-        
-        first_node = middle_node
-        middle_node = last_node
-        last_node = x
+        first_node = next_node
+        next_node = x
        
       end
+       
       @head,@last = @last,@head
+      puts "Head #{head.data}, Last #{last.data}"
       print_list
-      self
   end
   
 
