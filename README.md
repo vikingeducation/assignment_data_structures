@@ -11,11 +11,13 @@ O(1) - you know the index of the array so the item in memory is just a known off
 
 2. Unshifting a new item into the beginning of an array
 
-O(n) - every element of the array must be copied and moved one slot to the right.
+O(n) - every element of the array must be copied and moved one slot to the right. (Must delete the array and create a new one)
 
 3. Pushing an item onto the end of an array
 
 O(1) - we just add an item at the end of the array which requires no copying of any prior elements of the array.
+
+[O(n)-If you assume that you have to create a new array b/c you're out of space]
 
 4. Upcasing a String 
 
@@ -50,6 +52,8 @@ O(1) - This is a combination of three things
 3. find the end of the associated linked list.
 
 each of these are constant operations, if we can assume that either a. we have a link to the end of every linked list of the hash table or b. every associated linked list has at most k elements for some constant k. 
+
+(Note-But that constant may be significantly large)
 
 11. Retrieving the keys of a Hash
 
