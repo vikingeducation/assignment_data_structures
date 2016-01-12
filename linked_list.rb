@@ -55,6 +55,31 @@ class LinkedList
     end
 
   end
+
+  def to_s
+    nodes = []
+    current_node = @head
+    until current_node == nil
+      nodes << current_node.word
+      current_node = current_node.next
+    end
+    nodes.join " "
+  end
+
+  def find_word(word)
+    current_node = @head
+    counter = 1
+    until current_node == nil
+      if current_node.word == word
+        puts "Searched for #{word} through #{counter} nodes"
+        return current_node
+      end
+      current_node = current_node.next
+      counter += 1
+    end
+    puts "Searched for #{word} through #{counter} nodes and failed"
+    false
+  end
 end
 
 Node = Struct.new(:word, :definition, :next) do def inspect
@@ -62,14 +87,14 @@ Node = Struct.new(:word, :definition, :next) do def inspect
   end
 end
 
-listy = LinkedList.new
-listy.add_node("Baby", "Tiny Baby")
-listy.add_node("Grampa", "Old Baby")
-listy.add_node("Dragon", "Scaly Baby")
-
-listy.insert_node_at("Chupacabra", "Not A Baby", 1)
-listy # => #<LinkedList:0x007fce4a88df90 @head=Baby -> Chupacabra -> Grampa -> Dragon -> nil, @tail=Dragon -> nil>
-# >> returning node at 0
-p listy
-listy.reverse
-p listy
+# listy = LinkedList.new
+# listy.add_node("Baby", "Tiny Baby")
+# listy.add_node("Grampa", "Old Baby")
+# listy.add_node("Dragon", "Scaly Baby")
+#
+# listy.insert_node_at("Chupacabra", "Not A Baby", 1)
+# listy # => #<LinkedList:0x007fce4a88df90 @head=Baby -> Chupacabra -> Grampa -> Dragon -> nil, @tail=Dragon -> nil>
+# # >> returning node at 0
+# p listy
+# listy.reverse
+# p listy
