@@ -112,29 +112,3 @@ l1.add_node("Sixth node!")  # 5
 l1.stack
 l1.reverse
 l1.read_node(12)
-
-
-# notes: 
-#     current = @head
-#     # puts "debug is here"
-#     # puts "#{@head.data}"
-#     # puts "#{@head.next}"
-    
-#     next_node = current.next
-
-#     until current.next.nil? do
-#       prev_node = current
-#       current = next_node
-#       puts "debug is here"
-#       puts "#{next_node.next}"
-#       next_node = current.next
-
-#       if prev_node == @head
-#         prev_node.next = nil
-#       end
-#       current.next = prev_node
-#     end
-
-#     # switch head to point to nil, be the end of the list
-#     @head = current.next  # same as nil
-#   end
