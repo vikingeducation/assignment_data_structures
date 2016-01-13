@@ -28,7 +28,7 @@ class LinkedList
       @last = new_node
     end
     @length += 1
-    puts "added node with value: #{data}"
+    # puts "added node with value: #{data}"
   end
 
 
@@ -38,11 +38,10 @@ class LinkedList
     current_node = @head
 
     while counter < index
-      puts "#{current_node.data}"
+      puts "Found node at index #{counter} with value #{current_node.data}"
       current_node = current_node.next
       counter += 1
     end
-    puts "Found node at index #{index} with value #{current_node.data}"
     current_node
   end
 
@@ -68,10 +67,32 @@ class LinkedList
     #              item a        item b       item c
     # original {data|next=b} {data|next=c} {data|next=nil}
     # reverse {data|next=nil} {data|next=a} {data|next=b}
-    
-    
+
+    idx = @length - 1
+    until idx == 0
+      node = @arr.pop
+      add_node(node.data)
+      idx -= 1
+    end
 
 
+  end
+
+  def stack
+
+    idx = 0
+    @arr = []
+
+    current_node = @head
+
+    while idx < @length
+
+      @arr << current_node
+      current_node = current_node.next
+
+      idx +=1
+    end
+    @arr
   end
 
 end
@@ -81,16 +102,16 @@ end
 l1 = LinkedList.new(Node.new("First node!", nil))
 l1.add_node("Second node!")
 l1.add_node("Third node!")
-# l1.add_node("Fourth node!")
-# l1.add_node("Fifth node!")  # 4
-# l1.add_node("Sixth node!")  # 5
+l1.add_node("Fourth node!")
+l1.add_node("Fifth node!")  # 4
+l1.add_node("Sixth node!")  # 5
 # l1.read_node(5)
 # l1.read_node(1)
 # l1.insert_node("I was inserted", 2)
 # l1.read_node(5)
-
+l1.stack
 l1.reverse
-
+l1.read_node(12)
 
 
 # notes: 
