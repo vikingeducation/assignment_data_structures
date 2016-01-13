@@ -10,16 +10,18 @@ Queue	/Users/kitlangton/Viking/Unit5/assignment_data_structures/queue.rb	/^class
 Stack	/Users/kitlangton/Viking/Unit5/assignment_data_structures/stack.rb	/^class Stack$/;"	c
 add_first_node	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def add_first_node(word, definition)$/;"	f	class:LinkedList
 add_node	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def add_node(word, definition)$/;"	f	class:LinkedList
+balance	/Users/kitlangton/Viking/Unit5/assignment_data_structures/hash_table.rb	/^  def balance$/;"	f	class:HashTable
+bucket_average	/Users/kitlangton/Viking/Unit5/assignment_data_structures/hash_table.rb	/^  def bucket_average$/;"	f	class:HashTable
 define	/Users/kitlangton/Viking/Unit5/assignment_data_structures/hash_table.rb	/^  def define(word)$/;"	f	class:HashTable.render_list
 dequeue	/Users/kitlangton/Viking/Unit5/assignment_data_structures/queue.rb	/^  def dequeue$/;"	f	class:Queue
 empty?	/Users/kitlangton/Viking/Unit5/assignment_data_structures/queue.rb	/^  def empty?$/;"	f	class:Queue
 empty?	/Users/kitlangton/Viking/Unit5/assignment_data_structures/stack.rb	/^  def empty?$/;"	f	class:Stack
 enqueue	/Users/kitlangton/Viking/Unit5/assignment_data_structures/queue.rb	/^  def enqueue(input)$/;"	f	class:Queue
-find_node_at	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def find_node_at(index)$/;"	f	class:LinkedList
+find_node_at	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def find_node_at(index)$/;"	f
 find_word	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def find_word(word)$/;"	f
 hash	/Users/kitlangton/Viking/Unit5/assignment_data_structures/hash_table.rb	/^  def hash(word)$/;"	f	class:HashTable
 initialize	/Users/kitlangton/Viking/Unit5/assignment_data_structures/hash_table.rb	/^  def initialize$/;"	f	class:HashTable
-initialize	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def initialize(first_node = nil)$/;"	f	class:LinkedList
+initialize	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def initialize(first_node = nil, last_node = nil)$/;"	f	class:LinkedList
 initialize	/Users/kitlangton/Viking/Unit5/assignment_data_structures/queue.rb	/^  def initialize$/;"	f	class:Queue
 initialize	/Users/kitlangton/Viking/Unit5/assignment_data_structures/stack.rb	/^  def initialize$/;"	f	class:Stack
 insert	/Users/kitlangton/Viking/Unit5/assignment_data_structures/hash_table.rb	/^  def insert(word, definition)$/;"	f	class:HashTable
@@ -30,4 +32,5 @@ pop	/Users/kitlangton/Viking/Unit5/assignment_data_structures/stack.rb	/^  def p
 push	/Users/kitlangton/Viking/Unit5/assignment_data_structures/stack.rb	/^  def push(input)$/;"	f	class:Stack
 render_list	/Users/kitlangton/Viking/Unit5/assignment_data_structures/hash_table.rb	/^  def render_list$/;"	f	class:HashTable
 reverse	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def reverse$/;"	f
+split_in_half	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def split_in_half$/;"	f	class:LinkedList
 to_s	/Users/kitlangton/Viking/Unit5/assignment_data_structures/linked_list.rb	/^  def to_s$/;"	f

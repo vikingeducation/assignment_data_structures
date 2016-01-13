@@ -1,9 +1,10 @@
 class LinkedList
-  attr_accessor :head, :tail
+  attr_accessor :head, :tail, :size
 
-  def initialize(first_node = nil)
+  def initialize(first_node = nil, last_node = nil)
     @head = first_node
-    @tail = first_node
+    @tail = last_node
+    @size = 0
   end
 
   def add_first_node(word, definition)
@@ -19,6 +20,20 @@ class LinkedList
       @tail.next = new_node
       @tail = new_node
     end
+    @size += 1
+  end
+
+  def split_in_half
+    start_list = LinkedList.new
+    current_index = 0
+    node = @head
+    until current_index == size / 2
+      start_list.add_node(node.word, node.definition)
+      node = node.next
+      current_index += 1
+    end
+    end_list = LinkedList.new(node.dup, @tail.dup)
+    [start_list, end_list]
   end
 
   # This is O(n), in the worst case that index is the last index of the LinkedList.
@@ -87,14 +102,17 @@ Node = Struct.new(:word, :definition, :next) do def inspect
   end
 end
 
-# listy = LinkedList.new
-# listy.add_node("Baby", "Tiny Baby")
-# listy.add_node("Grampa", "Old Baby")
-# listy.add_node("Dragon", "Scaly Baby")
-#
-# listy.insert_node_at("Chupacabra", "Not A Baby", 1)
-# listy # => #<LinkedList:0x007fce4a88df90 @head=Baby -> Chupacabra -> Grampa -> Dragon -> nil, @tail=Dragon -> nil>
-# # >> returning node at 0
-# p listy
-# listy.reverse
-# p listy
+listy = LinkedList.new
+listy.add_node("Baby", "Tiny Baby")
+listy.add_node("Grampa", "Old Baby")
+listy.add_node("Dragon", "Scaly Baby")
+listy.add_node("Dirty", "Tiny Baby")
+listy.add_node("Filth", "Old Baby")
+listy.add_node("Xena", "Scaly Baby")
+
+first_half, second_half = listy.split_in_half
+
+puts first_half
+puts second_half
+# >> Baby Grampa Dragon
+# >> Dirty Filth Xena
