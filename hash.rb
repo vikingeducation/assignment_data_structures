@@ -38,8 +38,6 @@ class LinkedList
     current_node = @head
 
     while counter < index - 1
-      # puts "Found node at index #{counter} with value #{current_node.data}"
-      print current_node.data
       current_node = current_node.next
       counter += 1
     end
@@ -102,7 +100,6 @@ class LinkedList
     next_node = current_node.next
     current_node.next = nil       # clear the pointer
     prev_node.next = next_node
-    # puts "Removed node at index #{index} with value: #{current_node.data}"
   end
 
   def stack
@@ -139,34 +136,10 @@ l1.add_node("Sixth node!")  # 5
 # l1.read_node(5)
 l1.stack
 l1.reverse
-<<<<<<< HEAD
-l1.read_node(12)
-=======
 l1.read_node(6)
+l1.read_node(5)
+l1.read_node(4)
+# l1.read_node(3)
+# l1.read_node(2)
+# l1.read_node(1)
 
-
-# notes: 
-#     current = @head
-#     # puts "debug is here"
-#     # puts "#{@head.data}"
-#     # puts "#{@head.next}"
-    
-#     next_node = current.next
-
-#     until current.next.nil? do
-#       prev_node = current
-#       current = next_node
-#       puts "debug is here"
-#       puts "#{next_node.next}"
-#       next_node = current.next
-
-#       if prev_node == @head
-#         prev_node.next = nil
-#       end
-#       current.next = prev_node
-#     end
-
-#     # switch head to point to nil, be the end of the list
-#     @head = current.next  # same as nil
-#   end
->>>>>>> a0da133ff5e192e46754887f34b2208571a23f33
