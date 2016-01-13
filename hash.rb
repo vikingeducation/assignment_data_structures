@@ -12,6 +12,7 @@ class LinkedList
 
 
   def add_first_node(data)
+    puts "gets here twice"
     @head = Node.new(data, nil)
     @last = @head
   end
@@ -37,12 +38,13 @@ class LinkedList
     counter = 0
     current_node = @head
 
-    while counter < index
-      puts "Found node at index #{counter} with value #{current_node.data}"
+    while counter < index - 1
+      # puts "Found node at index #{counter} with value #{current_node.data}"
+      print current_node.data
       current_node = current_node.next
       counter += 1
     end
-    current_node
+    print current_node
   end
 
   # Big O(n) because you might be inserting at the end, have to traverse the whole list to get there
@@ -68,14 +70,43 @@ class LinkedList
     # original {data|next=b} {data|next=c} {data|next=nil}
     # reverse {data|next=nil} {data|next=a} {data|next=b}
 
-    idx = @length - 1
-    until idx == 0
-      node = @arr.pop
-      add_node(node.data)
-      idx -= 1
+    while @length > 1
+      remove_node(@length-1)
+      @length -= 1
     end
 
+    @head = nil
 
+    @arr.length.times do
+      add_node(@arr.pop.data)
+    end
+
+    # @arr.size.times do
+    #   node = @arr.pop
+    #   add_node(node.data)
+    # end
+
+  end
+
+  def remove_node(index)
+
+    # start at the head
+    counter = 0
+    current_node = @head
+    prev_node = nil
+
+    # crawl to the index position
+    while counter < index
+      prev_node = current_node
+      current_node = current_node.next
+      counter += 1
+    end
+
+    # now perform the removal (cutting out current_node)
+    next_node = current_node.next
+    current_node.next = nil       # clear the pointer
+    prev_node.next = next_node
+    # puts "Removed node at index #{index} with value: #{current_node.data}"
   end
 
   def stack
@@ -99,7 +130,8 @@ end
 
 
 
-l1 = LinkedList.new(Node.new("First node!", nil))
+l1 = LinkedList.new
+l1.add_node("First node!")
 l1.add_node("Second node!")
 l1.add_node("Third node!")
 l1.add_node("Fourth node!")
@@ -111,7 +143,7 @@ l1.add_node("Sixth node!")  # 5
 # l1.read_node(5)
 l1.stack
 l1.reverse
-l1.read_node(12)
+l1.read_node(6)
 
 
 # notes: 
