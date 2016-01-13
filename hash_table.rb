@@ -5,7 +5,8 @@ Word = Struct.new(:word, :definition)
 class HashTable
   attr_accessor :buckets
 
-  LETTER_ARRAY = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  LETTER_ARRAY = ("a".."z").to_a
+
   def initialize
     @buckets = Array.new(26, nil)
   end
@@ -31,12 +32,13 @@ class HashTable
   end
 
   def open_dictionary
-    dict = File.readlines("5desk.txt")
-    #p "The dict is #{dict}"
-    dict.each do |item|
-      item = item.strip
-      if item.length > 0
 
+    dict = File.readlines("5desk.txt")
+    dict.each do |item|
+
+      item = item.strip
+  
+      if item.length > 0
         new_word = Word.new(item, "placeholder for #{item}")
         insert(new_word)
       end  
@@ -47,7 +49,8 @@ class HashTable
   def render_list
     @buckets.each_with_index do |item, index|
       unless item == nil
-        puts "#{LETTER_ARRAY[index]}: #{item.length}"
+        puts "For #{LETTER_ARRAY[index]} in bucket #{index}:\
+              #{item.length} definition(s) exist"
       end
     end
   end
@@ -55,17 +58,19 @@ class HashTable
   # Should be O(1) if hash is optimized
   def define(label)
     index = hash(label)
+
     if @buckets[index] == nil
       puts "No definition exists"
-    else
-      ll_index = @buckets[index].find_word(label)
-      if ll_index
-         puts "Found #{label} in index #{ll_index} taking #{ll_index + 1} steps"
+    else  
+      linklist_index = @buckets[index].find_word(label)
+      
+      if linklist_index
+        puts "Found: #{label.rjust(8," ")} in position #{linklist_index.to_s.rjust(4," ")} of LinkList taking #{linklist_index + 1} steps"
       else
-         puts "Definition #{label} not found!"
-      end      
+        puts"Definition #{label} not found!"
+      end
     end
-  end
+  end 
 end
 
 h = HashTable.new
