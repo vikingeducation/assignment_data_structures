@@ -33,11 +33,11 @@ class HashTable
   end
 end
 
-hash = HashTable.new
-hash.insert("Cat", "Meowing animal")
-hash.insert("Dog", "Barking animal")
-hash.insert("Dragon", "Fire-breathing mythical animal")
-
-hash.define("Cat")
-hash.define("Cow")
-hash.define("Traut")
+# hash = HashTable.new
+# hash.insert("Cat", "Meowing animal")
+# hash.insert("Dog", "Barking animal")
+# hash.insert("Dragon", "Fire-breathing mythical animal")
+#
+# hash.define("Cat")
+# hash.define("Cow")
+# hash.define("Traut")
