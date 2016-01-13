@@ -1,0 +1,10 @@
+cat
+rat
+hello
+my
+car
+color
+happy
+bat
+
+
