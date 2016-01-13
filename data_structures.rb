@@ -137,6 +137,24 @@ class LinkedList
       puts
     end
   end
+
+  def reverse_nodes()
+    node_stack = Stack.new()
+    current_node = self.head
+    while current_node != nil
+      node_stack.push(current_node)
+      current_node = current_node.next_node
+    end
+    self.head = node_stack.pop if !node_stack.empty?
+    current_node = self.head
+    while !node_stack.empty?
+      new_node = node_stack.pop
+      current_node.next_node = new_node
+      current_node = new_node
+    end
+    current_node.next_node = nil
+  end
+
 end
 
 node1 = Node.new("go", "to move forward", nil )
@@ -145,6 +163,9 @@ node3 = Node.new("jump", "to rise up", node2 )
 
 ll = LinkedList.new( node3 )
 
+ll.display_list
+#ll is linked list.
+ll.reverse_nodes
 ll.display_list
 
 
