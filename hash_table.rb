@@ -12,34 +12,36 @@ class HashTable
 
   def hash(word)
     if word.is_a?(String)
-       LETTER_ARRAY.index(word[0])
-    else         
-       LETTER_ARRAY.index(word.word[0])
+       LETTER_ARRAY.index(word[0].downcase)
+    else
+       LETTER_ARRAY.index(word.word[0].downcase)
     end   
   end
 
   def insert(word) # examine case where you insert an element already in the list
     index = hash(word)
+
     if @buckets[index] == nil
       linked_list = LinkedList.new
       linked_list.add_node(word)
       @buckets[index] = linked_list
-      puts "#{@buckets[index].head.data}"
     else
       @buckets[index].add_node(word)
-      puts "#{@buckets[index].head.next.data}"
     end
   end
 
   def open_dictionary
-    dict = File.readlines("5desk.txt", "r")
+    dict = File.readlines("5desk.txt")
+    #p "The dict is #{dict}"
     dict.each do |item|
-      item = item.chomp
-      puts "#{item}"
-      new_word = Word.new(item, "placeholder for #{item}")
-      insert(new_word)
+      item = item.strip
+      if item.length > 0
+
+        new_word = Word.new(item, "placeholder for #{item}")
+        insert(new_word)
+      end  
     end
-    dict.close
+    #dict.close
   end
 
   def render_list
