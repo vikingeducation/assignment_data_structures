@@ -12,7 +12,6 @@ class LinkedList
 
 
   def add_first_node(data)
-    puts "gets here twice"
     @head = Node.new(data, nil)
     @last = @head
   end
@@ -70,22 +69,19 @@ class LinkedList
     # original {data|next=b} {data|next=c} {data|next=nil}
     # reverse {data|next=nil} {data|next=a} {data|next=b}
 
+    # delete existing nodes
     while @length > 1
       remove_node(@length-1)
       @length -= 1
     end
 
+    # set head to nil
     @head = nil
 
+    # add nodes from LIFO
     @arr.length.times do
       add_node(@arr.pop.data)
     end
-
-    # @arr.size.times do
-    #   node = @arr.pop
-    #   add_node(node.data)
-    # end
-
   end
 
   def remove_node(index)
