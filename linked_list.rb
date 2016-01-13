@@ -145,7 +145,6 @@ class LinkedList
     # crawl to the index position
     # outputs each node value for visibility
     until current_node.data.word == word
-      puts "Iterating node at #{counter}"
       if current_node.next == nil
         break
       end

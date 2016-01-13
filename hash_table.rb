@@ -52,6 +52,7 @@ class HashTable
     end
   end
 
+  # Should be O(1) if hash is optimized
   def define(label)
     index = hash(label)
     if @buckets[index] == nil
