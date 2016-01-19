@@ -187,15 +187,19 @@ class LinkedList
 
   def word_meaning(word)
     current_node = @head
+    count = 1
     loop do
       # Finds the word
       # Doesn't find the word
       if current_node.word == word
+        puts "#{count} nodes traversed."
         return current_node.definition
       elsif current_node.next.nil?
+        puts "#{count} nodes traversed."
         return "This a friendly 'word not found' message."
       else
         current_node = current_node.next
+        count += 1
       end
     end
   end
