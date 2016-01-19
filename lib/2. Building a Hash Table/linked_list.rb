@@ -141,6 +141,16 @@ class LinkedList
     current_node
   end
 
+  def list_length
+    current_node = @head
+    counter = 1
+    loop do
+      break if current_node.next.nil?
+      current_node = current_node.next
+      counter += 1
+    end
+    counter
+  end
 
   # Crawls and prints the list
   # The Big O would be O(N) because the number of steps depends on the sample size.

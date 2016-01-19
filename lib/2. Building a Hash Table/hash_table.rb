@@ -9,11 +9,11 @@ Hash Table
 
   3. Add a hash method which takes a word and returns an array index based on its first letter (ie. indexes 0-25). This is where you'll store each word. Note: Check out the ord method... (DONE)
 
-  4. Add an insert method which adds a word to the appropriate bucket as a member at the end of the linked list stored there.
+  4. Add an insert method which adds a word to the appropriate bucket as a member at the end of the linked list stored there. (DONE)
 
-  5. If this is the first word for that letter, create a new linked-list in that bucket.
+  5. If this is the first word for that letter, create a new linked-list in that bucket. (Done)
 
-  6. If not, append it to the existing list.
+  6. If not, append it to the existing list. (DONE)
 
   7. Add a render_list method which outputs your hash table in a way which you can read. At the very least, output the number of list nodes at each bucket so you can see how balanced your list is.
 
@@ -56,9 +56,26 @@ class HashTable
     puts "Added to dictionary: #{word} - #{definition}"
   end
 
+   # 7. Add a render_list method which outputs your hash table in a way which you can read. At the very least, output the number of list nodes at each bucket so you can see how balanced your list is.
+
+   def render_list
+    # Figuring out how many buckets we got going.
+    count = 0
+    @buckets.each_with_index do |bucket, index|
+      if bucket != nil
+        count += 1
+        puts "Bucket: #{index.chr} has #{bucket.list_length} items."
+      end
+    end
+    puts "You have #{count} buckets."
+
+   end
+
 end
 
 x = HashTable.new
 x.insert("Constipated", "Unable to squeeze one out.")
 x.insert("Cat Power", "Once wanted to be the Muhammad Ali.")
+x.insert("Posture", "Terrible but I'm trying.")
 print x.buckets[x.hash_method("C")].print_list
+print x.render_list
