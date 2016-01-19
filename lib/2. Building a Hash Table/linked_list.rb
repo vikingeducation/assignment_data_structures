@@ -16,11 +16,12 @@
 
   6. In the comments, state the Big-O time of this operation. (Done)
 
-  7. Build a method #reverse on your LinkedList class that will entirely flip the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions.
+  7. Build a method #reverse on your LinkedList class that will entirely flip the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions. (DONE)
 
-  8. In a comment above the method, explain how quickly it runs in Big O notation.
+  8. In a comment above the method, explain how quickly it runs in Big O notation. (DONE)
 
   9. Is it "in place" (you reused the existing nodes), or did you have to create new nodes to replace the old ones?
+  It's in place, they still have the same object id, the things in the arrays just keep track of the location I'm pretty sure.
 =end
 
 # Build a simple node struct
@@ -154,6 +155,7 @@ class LinkedList
     end
   end
 
+  # Even though there are two loops here aka 2n, big O will still be O(N)
   def reverse
     current_node = @head
     nodes = []
