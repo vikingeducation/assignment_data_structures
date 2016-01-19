@@ -15,9 +15,9 @@ Hash Table
 
   6. If not, append it to the existing list. (DONE)
 
-  7. Add a render_list method which outputs your hash table in a way which you can read. At the very least, output the number of list nodes at each bucket so you can see how balanced your list is.
+  7. Add a render_list method which outputs your hash table in a way which you can read. At the very least, output the number of list nodes at each bucket so you can see how balanced your list is. (DONE)
 
-  8. Add a define method which takes a word and locates its definition in your hash table or returns a friendly "not found" message.
+  8. Add a define method which takes a word and locates its definition in your hash table or returns a friendly "not found" message. (Done)
 
   9. Output how many steps it took to locate the word (how many nodes were traversed). Play with this and see how many steps it takes to locate a given word, including one that doesn't exist.
 
@@ -56,26 +56,39 @@ class HashTable
     puts "Added to dictionary: #{word} - #{definition}"
   end
 
-   # 7. Add a render_list method which outputs your hash table in a way which you can read. At the very least, output the number of list nodes at each bucket so you can see how balanced your list is.
+  # 7. Add a render_list method which outputs your hash table in a way which you can read. At the very least, output the number of list nodes at each bucket so you can see how balanced your list is.
 
-   def render_list
-    # Figuring out how many buckets we got going.
-    count = 0
-    @buckets.each_with_index do |bucket, index|
-      if bucket != nil
-        count += 1
-        puts "Bucket: #{index.chr} has #{bucket.list_length} items."
-      end
+  def render_list
+  # Figuring out how many buckets we got going.
+  count = 0
+  @buckets.each_with_index do |bucket, index|
+    if bucket != nil
+      count += 1
+      puts "Bucket: #{index.chr} has #{bucket.list_length} items."
     end
-    puts "You have #{count} buckets."
+  end
+  puts "You have #{count} buckets."
 
-   end
+  end
+
+  # 8. Add a define method which takes a word and locates its definition in your hash table or returns a friendly "not found" message.
+  def define(word)
+    # Check if that word would possibly be in a bucket
+    # if so, check if that word is in the list
+
+    if @buckets[hash_method(word)].nil?
+      puts "This a friendly 'word not found' message."
+    else
+      puts @buckets[hash_method(word)].word_meaning(word)
+    end
+  end
 
 end
 
 x = HashTable.new
-x.insert("Constipated", "Unable to squeeze one out.")
+x.insert("Constipated", "The inability to squeeze one out.")
 x.insert("Cat Power", "Once wanted to be the Muhammad Ali.")
 x.insert("Posture", "Terrible but I'm trying.")
 print x.buckets[x.hash_method("C")].print_list
 print x.render_list
+x.define("Cat Power")

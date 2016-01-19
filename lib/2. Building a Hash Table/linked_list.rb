@@ -184,6 +184,21 @@ class LinkedList
 
     @head,@last = @last,@head
   end
+
+  def word_meaning(word)
+    current_node = @head
+    loop do
+      # Finds the word
+      # Doesn't find the word
+      if current_node.word == word
+        return current_node.definition
+      elsif current_node.next.nil?
+        return "This a friendly 'word not found' message."
+      else
+        current_node = current_node.next
+      end
+    end
+  end
 end
 
 l1 = LinkedList.new(Node.new("Compulsive", "me", nil))
