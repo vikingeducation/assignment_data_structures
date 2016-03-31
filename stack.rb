@@ -30,10 +30,7 @@ class Stack
   end
 
   def empty?
-    if @length == 0
-      puts "it's empty !"
-      true
-    end
+    return true if @length == 0
   end
 end
   
