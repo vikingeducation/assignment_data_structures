@@ -14,7 +14,7 @@ class MyStack
   end
 
   def pop
-    if @length == 0
+    if empty?
       puts "Array is empty"
     else
       popped = @stack[@length-1]
@@ -26,6 +26,10 @@ class MyStack
 
   def peek
     @stack[@length-1]
+  end
+
+  def empty?
+    @length == 0
   end
 
 end
