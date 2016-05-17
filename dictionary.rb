@@ -26,6 +26,15 @@ class WordList
     current_word
   end
 
+  def find_definition(word)
+    current_word = @head
+    until current_word == nil
+      break if current_word.word == word
+      current_word = current_word.next
+    end
+    puts "The definition for #{word} is #{current_word.definition}"
+  end
+
   def add_word(word, definition)
     if @head.nil?
       add_first_word(word, definition)
@@ -55,8 +64,55 @@ class WordList
       current_word = next_word
     end
   end
+
+  def length
+    counter = 1
+    current_word = @head
+    until current_word == @tail
+      current_word = current_word.next
+      counter += 1
+    end
+    counter
+  end
 end
 
 class MyHash
+  attr_accessor :buckets
+
+  def initialize
+    @buckets = []
+  end
+
+  def hash(word)
+    word[0].downcase.ord - 97
+  end
+
+  def insert(word, definition)
+    if @buckets[hash(word)].nil?
+      @buckets[hash(word)] = WordList.new(Word.new(word, definition, nil))
+    else
+      @buckets[hash(word)].add_word(word, definition)
+    end
+  end
+
+  def render_list
+    0.upto(25) do |hash|
+      unless @buckets[hash].nil?
+        puts "#{(hash + 65).chr}: #{@buckets[hash].length} words"
+      end
+    end
+  end
+
+  def define(word)
+    @buckets[hash(word)].find_definition(word)
+  end
 
 end
+
+dictionary = MyHash.new
+File.readlines("5desk.txt").each do |word|
+  definition = "A #{word.strip} is a #{word.strip}."
+  dictionary.insert(word.strip, definition)
+end
+
+dictionary.define("speech")
