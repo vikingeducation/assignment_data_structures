@@ -75,6 +75,16 @@ class LinkedList
     current_node
   end
 
+  def find_word(word)
+    counter = 0
+    current_node = @head
+    while current_node
+      break if current_node.word == word
+      current_node = current_node.next
+    end
+    current_node
+  end
+
   def print_list
     counter = 0
     current_node = @head
