@@ -4,7 +4,8 @@ class LinkedList
   attr_reader :head
 
   def initialize(first_node = nil)
-    raise "Please only enter nodes as an argument" unless first_node.is_a?(Node)
+    raise "Please only enter nodes as an argument" unless first_node.is_a?(Node) ||
+           first_node.nil?
     @head = first_node
     @tail = first_node
     @length = 0
@@ -13,7 +14,7 @@ class LinkedList
 
   def add_node_end(node)
     if @head == nil
-      add_first_node(node.word, node.definition)
+      add_first_node(node)
       puts "You added the word #{node.word} to the first node of the list because there was no head"
     else
       @tail.next = node
@@ -24,7 +25,7 @@ class LinkedList
   end
 
   # O(n)
-  def add_node(word, definition, index)
+  def add_node(node, index)
     counter = 0
     current_node = @head
     while counter < index
@@ -33,18 +34,16 @@ class LinkedList
       counter += 1
       tic
     end
-    new_node = Node.new(word, definition, nil)
-    new_node.next = current_node.next
-    current_node.next = new_node
+    node.next = current_node.next
+    current_node.next = node
     puts "Your new node has been added to the #{counter}th/st place in the list"
     @length += 1
     tic_return
   end
 
-  def add_first_node(word, definition)
-    new_node = Node.new(word, definition, nil)
-    @head = new_node
-    @tail = new_node
+  def add_first_node(node)
+    @head = node
+    @tail = node
   end
 
   # O(n)
