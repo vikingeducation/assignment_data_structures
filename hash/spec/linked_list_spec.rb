@@ -57,6 +57,13 @@ describe LinkedList do
       expect(ll.insert(node1, 0).head).to eq(node1)
     end
 
+    it "sets pointer of new node to the node that was in position 1" do
+      #node1 node2 node1 node2
+      filled_ll.insert(node1, 1)
+      #node1 node1 node2 node1 node2
+      expect(filled_ll.head.next.next).to eq(node2)
+    end
+
     it "sets head.next to new node if ll is non-empty and index is 1" do
       filled_ll.insert(node1, 1)
       expect(filled_ll.head.next).to eq(node1)

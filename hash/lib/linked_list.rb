@@ -23,20 +23,18 @@ class LinkedList
     else
       crawler = 0
       current_node = @head
-      while crawler <= index
 
-        if crawler == index
-          pre = current_node
-          post = current_node.next
-          new_node.next = post
-          pre.next = new_node
-        end
-        crawler += 1
+      while crawler < index - 1
         current_node = current_node.next
+        crawler += 1
       end
-      self
 
-    end
+      new_node.next = current_node.next
+      current_node.next = new_node
+
+      
+      self
+    end    
   end
 
   private
