@@ -12,13 +12,13 @@ class HashTable
     word[0].downcase.ord-97
   end
 
-  def insert(word)
+  def insert(word, definition)
     index = hash(word)
     if @buckets[index]
-      @buckets[index].add_node(word)
+      @buckets[index].add_node(word, definition)
     else
       @buckets[index] = LinkedList.new
-      @buckets[index].add_node(word)
+      @buckets[index].add_node(word, definition)
     end
   end
 
@@ -34,6 +34,21 @@ class HashTable
         puts "There were zero words for #{letter}"
       end
     end
+  end
+
+  def define(word_lookup)
+    index=hash(word_lookup)
+    list=@buckets[index]
+    counter=0
+    while counter<list.counter
+      current_node=list.find_node(counter)
+      if current_node.word == word_lookup
+        puts "Found definition for #{word_lookup}: #{current_node.definition}" 
+        return
+      end
+      counter +=1
+    end
+    puts "#{word_lookup} not found"
   end
 
 end
@@ -112,8 +127,11 @@ class LinkedList
 end
 
 h = HashTable.new
-h.insert("hi")
-h.insert("blue")
-h.insert("box")
-h.insert("zebra")
-h.render_list
+h.insert("hi", "a greeting")
+h.insert("blue", "a color")
+h.insert("box", "a place to put cats")
+h.insert("zebra", "black and white animal")
+h.define("box")
+h.define("hippo")
+
+#h.render_list
