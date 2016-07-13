@@ -11,13 +11,13 @@ class LinkedList
     @head = first
     @last = first
   end
-
+#  constant time
   def add_first_node(data)
     @head = Node.new(data, nil)
     @last = @head
   end
 
-
+# N time
   def read_node(index)
     holder = @head
     steps = 0
@@ -29,6 +29,7 @@ class LinkedList
     p "#{holder.data} in #{steps} steps"
   end
 
+# constant time
   def add_node(data)
     if @head.nil?
       add_first_node(data)
@@ -38,6 +39,7 @@ class LinkedList
     end
   end
 
+# N time
   def insert_node(data, index)
     # Big O - constant time, independent of number of nodes
     holder = @head
@@ -47,16 +49,21 @@ class LinkedList
     holder = Node.new(data, holder)
   end
 
-
+# N squared time
   def reverse
     last_holder = @last
     until @head.next.nil?
       holder = @head
+
+      # find item before the one that needs to be reset
       until holder.next == last_holder do
           holder = holder.next
       end
-        @last.next = holder
+      # set item that needs to be reset to point to the item before it
+        last_holder.next = holder
+        # set item before the reset-item to point to nil, breaks chain
         holder.next = nil
+        # sets last holder to be the new end
         last_holder = holder
     end
     @last, @head = @head, @last
@@ -71,3 +78,4 @@ list.add_node('c')
 list.read_node(2)
 list.reverse
 list.read_node(2)
+list.read_node(1)
