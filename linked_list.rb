@@ -44,6 +44,25 @@ class LinkedList
     size
   end
 
+  def remove_node(index)
+
+    counter = 0
+    current_node = @head
+    prev_node = nil
+
+    while counter < index
+      prev_node = current_node
+      current_node = current_node.next
+      counter += 1
+    end
+
+    next_node = current_node.next
+    current_node.next = nil       
+    prev_node.next = next_node
+
+    current_node
+  end
+
   #O(n)
   def read_node_at_index(index)
     #printout the progress of nodes
@@ -74,6 +93,7 @@ class LinkedList
     
   end
 
+
   def reverse
     
     #1-> 2 - > 3 -> 4 -> 5
@@ -88,6 +108,20 @@ class LinkedList
       current = next_node #1 no longer points to 2, but we have next_node to hold the node 2!
     end
 
+  
+
+  def print_list
+    counter = 0
+    current_node = @head
+    loop do
+      puts "Node at index #{counter}: #{current_node.data}"
+      break if current_node.next.nil?
+      current_node = current_node.next
+      counter += 1
+    end
+  end
+
+
    current = previous
    return current
    
@@ -98,6 +132,7 @@ list = LinkedList.new()
 list.add_node(1)
 list.add_node(2)
 list.add_node(3)
+
 list.add_node(10)
 p list.get_size
 # puts "#{list.head.data} , #{list.head.next}"
@@ -110,6 +145,14 @@ p list.head
 
 
 
+=======
+
+list.print_list
+
+list.reverse
+
+list.print_list
+>>>>>>> dc8443fe7a53ab73989efa38f8dfa9fd8c68aa81
 
 
 
