@@ -44,6 +44,25 @@ class LinkedList
     size
   end
 
+  def remove_node(index)
+
+    counter = 0
+    current_node = @head
+    prev_node = nil
+
+    while counter < index
+      prev_node = current_node
+      current_node = current_node.next
+      counter += 1
+    end
+
+    next_node = current_node.next
+    current_node.next = nil       
+    prev_node.next = next_node
+
+    puts "Removed node at index #{index} with value: #{current_node.data}"
+  end
+
   #O(n)
   def read_node_at_index(index)
     #printout the progress of nodes
