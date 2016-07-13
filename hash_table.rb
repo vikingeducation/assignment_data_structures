@@ -1,9 +1,12 @@
 require './linked_list'
 
+
 class HashTable
   def initialize
-    @buckets = Array.new(26) { nil }
+    @bucket_size = 80
+    @buckets = Array.new(@bucket_size) { nil }
     add_defs_to_dict
+
   end
 
   def read_dict_file
@@ -18,11 +21,15 @@ class HashTable
     end
   end
 
-  def hash(word)
-    char = word.chars.first
-    char.ord - 97
-  end
+  # def hash(word)
+  #   char = word.chars.first
+  #   char.ord - 97
+  # end
  
+  def hash(word)
+    word.chars.reduce(0) { |acc, char| char.ord + acc } % @bucket_size 
+  end
+
   def define(word)
     index = hash(word)
     ll = @buckets[index]
@@ -79,10 +86,10 @@ class HashTable
 
   def method_dispatch
     puts "What would you like to do?"
-    puts "insert => i render => r definition => d quit => q"
+    puts "insert => i render => r definition => d print => p quit => q"
     begin
       result = gets.chomp.downcase
-    end until %w(i r d q).include?(result)
+    end until %w(i r d q p).include?(result)
     case result
     when 'i'
       run_insert
@@ -90,6 +97,8 @@ class HashTable
       render_list
     when 'd'
       run_definition
+    when 'p'
+      print_balance
     when 'q'
       exit
     end
@@ -109,4 +118,13 @@ class HashTable
     result = gets.chomp
     insert(result)
   end
+
+  def print_balance
+     @buckets.each_with_index do |ll, i| 
+      puts "  #{i}  #{ll.full_list.length}"
+      puts
+    end
+  end
+
+
 end
