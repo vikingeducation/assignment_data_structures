@@ -12,7 +12,7 @@ class Queue
 
   def dequeue
     item = front_peek
-    @queue = @queue[0..((@queue.length) -2)] unless empty? 
+    @queue = @queue[0..((@queue.length) -2)] unless empty?
     item
   end
 
@@ -31,16 +31,15 @@ class Queue
 
 end
 
-q = Queue.new
-str = 'word'
-str.split('').each do |letter|
-  q.enqueue(letter)
-end
-puts "loaded queue is #{q.queue}"
-
-arr = []
-str.length.times do |n|
-  arr << q.dequeue
-end
-puts "unloaded queue is #{arr.join('')}"
-
+# q = Queue.new
+# str = 'word'
+# str.split('').each do |letter|
+#   q.enqueue(letter)
+# end
+# puts "loaded queue is #{q.queue}"
+#
+# arr = []
+# str.length.times do |n|
+#   arr << q.dequeue
+# end
+# puts "unloaded queue is #{arr.join('')}"

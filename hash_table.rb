@@ -43,7 +43,7 @@ class HashTable
 
   def rebalance?(num)
     @buckets.each do |list|
-      @tic += 1      
+      @tic += 1
       true if list.contents.count > num ? true : false
     end
   end
@@ -51,9 +51,9 @@ class HashTable
   def balance(num)
     if rebalance?(num)
       holder = @buckets
-      @buckets = Array.new(100) do
-        LinkedList.new
+      @buckets = Array.new(100) do |n|
         @tic += 1
+        LinkedList.new
       end
       holder.each do |list|
         list.contents.each do |data|
@@ -78,9 +78,9 @@ class HashTable
 
 end
 
-table = HashTable.new
-table.load_dictionary('5desk.txt')
-table.tic
+# table = HashTable.new
+# table.load_dictionary('5desk.txt')
+# table.tic
 # table.load_dictionary('test.txt')
 # table.insert(['add', 'to add'])
 # table.insert(['subtract', 'to subtract'])
@@ -88,9 +88,8 @@ table.tic
 # table.define('add')
 # table.render_list
 # table.define('able')
-table.render_list
-table.tic
- table.balance(10)
+# table.render_list
+# table.tic
+# table.balance(10)
+# table.tic
 # puts "balanced list"
-table.render_list
-table.tic
