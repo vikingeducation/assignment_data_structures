@@ -3,10 +3,10 @@ require './linked_list'
 
 class HashTable
   def initialize
-    @bucket_size = 80
+    @bucket_size = 26
     @buckets = Array.new(@bucket_size) { nil }
-    add_defs_to_dict
-
+    # add_defs_to_dict
+    @tic_counter = 1
   end
 
   def read_dict_file
@@ -21,11 +21,16 @@ class HashTable
     end
   end
 
+  def tic
+    puts "#{@tic_counter} number of tics"
+    @tic_counter = 1
+  end
+
   # def hash(word)
   #   char = word.chars.first
   #   char.ord - 97
   # end
- 
+
   def hash(word)
     word.chars.reduce(0) { |acc, char| char.ord + acc } % @bucket_size 
   end
@@ -42,6 +47,14 @@ class HashTable
     end
   end
 
+  def print_bucket_list
+    begin
+      puts "What index? 0-25"
+      input = gets.chomp.to_i
+    end until (0..25).include?(input)
+    p @buckets[input].full_list
+  end
+
   def un_hash(index)
     (index + 97).chr
   end
@@ -51,10 +64,11 @@ class HashTable
     index = hash(d_word)
     if @buckets[index].nil?
       @buckets[index] = LinkedList.new
-      @buckets[index].add_node(d_word)
+      @tic_counter = @buckets[index].add_node(d_word)
     else
-      @buckets[index].add_node(d_word)
+      @tic_counter = @buckets[index].add_node(d_word)
     end
+    tic
   end
 
   def render_list
@@ -89,7 +103,7 @@ class HashTable
     puts "insert => i render => r definition => d print => p quit => q"
     begin
       result = gets.chomp.downcase
-    end until %w(i r d q p).include?(result)
+    end until %w(i r d q p pbl).include?(result)
     case result
     when 'i'
       run_insert
@@ -99,6 +113,8 @@ class HashTable
       run_definition
     when 'p'
       print_balance
+    when 'pbl'
+      print_bucket_list
     when 'q'
       exit
     end
@@ -125,6 +141,4 @@ class HashTable
       puts
     end
   end
-
-
 end

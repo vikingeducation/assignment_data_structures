@@ -22,6 +22,7 @@ class LinkedList
       @first = @last if @number_of_nodes == 2
       @last = input_node
     end
+    @number_of_nodes
   end
 
   #Big O(n)
