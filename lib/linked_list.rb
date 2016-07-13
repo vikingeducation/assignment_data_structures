@@ -28,15 +28,15 @@ class LinkedList
   def add_node(node, index)
     counter = 0
     current_node = @head
-    while counter < index
+    while counter <= index
       return puts "Sorry, that index doesn't exist" if current_node.next
-      current_node = current_node.next
+      current_node = current_node.next if current_node.next != nil
       counter += 1
       tic
     end
     node.next = current_node.next
     current_node.next = node
-    puts "Your new node has been added to the #{counter}th/st place in the list"
+    puts "Your new node has been added to the #{counter - 1}th/st place in the list"
     @length += 1
     tic_return
   end
@@ -58,6 +58,7 @@ class LinkedList
     end
     puts "The node you are looking for is the word #{current_node.word} which has the definition: #{current_node.definition}"
     tic_return
+    current_node
   end
 
   def read_list

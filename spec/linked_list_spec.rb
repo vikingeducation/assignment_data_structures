@@ -3,11 +3,12 @@ require 'linked_list'
 describe LinkedList do
 
   let(:list){LinkedList.new}
-  let(:node){double(:is_a? => true, :word => "Apple")}
+  let(:node){Node.new("word", "definition", nil)}
   let(:list_with){LinkedList.new(node)}
   
   before do
     allow(list).to receive(:puts)
+    allow(list_with).to receive(:puts)
   end
 
   describe '#initialize' do
@@ -32,11 +33,23 @@ describe LinkedList do
     end
 
     it "does not call add_first node on list containing a node" do
-      list.add_node_end(node)
       expect(list).not_to receive(:add_first_node)
-      list.add_node_end(node)
+      list_with.add_node_end(node)
     end
   end
+
+  describe "#read_node" do
+
+    it "should return the node at index" do
+      list_with.add_node(node, 1)
+      expect(list_with.read_node(1)).to eq(node)
+    end
+
+  end
+
+  describe "#reverse_list" do
+
+    it "should change to a different head"
 
 
 
