@@ -6,6 +6,7 @@ class LinkedList
     @last = nil
     @first = nil
     @number_of_nodes = 0
+    @current_node = @first
   end
 
   def add_node(input)
@@ -46,26 +47,69 @@ class LinkedList
     counter = 0
     current_node = @first
     until counter == index
-      puts (current_node.value)
+      puts "Traversing... current node value = #{current_node.value}"
       current_node = current_node.next
       counter += 1
     end
     current_node
   end
 
+  def find_value(value)
+    counter = 0
+    current_node = @first
+    until counter == @number_of_nodes
+      return current_node if current_node.value == value
+      current_node = current_node.next
+      counter += 1
+    end
+    nil
+  end
+
   def get_value_at(index)
     get_node_at(index).value
   end
 
+  # This implementation is in O(n^2) time
   def reverse
     counter = @number_of_nodes - 1
-    temp = @first
-    @first = @last
-    @last = temp
     until counter <= 0
       get_node_at(counter).next = get_node_at(counter - 1) unless counter == 0
       get_node_at(counter).next = nil if counter == 0
       counter -= 1
+    end
+    temp = @first
+    @first = @last
+    @last = temp
+  end
+
+  # def reverse
+  #   next_node = @first.next
+  #   previous_node
+  #   until next_node.nil?
+  #     @first.next = previous_node
+
+  #   end
+
+  # end
+
+  def full_list
+    return_array = []
+    @number_of_nodes.times do |index|
+      return_array << get_value_at(index)
+    end
+    return_array
+  end
+
+
+  def current_node_value
+    @current_node.value
+  end
+
+  def next
+    puts "Can't go any further, next node value is nil" if @current_node.next.value.nil?
+    unless @current_node.value.nil?
+      @previous_node = @current_node
+      @current_node = @current_node.next
     end
   end
 end
@@ -80,6 +124,6 @@ ll.add_node(3)
 ll.reverse
 
 
-puts ll.get_node_at(0)
-puts ll.get_node_at(1)
-puts ll.get_node_at(2)
+puts ll.get_value_at(0)
+puts ll.get_value_at(1)
+puts ll.get_value_at(2)
