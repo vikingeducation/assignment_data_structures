@@ -35,9 +35,11 @@ class LinkedList
         current_node = current_node.next_node
         counter += 1
       end
+
       puts "Searched #{counter+1} nodes."
       puts "Node at #{index} is #{current_node.word}: #{current_node.definition}"
       current_node
+
   end
 
   #The method below uses O(n) to insert a new node
@@ -46,7 +48,6 @@ class LinkedList
     node_at_current_index = find_node(index)
     new_node = Node.new(word, definition,node_at_current_index)
     node_before_index.next_node = new_node
-    puts find_node(index)
   end
 
   def reverse
@@ -55,13 +56,13 @@ class LinkedList
     current_node = @first
     next_node = @first.next_node
     current_node.next_node=nil
-
+    prior_node = nil
     #this loop does not work
     while next_node
-      prior_node=current_node
-      current_node=next_node
-      next_node=current_node.next_node 
-      current_node.next_node=prior_node
+      prior_node = current_node
+      current_node = next_node
+      next_node = current_node.next_node
+      current_node.next_node = prior_node
     end
 
   end
@@ -96,7 +97,8 @@ my_list.add_node("chair", "object to sit in")
 #my_list.find_node(3)
 my_list.insert_node(1, "banana", "I am a fruit rich in potassium")
 
+my_list.find_node(1)
+=======
+
 
 =end
-
-
