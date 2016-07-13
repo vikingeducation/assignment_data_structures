@@ -95,7 +95,6 @@ class LinkedList
 
 
   def reverse
-    
     #1-> 2 - > 3 -> 4 -> 5
     current = @head
     previous = nil
@@ -107,7 +106,6 @@ class LinkedList
       previous = current #previous value is now set as 'current'. this is because we will change current
       current = next_node #1 no longer points to 2, but we have next_node to hold the node 2!
     end
-
 
    current = previous
    return current
