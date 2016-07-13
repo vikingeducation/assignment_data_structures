@@ -150,5 +150,5 @@ hashtable = HashTable.new
 
 dictionary.each { |word| hashtable.insert(word) }
 # binding.pry
-hashtable.define("aardvark")
+hashtable.define("ha")
 # puts dictionary[40000..41000].all? { |word| hashtable.define(word) }
