@@ -60,7 +60,7 @@ class LinkedList
     current_node.next = nil       
     prev_node.next = next_node
 
-    puts "Removed node at index #{index} with value: #{current_node.data}"
+    current_node
   end
 
   #O(n)
@@ -93,20 +93,18 @@ class LinkedList
     
   end
 
-  def reverse
-    #we take the tail node as current_node
-    #we take the previous node of the tail node as previous_node
-    #we set current node as head
-    #we iterate and relocate pointers until current_node.next == nil
-    #we set current_node as tail because .next is nil
-   
-   #1 -> 2 -> 3 -> 4 -> 5
+  
 
-
-
-
-
-    end 
+  def print_list
+    counter = 0
+    current_node = @head
+    loop do
+      puts "Node at index #{counter}: #{current_node.data}"
+      break if current_node.next.nil?
+      current_node = current_node.next
+      counter += 1
+    end
+  end
 
 end
 
@@ -114,7 +112,12 @@ list = LinkedList.new()
 list.add_node(1)
 list.add_node(2)
 list.add_node(3)
-p list.get_size
+
+list.print_list
+
+list.reverse
+
+list.print_list
 
 
 
