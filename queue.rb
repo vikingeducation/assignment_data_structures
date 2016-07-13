@@ -12,18 +12,25 @@ class Queue
 
   def enqueue(val)
     if empty?
-      @data[0] = val
+      new_array = [val]
+      @data = new_array
     else
-      (@data.length + 1).times do |index|
-        @data[@data.length - index] = @data[@data.length - index - 1]
+      new_array = Array.new(@data.length + 1)
+      @data.length.times do |index|
+        new_array[index + 1] = @data[index]
       end
-      @data[0] = val
+      new_array[0] = val
+      @data = new_array
     end
   end
 
   def dequeue
     temp_var = @data[@data.length - 1]
-    @data = @data[0..@data.length - 2] 
+    new_data = Array.new(@data.length - 1) 
+    new_data.length.times do |counter|
+      new_data[counter] = @data[counter]
+    end
+    @data = new_data
     temp_var
   end
 

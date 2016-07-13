@@ -15,12 +15,25 @@ class Stack
 
 
   def push(val)
-    @data[@data.length] = val
+    # iterate through the entire thing
+    # at end of iteration, add last value where it belongs
+    new_data = Array.new(@data.length + 1) 
+    (new_data.length - 1).times do |counter|
+      new_data[counter] = @data[counter]
+    end
+    @data = new_data
+    new_data[new_data.length - 1] = val 
+
   end
 
   def pop
     temp_var = @data[@data.length - 1]
-    @data = @data[0..@data.length - 2] 
+
+    new_data = Array.new(@data.length - 1) 
+    new_data.length.times do |counter|
+      new_data[counter] = @data[counter]
+    end
+    @data = new_data
     temp_var
   end
 
@@ -39,5 +52,5 @@ arr = []
 (str.data.length).times do 
   arr.push(str.pop)
 end
-puts arr
+print arr
   
