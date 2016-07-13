@@ -28,20 +28,38 @@ class LinkedList
   def remove_node(index) # 3
     # traverse the nodes untl the node @ index is reached
     # connect the previous node to the next node (next and previous relative to node @ index)
-    counter = 0
-    current_node = @head 
-    prev_node = nil
 
-    while counter < index 
+    if index == 0
+      puts "Removing note at index #{index}, which is #{@head.word}: #{@head.definition}"
+      @head = @head.next
+    else
+      counter = 0
+      current_node = @head 
+      prev_node = nil
+      while counter < index
+        prev_node = current_node
+        next_node = current_node.next
+        current_node = next_node 
+        counter += 1
+      end
+      next_node = current_node.next
+      current_node.next = nil
+      prev_node.next = next_node
+      puts "Removed node at index #{index}, which was:"
+      puts "#{current_node.word}: #{current_node.definition}"
+    end
+  end
+
+  def read(index)
+    counter = 0
+    while counter < index
       prev_node = current_node
       next_node = current_node.next
       current_node = next_node 
       counter += 1
     end
-    prev_node.next = current_node.next
-    current_node.next = nil 
-    puts "Removed node at index #{index}, which was:"
-    puts "#{current_node.word}: #{current_node.definition}"
+    
+
   end
 
 

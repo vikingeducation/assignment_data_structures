@@ -2,10 +2,13 @@ require 'linked_list'
 
 describe LinkedList do
 
+
   let(:l){LinkedList.new}
-  
+  before do 
+    allow(l).to receive(:puts)
+  end
   describe '#add_first_node' do
-      
+
     it 'should become the head of the list' do
       l.add_first_node('cat', 'definition')
       expect(l.head.word).to eq('cat')
@@ -57,10 +60,33 @@ describe LinkedList do
   end
 
   describe '#remove_node' do
+    let(:l){LinkedList.new(Node.new('cat', 'feline'))}
+
 
     it 'removes link from previous node and changes it to next node' do
-      
+      l.add_node_to_end('dog', 'canine')
+      l.add_node_to_end('cow', 'bovine')
+      l.remove_node(1)
+      expect(l.head.next.word).to eq('cow')
+    end
 
+    it 'deletes a 2nd node from a chain of only 2 nodes' do
+      l.add_node_to_end('dog', 'canine')
+      l.remove_node(1)
+      expect(l.head.next).to be_nil
+    end
+
+    it 'removes the first node when passed an index of 0' do 
+      l.remove_node(0)
+      expect(l.head).to be_nil
+    end
+  end
+
+  describe '#read' do
+    let(:l){LinkedList.new(Node.new('cat', 'feline'))}
+    it 'should read the word and definition at a given index' do
+      expect(l.read(0)).to eq(['cat','feline'])
+    end
 
   end
 
