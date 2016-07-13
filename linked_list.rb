@@ -30,14 +30,28 @@ class LinkedList
   end
 
   def contents
+    return [] if @head.nil?
+    return [@head.data] if @head.next.nil?
     result = []
     holder = @head
-    until holder.next.nil?
+    while holder
       result << holder.data
       holder = holder.next
     end
     result
   end
+
+# specific to dictionary with definitions
+  def match(str)
+    puts "not found" if @head.nil?
+    holder = @head
+    while holder
+      return holder.data[1] if holder.data[0] == str
+      holder = holder.next
+    end
+    puts "definition not found"
+  end
+
 
 # constant time
   def add_node(data)

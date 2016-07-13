@@ -1,12 +1,10 @@
 require_relative 'linked_list'
+require 'pry'
 
 class HashTable
   attr_reader :buckets
-  def initialization
-    
-    @buckets = Array.new(26, LinkedList.new)
-    puts @buckets
-
+  def initialize
+    @buckets = Array.new(26){ LinkedList.new }
   end
 
   def hash(word)
@@ -20,15 +18,27 @@ class HashTable
 
   def render_list
     @buckets.each do |bucket|
-      puts bucket.contents.count
+      puts "#{bucket.contents.count}, #{bucket.contents}"
     end
   end
-  
+
+  def define(word)
+    # @buckets[hash(word)] =>  LinkedList
+    # while holder.data[0] != word, next item on LinkedList and check
+
+    p @buckets[hash(word)].match(word)
+
+  end
 end
 
 table = HashTable.new
-# p table.hash('badd')
-puts table.buckets
-# table.insert('add')
-# table.insert('subtract')
+table.insert(['add', 'to add'])
+table.insert(['subtract', 'to subtract'])
+# table.insert('apple')
+# table.insert('subtracted')
+# table.insert('subtracter')
+# table.insert('speaker')
+# table.insert('utopia')
 # table.render_list
+table.define('add')
+table.define('what')
