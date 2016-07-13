@@ -50,7 +50,7 @@ class HashTable
 
   def add_dictionary(word_list)
     word_list.length.times do |count|
-      insert({ word_list[count].to_sym => 
+      insert({ word_list[count].to_sym =>
         "The definition of #{word_list[count]}" })
     end
   end
