@@ -15,7 +15,7 @@ class LinkedList
    # To add the first node
   def add_first_node(data)
     @head = Node.new(data, nil)
-    @last = @head
+    @tail = @head
   end
 
   # Add a node to the end of the list
@@ -25,10 +25,10 @@ class LinkedList
       add_first_node(data)
     else
       new_node = Node.new(data, nil)
-      # point the last node to our new one
-      @last.next = new_node
-      # set our new node as the official last node
-      @last = new_node
+      # point the tail node to our new one
+      @tail.next = new_node
+      # set our new node as the official tail node
+      @tail = new_node
     end
     puts "Added node with value: #{data}"
   end
@@ -93,19 +93,26 @@ class LinkedList
     
   end
 
-  
 
-  def print_list
-    counter = 0
-    current_node = @head
-    loop do
-      puts "Node at index #{counter}: #{current_node.data}"
-      break if current_node.next.nil?
-      current_node = current_node.next
-      counter += 1
+  def reverse
+    
+    #1-> 2 - > 3 -> 4 -> 5
+    current = @head
+    previous = nil
+    next_node = nil
+
+    while current != nil
+      next_node = current.next  #next is 2
+      current.next = previous #current.next(1) points to previous(nil) now
+      previous = current #previous value is now set as 'current'. this is because we will change current
+      current = next_node #1 no longer points to 2, but we have next_node to hold the node 2!
     end
-  end
 
+
+   current = previous
+   return current
+   
+ end
 end
 
 list = LinkedList.new()
@@ -113,11 +120,19 @@ list.add_node(1)
 list.add_node(2)
 list.add_node(3)
 
-list.print_list
+list.add_node(10)
+p list.get_size
+# puts "#{list.head.data} , #{list.head.next}"
+# puts "#{list.tail.data}, #{list.tail.next}"
 
-list.reverse
+p list.head
+p list.reverse
+p list.head
+#list.head.next.data
 
-list.print_list
+
+
+
 
 
 
