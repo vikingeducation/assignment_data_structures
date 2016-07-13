@@ -1,7 +1,7 @@
 module DataStructuresAssignment
 
   class Node
-    attr_reader :data
+    attr_reader :data, :pointer
 
     def initialize(data)
       @data = data
@@ -20,14 +20,18 @@ module DataStructuresAssignment
     def initialize
       @head = Node.new("First node.")
       @tail = @head
+      #Keep track of size.
+      @size = 1
     end
 
     def insert( node, position )
       case position
-      when :head, 0
+      #Insert at head
+      when 0
         node.set_pointer(@head)
         @head = node
-      when :tail
+      #Insert at tail
+      when @size - 1
         @tail.set_pointer(node)
         @tail = node
       when Integer
@@ -35,6 +39,7 @@ module DataStructuresAssignment
         node.set_pointer(ith_minus_node.pointer)
         ith_minus_node.set_pointer(node)
       end
+      @size += 1
     end
 
     def find_node(idx)
@@ -48,6 +53,32 @@ module DataStructuresAssignment
       node_output
     end
 
+    def render_list
+      node = @head
+      idx = 0
+      while node
+        puts "--NODE##{idx}--"
+        puts "Data: #{node.data}"
+        puts "Pointer: #{node.pointer}"
+        idx += 1
+        node = node.pointer
+      end
+    end
+
   end
 
 end
+
+
+include DataStructuresAssignment
+
+list = LinkedList.new
+2.times do
+  list.insert(Node.new("Another node at the head."), 0)
+end
+list.insert(Node.new("Another node at the tail."), 2)
+list.insert(Node.new("Another node at the tail."), 3)
+2.times do
+  list.insert(Node.new("This is in the middle."), 2)
+end
+list.render_list
