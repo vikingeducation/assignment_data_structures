@@ -45,7 +45,6 @@ module DataStructuresAssignment
       @size += 1
     end
 
-    # O(n)
     def reverse_list
       current = @head
       nxt = current.pointer
@@ -102,7 +101,7 @@ module DataStructuresAssignment
   class HashTable
     attr_reader :slots
     def initialize
-      @slots = Array.new(1000,nil)
+      @slots = Array.new(13,nil)
     end
 
     def hash(data)
@@ -138,6 +137,33 @@ module DataStructuresAssignment
       puts "Sorry, couldn't find the definition of #{word}...\n"
       puts
     end
+
+    private
+
+      #
+      # Load Factor = number_of_occupied_slots / array_size
+      # Load Factor == 1/2 --> @slots = get_new_array
+
+      # def get_new_array
+      #   i = @slots.size
+      #   for i = @slots.size; i != is_prime?(i); i++
+      #   new_array Array.new(i,nil)
+      #   @slots --> new_array
+      #   If array.size == 15 => 0, 2, 7, 15, 100
+      # end
+      # get_prime
+      # To determine the size of the new array, had to find the next size
+      # that was also a prime number.
+      #
+      # is_prime?
+
+      def array_resize
+        current_size = @slots.size
+        new_array = Array.new(get_next_prime(current_size),nil)
+        @slots.each do ||
+        end
+      end
+
   end
 end
 
@@ -152,3 +178,10 @@ dictionary.each { |word| hashtable.insert(word) }
 # binding.pry
 hashtable.define("ha")
 # puts dictionary[40000..41000].all? { |word| hashtable.define(word) }
+
+
+###### BIG O NOTATION ######
+
+# Search in a slot O(n)
+# Insert in a single list first? Ordered?
+#
