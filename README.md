@@ -20,5 +20,8 @@ Buckets and buckets of data!
 
 8) For finding the max of an array : O(n) bc you must check every value in the array.
 
-9) 
+9) For splitting a string : O(1) because we already know the index of where we want to split the string.
 
+10) Insersting a value into a hash: O(n) because we are working linearly dependant on the size of the hash
+
+11) Retrieving a keys of a hash: O(n) because we are going through the hash one after another
