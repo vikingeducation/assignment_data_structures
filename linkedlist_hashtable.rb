@@ -22,25 +22,30 @@ module DataStructuresAssignment
       @tail = @head
     end
 
-    def insert(node,position)
+    def insert( node, position )
       case position
-      when :head
+      when :head, 0
         node.set_pointer(@head)
         @head = node
       when :tail
         @tail.set_pointer(node)
         @tail = node
       when Integer
-        find(position)
+        ith_minus_node = find_node(position)
+        node.set_pointer(ith_minus_node.pointer)
+        ith_minus_node.set_pointer(node)
       end
     end
 
-    def find(idx)
+    def find_node(idx)
       i = 0
       #Iteratively search for position in list.
-      while i < idx
+      node_output = @head
+      while i < idx - 1
+        node_output = node_output.pointer
+        i += 1
       end
-
+      node_output
     end
 
   end
