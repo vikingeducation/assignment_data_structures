@@ -1,4 +1,5 @@
 require 'pry'
+require 'prime'
 
 module DataStructuresAssignment
 
@@ -160,8 +161,16 @@ module DataStructuresAssignment
       def array_resize
         current_size = @slots.size
         new_array = Array.new(get_next_prime(current_size),nil)
-        @slots.each do ||
-        end
+        # @slots.each do |
+        # # new_slots.keys --> new keys
+        # # new_slots.populate --> old data in slots
+        # end
+      end
+
+      def get_next_prime(current_size)
+        i = current_size + 1
+        i += 1 until i.prime?
+        i
       end
 
   end
@@ -184,4 +193,3 @@ hashtable.define("ha")
 
 # Search in a slot O(n)
 # Insert in a single list first? Ordered?
-#
