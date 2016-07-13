@@ -4,6 +4,7 @@ require 'stack'
 describe 'Stack' do
   let(:stack) { Stack.new }
   let(:full_stack) { stack.push(1).push(2) }
+  let(:str) { "hello" }
 
   describe '#initialize' do
     it 'instantiates a Stack object' do
@@ -49,12 +50,11 @@ describe 'Stack' do
     end
   end
 
-  # it 'can load and unload a string in the reverse order' do
-  #   dequeued_string = ""
-  #   queue = MyQueue.new
-  #   str.each_char { |char| queue.enqueue(char) }
+  it 'can load and unload a string in the reverse order' do
+    popped_string = ""
+    str.each_char { |char| stack.push(char) }
     
-  #   queue.queue.length.times { dequeued_string << queue.dequeue }
-  #   expect(dequeued_string).to eq("hello")
-  # end
+    stack.stack.length.times { popped_string << stack.pop }
+    expect(popped_string).to eq("olleh")
+  end
 end
