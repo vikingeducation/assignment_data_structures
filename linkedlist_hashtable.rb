@@ -69,6 +69,18 @@ module DataStructuresAssignment
       node_output
     end
 
+    def find_key(key)
+      i = 0
+      #Iteratively search for position in list.
+      node_output = @head
+      while i < @size
+        return node_output if node_output.data == key
+        node_output = node_output.pointer
+        i += 1
+      end
+      nil
+    end
+
     def render_list
       node = @head
       idx = 0
@@ -89,25 +101,38 @@ module DataStructuresAssignment
     end
 
     def hash(data)
-      data[0].ord - 97
+      data[0].downcase.ord - 97
     end
 
     def insert(key)
       hashed = hash(key)
       @slots[hashed] = LinkedList.new unless @slots[hashed]
-      @slots[hashed].insert(hashed,:tail)
+      @slots[hashed].insert(key,:tail)
     end
 
     def render_slots
-      @slots.each do |slot|
+      @slots.each_with_index do |slot, index|
         if slot
-          puts "Node count: #{slot.size}"
+          puts "Node(#{index}) count: #{slot.size}"
           puts slot.render_list
         end
       end
     end
 
-    def define
+    def define(word)
+      slot_location = hash(word)
+      definition = @slots[slot_location].find_key(word)
+      definition.nil? ? friendly_msg( word ) : define_msg( word, definition )
+    end
+
+    def define_msg( word, definition )
+      puts
+      puts "#{word.capitalize}: #{definition.data}"
+    end
+
+    def friendly_msg(word)
+      puts
+      puts "Sorry, couldn't find the definition of #{word}..."
     end
 
   end
@@ -117,6 +142,13 @@ end
 
 include DataStructuresAssignment
 
+dictionary = File.readlines("5desk.txt"){ |line| line.strip }
+
 hashtable = HashTable.new
 hashtable.insert("Hello, world")
+# hashtable.render_slots
+hashtable.define("Hello, world")
+
+dictionary[0..5].each { |word| hashtable.insert(word) }
+# hashtable.define("aardvark")
 hashtable.render_slots
