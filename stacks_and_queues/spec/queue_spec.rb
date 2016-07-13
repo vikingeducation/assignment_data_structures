@@ -29,22 +29,33 @@ describe MyQueue do
        expect(full_queue.dequeue).to eq(1)
     end
 
-    it 'returns nil if stack is empty' do
-      expect(stack.pop).to eq(nil)
+    it 'returns nil if queue is empty' do
+      expect(queue.dequeue).to eq(nil)
     end
   end
 
-  # describe '#peek' do
-  #   it 'returns the top elem in the stack if stack is full' do
-  #     expect(full_stack.peek).to eq(2)
-  #   end
+  describe '#peek' do
+    it 'returns the first element in the queue if queue is full' do
+      expect(full_queue.peek).to eq(1)
+    end
 
-  #   it 'returns nil if stack is empty' do 
-  #     expect(stack.peek).to eq(nil)
-  #   end
+    it 'returns nil if queue is empty' do 
+      expect(queue.peek).to eq(nil)
+    end
 
-  #   it 'does not change the stack' do
-  #     expect{ full_stack.peek }.to change{ full_stack.stack.length }.by(0)
-  #   end
-  # end
+    it 'does not change the queue' do
+      expect{ full_queue.peek }.to change{ full_queue.queue.length }.by(0)
+    end
+  end
+
+  specify 'can load and unload a string in the same order' do
+    let(:str){ "hello" }
+
+    it 'returns "hello" when enqueued and dequeued' do
+      # str.length.times do
+      #   queue.enqueue(queue.dequeue)
+      # end
+    end
+  end
 end
+

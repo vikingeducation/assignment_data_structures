@@ -11,7 +11,23 @@ class MyQueue
     self
   end
 
-  
+  def dequeue
+    first_element = @queue[0]
+    last_index = @queue.length - 1
+    @queue = @queue[1..last_index]
+    first_element
+  end
+
+  def peek
+    return nil if empty?
+    @queue[0]
+  end
+
+  private
+
+  def empty?
+    @queue.length == 0
+  end
 
 
 end
