@@ -103,4 +103,13 @@ class LinkedList
     word_list
   end
 
+  def each
+    current_node = @head
+    length.times do |count|
+      yield(current_node)
+      current_node = current_node.next
+    end
+    @last
+  end
+
 end

@@ -1,4 +1,4 @@
-require_relative 'linked_list'
+require_relative 'linked_list_2'
 
 $MAX_LENGTH = 1000
 
@@ -65,11 +65,13 @@ class HashTable
   def balance
     new_h = HashTable.new(@buckets.length*2)
 
-    @buckets.each
+    @buckets.each do |linked_list|
+      linked_list.each do |node|
+        new_h.insert(node.data)
+      end
+    end
 
-
-
-
+    @buckets = new_h.buckets
   end
 
 end
