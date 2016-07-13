@@ -23,12 +23,40 @@ class LinkedList
     end
   end
 
-  def value(index)
+  def search(index)
     current_node = @head
     index.times do
+      return nil if current_node.next.nil?
       current_node = current_node.next
     end
-    current_node.data
+    current_node
+  end
+
+  def value(index)
+    node = search(index)
+    return nil if node.nil?
+    node.data
+  end
+
+  def insert_node(data, index)
+    prior_node = search(index-1)
+    new_node = Node.new(data, prior_node.next)
+    prior_node.next = new_node
+  end
+
+  def reverse
+    current_node = @head
+    next_node = @head.next
+    @head.next = nil
+    prior_node = nil
+    until next_node.nil?
+      prior_node = current_node
+      current_node = next_node
+      next_node = current_node.next
+      current_node.next = prior_node
+    end
   end
 
 end
+
+list = LinkedList.new
