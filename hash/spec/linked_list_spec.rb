@@ -82,6 +82,17 @@ describe LinkedList do
     end
   end
   
-  #delete 
+  describe "#delete" do
+    it 'deletes the first node if index is not provided' do
+      filled_ll.delete
+      expect(filled_ll.head).to eq(node2)
+    end
+
+    it 'deletes the last element of a 3-node ll' do
+      filled_ll.delete(2)
+      expect(filled_ll.head.next.next).to eq(nil)
+    end
+  end
 
 end
+

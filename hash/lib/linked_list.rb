@@ -45,6 +45,27 @@ class LinkedList
     current_node
   end
 
+  def delete(index = 0)
+    unless empty?
+      current_node = @head
+      previous_node = nil
+      next_node = current_node.next
+
+      index.times do
+        previous_node = current_node
+        current_node = current_node.next
+        next_node = current_node.next
+      end
+
+      if previous_node != nil
+        previous_node.next = next_node
+      elsif previous_node == nil
+        @head = next_node
+      end
+    end
+    self
+  end
+
 
   private
 
@@ -52,3 +73,4 @@ class LinkedList
     @head == nil
   end
 end
+
