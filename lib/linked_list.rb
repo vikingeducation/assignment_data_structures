@@ -1,3 +1,5 @@
+require 'pry'
+
 Node = Struct.new(:word, :definition, :next)
 
 
@@ -49,6 +51,7 @@ class LinkedList
   end
 
   def read(index)
+    # the Big-O value for this operation is O(n), because the scan must start at the beginning and search through all nodes up until (index)
     current_node = scan(index)
     [current_node.word, current_node.definition]
   end
@@ -57,9 +60,11 @@ class LinkedList
     counter = 0
     current_node = @head
     prev_node = nil
+    puts "Starting scan at #{counter}."
     while counter < index
       prev_node = current_node
       next_node = current_node.next
+      puts "The node at #{counter} is #{current_node}."
       current_node = next_node 
       counter += 1
     end
@@ -67,6 +72,7 @@ class LinkedList
   end
 
   def add_node_at_index(index, word, definition)
+    #the Big-O value for this operation is O(n) because a scan of each node up until the node @ index must take place, so time is a function of no. of nodes
     counter = 0
     current_node = @head
     prev_node = nil
@@ -83,6 +89,23 @@ class LinkedList
       @head = new_node
     end
     new_node.next = current_node
+  end
+
+  def reverse 
+    #the Big-O value for this operation is O(n) because the operation simply traverses the nodes, setting the 'next' value of each to the previous node
+    current_node = @head
+    prev_node = nil
+    @last = @head
+    current_copy = @head
+
+    until current_copy.next == nil
+      prev_node = current_node
+      current_node = current_copy.next
+      current_copy = current_node.dup
+      current_node.next = prev_node
+    end
+    @head = current_node
+    self
   end
 
 

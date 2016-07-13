@@ -110,12 +110,25 @@ describe LinkedList do
       l.add_node_to_end('dog', 'canine')
       l.add_node_to_end('cow', 'bovine')
       l.add_node_at_index(2, 'hawk', 'bird')
-      expect(l.)
-
-
-
+      expect(l.scan(2).word).to eq('hawk')
+    end
   end
 
+  describe "#reverse" do 
+    let(:l){LinkedList.new(Node.new('cat', 'feline'))}
+
+    it 'reverses the order of the nodes' do 
+      l.add_node_to_end('dog', 'canine')
+      l.add_node_to_end('cow', 'bovine')
+      l.add_node_to_end('mouse', 'rodent')
+      l.reverse
+      expect(l.head.word).to eq('mouse')
+      expect(l.read(1)).to eq(['cow', 'bovine'])
+      expect(l.read(2)).to eq(['dog', 'canine'])
+      expect(l.last.word).to eq('cat')
+    end
+
+  end
 
 
 
