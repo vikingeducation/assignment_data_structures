@@ -30,6 +30,7 @@ end
 
 stack = Stack.new
 string = "string"
+
 i = 0 
 
 while i < string.length

@@ -1,11 +1,10 @@
 class Queue
   attr_reader :queue
   def initialize
-    @queue = [4,5,6]
+    @queue = []
   end
 
   def enqueue(item)
-    
     queue_copy = []
     
     i = 0
@@ -20,10 +19,17 @@ class Queue
   end
 
   def dequeue
+    raise "queue is empty bruh" if empty?
+    first_item = @queue[@queue.length - 1]
+    
+    @queue = (@queue.length == 1) ? [] : @queue[ 0..(@queue.length-2)]
+    
+    first_item
 
   end
 
   def peek
+    print "queue is empty bruh" if empty?
     @queue[@queue.length-1]
   end
 
@@ -35,10 +41,31 @@ end
 
 q = Queue.new
 
+str = "string"
+new_str = ""
 
-q.enqueue(1)
-p q.queue
+i = 0
 
-q.enqueue(2)
+while i < str.length 
+  q.enqueue( str[i] )
+  i += 1
+end
 
-p q.queue
+until q.empty?
+  new_str << q.dequeue
+end
+
+p new_str
+
+
+
+
+
+
+
+
+
+
+
+
+
