@@ -1,3 +1,5 @@
+require 'pry'
+
 module DataStructuresAssignment
 
   class Node
@@ -74,7 +76,10 @@ module DataStructuresAssignment
       #Iteratively search for position in list.
       node_output = @head
       while i < @size
-        return node_output if node_output.data == key
+        if node_output.data == key
+          puts "It took #{i} #{i > 1 ? 'steps' : 'step'} to find this key"
+          return node_output 
+        end
         node_output = node_output.pointer
         i += 1
       end
@@ -127,12 +132,12 @@ module DataStructuresAssignment
 
     def define_msg( word, definition )
       puts
-      puts "#{word.capitalize}: #{definition.data}"
+      print "#{word.capitalize}: #{definition.data}\n"
     end
 
     def friendly_msg(word)
       puts
-      puts "Sorry, couldn't find the definition of #{word}..."
+      print "Sorry, couldn't find the definition of #{word}...\n"
     end
 
   end
@@ -145,10 +150,6 @@ include DataStructuresAssignment
 dictionary = File.readlines("5desk.txt").map(&:strip)
 
 hashtable = HashTable.new
-hashtable.insert("Hello, world")
-# hashtable.render_slots
-hashtable.define("Hello, world")
-
-dictionary[0..5].each { |word| hashtable.insert(word) }
-hashtable.define("aardvark")
-# hashtable.render_slots
+dictionary.each { |word| hashtable.insert(word) }
+binding.pry
+puts dictionary.all? { |word| hashtable.define(word) }
