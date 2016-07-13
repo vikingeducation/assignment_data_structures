@@ -7,6 +7,8 @@
 
 class Stack
 
+  attr_reader :data
+
   def initialize(data = [])
     @data = data
   end
@@ -17,7 +19,9 @@ class Stack
   end
 
   def pop
-    @data[@data.length - 1] = nil  
+    temp_var = @data[@data.length - 1]
+    @data = @data[0..@data.length - 2] 
+    temp_var
   end
 
   def peek
@@ -31,6 +35,9 @@ class Stack
 end
 
 str = Stack.new(["s","t","r","i","n","g"])
-(str.length).times do 
-  arr = []
+arr = []
+(str.data.length).times do 
+  arr.push(str.pop)
+end
+puts arr
   
