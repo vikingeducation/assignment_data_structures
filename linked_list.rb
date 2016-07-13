@@ -81,6 +81,18 @@ class LinkedList
     @head = tail_variable
   end
 
+  def find(word)
+    counter = 1
+    current_node = @head
+    while current_node != nil
+      break if current_node.word == word
+      current_node = current_node.next
+      counter += 1
+    end
+    puts "This operation took #{counter} steps"
+    current_node.definition if current_node != nil
+  end
+
 end
 
 # list = LinkedList.new

@@ -12,7 +12,7 @@ class HashTable
     string[0].downcase.ord - 97
   end
 
-  def insert(word, definition = "No definition")
+  def insert(word, definition = "This word has not been defined")
     new_node = Node.new(word, definition, nil)
     @buckets[hash(word)].add_node_end(new_node)
   end
@@ -31,11 +31,20 @@ class HashTable
     end
   end
 
+  def define(word)
+    definition = @buckets[hash(word)].find(word)
+    if definition == nil
+      puts "Your word does not exist"
+    else
+      puts definition
+    end
+  end
+
 end
 
-h = HashTable.new
-h.insert("Apple")
-h.insert("Apricot")
-h.insert("Bear")
-h.insert("Cat")
-h.render_list
+# h = HashTable.new
+# h.insert("Apple")
+# h.insert("Apricot", "A fruit")
+# h.insert("Bear")
+# h.insert("Cat")
+# h.define("Apricot")
