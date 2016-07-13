@@ -1,3 +1,4 @@
+require "pry"
 module DataStructuresAssignment
 
   class Node
@@ -95,7 +96,7 @@ module DataStructuresAssignment
   end
 
   class HashTable
-
+    attr_reader :slots
     def initialize
       @slots = Array.new(1000,nil)
     end
@@ -126,13 +127,13 @@ module DataStructuresAssignment
     end
 
     def define_msg( word, definition )
-      puts
       puts "#{word.capitalize}: #{definition.data}"
+      puts
     end
 
     def friendly_msg(word)
-      puts
       puts "Sorry, couldn't find the definition of #{word}..."
+      puts
     end
 
   end
@@ -142,13 +143,16 @@ end
 
 include DataStructuresAssignment
 
-dictionary = File.readlines("5desk.txt"){ |line| line.strip }
+dictionary = File.readlines("5desk.txt").map(&:strip)
 
 hashtable = HashTable.new
-hashtable.insert("Hello, world")
-# hashtable.render_slots
-hashtable.define("Hello, world")
 
-dictionary[0..5].each { |word| hashtable.insert(word) }
+dictionary.each { |word| hashtable.insert(word) }
 # hashtable.define("aardvark")
-hashtable.render_slots
+# hashtable.render_slots
+truths = dictionary.all? do |word|
+  binding.pry
+  hashtable.define(word)
+end
+
+puts truths
