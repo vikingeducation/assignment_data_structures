@@ -1,21 +1,21 @@
 Node = Struct.new(:word, :definition, :next)
 
 class LinkedList
+  attr_reader :head
 
   def initialize(first_node = nil)
     @head = first_node
     @tail = first_node
   end
 
-  def add_node_end(word, definition = nil)
+  def add_node_end(node)
     if @head == nil
-      add_first_node(word, definition)
-      puts "You added the word #{word} to the first node of the list because there was no head"
+      add_first_node(node.word, node.definition)
+      puts "You added the word #{node.word} to the first node of the list because there was no head"
     else
-      new_node = Node.new(word, definition, nil)
-      @tail.next = new_node
-      @tail = new_node
-      puts "You added the word #{word} to the last node of the list"
+      @tail.next = node
+      @tail = node
+      puts "You added the word #{node.word} to the last node of the list"
     end
   end
 
