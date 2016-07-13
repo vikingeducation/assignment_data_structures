@@ -23,25 +23,30 @@ class LinkedList
     end
   end
 
+  # O(n), because it depends linearly on amount of items in list
   def search(index)
     current_node = @head
     index.times do
       return nil if current_node.next.nil?
+      puts current_node.data
       current_node = current_node.next
     end
     current_node
   end
 
+  # O(n), because we have to search for node at index
   def value(index)
     node = search(index)
     return nil if node.nil?
     node.data
   end
 
+
   def insert_node(data, index)
     prior_node = search(index-1)
     new_node = Node.new(data, prior_node.next)
     prior_node.next = new_node
+    @last = new_node if prior_node == @last
   end
 
   def reverse
@@ -49,12 +54,14 @@ class LinkedList
     next_node = @head.next
     @head.next = nil
     prior_node = nil
+    @last = current_node
     until next_node.nil?
       prior_node = current_node
       current_node = next_node
       next_node = current_node.next
       current_node.next = prior_node
     end
+    @head = current_node
   end
 
 end
