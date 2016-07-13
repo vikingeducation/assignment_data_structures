@@ -15,17 +15,23 @@ module DataStructuresAssignment
   end
 
   class LinkedList
+    attr_reader :head, :tail
 
     def initialize
       @head = Node.new("First node.")
-      @tail = nil
+      @tail = @head
     end
 
-    def insert(position)
+    def insert(node,position)
       case position
       when :head
+        node.set_pointer(@head)
+        @head = node
       when :tail
+        @tail.set_pointer(node)
+        @tail = node
       when Integer
+        
       end
     end
 
