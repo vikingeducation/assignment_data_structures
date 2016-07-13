@@ -1,3 +1,4 @@
+
 class LinkedList
   attr_accessor :head, :last
 
@@ -17,24 +18,23 @@ class LinkedList
     self
   end
 
-  def insert(new_node, index)
+  def insert(new_node, index=0)
     if empty?
-      index == 0 ? append(new_node) : (raise ArgumentError, "index incorrect")
+      append(new_node)
     else
       crawler = 0
       current_node = @head
+      previous_node = nil
 
-      while crawler < index - 1
+      index.times do
+        previous_node = current_node
         current_node = current_node.next
-        crawler += 1
       end
 
-      new_node.next = current_node.next
-      current_node.next = new_node
-
-      
-      self
-    end    
+      previous_node.next = new_node if previous_node
+      new_node.next = current_node  
+    end   
+    self
   end
 
   private
