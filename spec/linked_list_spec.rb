@@ -5,7 +5,7 @@ describe LinkedList do
   let(:list){LinkedList.new}
   let(:node){Node.new("word", "definition", nil)}
   let(:list_with){LinkedList.new(node)}
-  
+
   before do
     allow(list).to receive(:puts)
     allow(list_with).to receive(:puts)
@@ -49,14 +49,24 @@ describe LinkedList do
 
   describe "#reverse_list" do
 
-    it "should change to a different head"
+    it "should change to a different head" do
+      list_with.add_node_end(Node.new("second", "def", nil))
+      list_with.reverse_list
+      expect(list_with.head).not_to eq(node)
+    end
+  end
 
+  describe "#find" do
 
+    it "should find the definition of the word inputed" do
+      list_with.add_node_end(Node.new("apple", "A fruit", nil))
+      expect(list_with.find("apple")).to eq("A fruit")
+    end
 
-
-
-
-
-
+    it "should return nil if word is not found" do
+      list_with.add_node_end(Node.new("apple", "A fruit", nil))
+      expect(list_with.find("pear")).to be nil
+    end
+  end
 
 end

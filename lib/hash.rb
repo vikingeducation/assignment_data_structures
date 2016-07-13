@@ -13,6 +13,7 @@ class HashTable
   end
 
   def insert(word, definition = "This word has not been defined")
+    raise "Arguments must be a string" unless word.is_a?(String) && definition.is_a?(String)
     new_node = Node.new(word.downcase, definition, nil)
     index = hash(word)
     @buckets[index] ||= LinkedList.new
