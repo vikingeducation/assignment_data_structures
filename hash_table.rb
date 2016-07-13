@@ -1,5 +1,14 @@
 Node = Struct.new(:word, :definition, :next_node)
 
+class DictionaryLoader
+  attr_reader :words
+
+  def load
+    @words = File.readlines("5desk.txt").map{ |word| word.strip }
+  end
+
+end
+
 class HashTable
   attr_reader :buckets
 
@@ -34,8 +43,12 @@ class HashTable
         puts "There were zero words for #{letter}"
       end
     end
+    return
   end
 
+  #When looking for index the Big O notation is O(1). Once
+  #The linked_list has been found, the Big O notation for finding
+  #the word/definition is O(n), or linear.
   def define(word_lookup)
     index=hash(word_lookup)
     list=@buckets[index]
@@ -43,14 +56,27 @@ class HashTable
     while counter<list.counter
       current_node=list.find_node(counter)
       if current_node.word == word_lookup
+        puts "Searched #{counter+1} nodes."
         puts "Found definition for #{word_lookup}: #{current_node.definition}" 
         return
       end
       counter +=1
     end
+    puts "Searched #{counter+1} nodes."
     puts "#{word_lookup} not found"
   end
 
+
+  def dictionary_words
+    DictionaryLoader.new.load
+  end
+
+  def load_in_dictionary
+    dictionary_words.each do |word|
+      definition = "This is the definition for #{word}"
+      insert(word.downcase, definition)
+    end
+  end
 end
 
 class LinkedList
@@ -90,8 +116,6 @@ class LinkedList
         current_node = current_node.next_node
         counter += 1
       end
-
-      puts "Searched #{counter+1} nodes."
       current_node
 
   end
@@ -126,6 +150,7 @@ class LinkedList
 
 end
 
+=begin
 h = HashTable.new
 h.insert("hi", "a greeting")
 h.insert("blue", "a color")
@@ -133,5 +158,8 @@ h.insert("box", "a place to put cats")
 h.insert("zebra", "black and white animal")
 h.define("box")
 h.define("hippo")
+h.load_in_dictionary
+=end
+
 
 #h.render_list

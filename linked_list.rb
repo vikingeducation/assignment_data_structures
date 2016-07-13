@@ -39,7 +39,6 @@ class LinkedList
       puts "Searched #{counter+1} nodes."
       puts "Node at #{index} is #{current_node.word}: #{current_node.definition}"
       current_node
-
   end
 
   #The method below uses O(n) to insert a new node
