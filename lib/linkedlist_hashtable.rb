@@ -19,8 +19,8 @@ module DataStructuresAssignment
   class LinkedList
     attr_reader :head, :tail, :size
 
-    def initialize
-      @head = Node.new("First node.")
+    def initialize(node = nil)
+      @head = node
       @tail = @head
       #Keep track of size.
       @size = 1
@@ -111,7 +111,7 @@ module DataStructuresAssignment
 
     def insert(key)
       hashed = hash(key)
-      @slots[hashed] = LinkedList.new unless @slots[hashed]
+      return @slots[hashed] = LinkedList.new(Node.new(key)) unless @slots[hashed]
       @slots[hashed].insert(key,:tail)
     end
 
@@ -131,17 +131,14 @@ module DataStructuresAssignment
     end
 
     def define_msg( word, definition )
-      puts "#{word.capitalize}: #{definition.data}"
-      puts
+      puts "#{word.capitalize}: The definition of '#{definition.data}' is '#{definition.data}'\n\n"
     end
 
     def friendly_msg(word)
-      puts "Sorry, couldn't find the definition of #{word}..."
+      puts "Sorry, couldn't find the definition of #{word}...\n"
       puts
     end
-
   end
-
 end
 
 
@@ -152,5 +149,6 @@ dictionary = File.readlines("5desk.txt").map(&:strip)
 hashtable = HashTable.new
 
 dictionary.each { |word| hashtable.insert(word) }
-binding.pry
-puts dictionary.all? { |word| hashtable.define(word) }
+# binding.pry
+hashtable.define("aardvark")
+# puts dictionary[40000..41000].all? { |word| hashtable.define(word) }
