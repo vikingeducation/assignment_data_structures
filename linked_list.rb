@@ -31,7 +31,7 @@ class LinkedList
   def search(index)
     current_node = @head
     index.times do
-      print current_node.data + " -> "
+      print current_node.data.to_s + " -> "
       return nil if current_node.next.nil?
       current_node = current_node.next
     end
@@ -70,4 +70,29 @@ class LinkedList
     @head = current_node
   end
 
+  def find(value)
+    index = 0
+    current_node = @head
+    until current_node.nil?
+      return index if current_node.data ==  value
+      current_node = current_node.next
+      index += 1
+    end
+    nil
+  end
+
+  def find_key(key)
+    return nil unless @head.data.is_a?(Hash)
+    index = 0
+    current_node = @head
+    until current_node.nil?
+      return index if current_node.data.keys.include?(key)
+      current_node = current_node.next
+      index += 1
+    end
+    nil
+  end
+
 end
+
+

@@ -1,6 +1,6 @@
 require_relative 'linked_list'
 
-class Hash
+class HashTable
   attr_accessor :buckets
 
   def initialize
@@ -8,7 +8,7 @@ class Hash
   end
 
   def hash(string)
-    string[0].downcase.ord-97
+    string.keys[0].to_s[0].downcase.ord-97
   end
 
   def insert(string)
@@ -19,8 +19,9 @@ class Hash
 
   def render_list
     @buckets.length.times do |list|
+      letters = ("A".."Z").to_a
       unless @buckets[list].nil?
-        print "#{@buckets[list].head.data[0].upcase}: "
+        print "#{ letters[list] }: "
         @buckets[list].search(@buckets[list].length-1)
       end
     end
@@ -28,12 +29,13 @@ class Hash
   end
 end
 
-h = Hash.new
-h.insert("apple")
-h.insert("actuary")
-h.insert("ace")
-h.insert("banana")
-h.insert("derek")
-h.insert("zebra")
-h.insert("zoo")
+
+h = HashTable.new
+h.insert(apple: "fruit")
+h.insert(actuary: "job")
+h.insert(ace: "card")
+h.insert(banana: "fruit")
+h.insert(derek: "name")
+h.insert(zebra: "animal")
+h.insert(zoo: "place")
 h.render_list
