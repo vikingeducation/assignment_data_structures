@@ -47,9 +47,13 @@ module DataStructuresAssignment
 # C.pointer.pointer = C.
 # C.pointer = ...B?
 
-# i = @size-1
-# node = @tail
-# node.pointer = find_node(i-1)
+# while i > 0
+  # i = @size-1
+  # node = find_node(i)
+  # node.pointer = find_node(i-1)
+  # i -= 1
+# end
+# find_node(i).pointer = nil
 
     def find_node(idx)
       i = 0
