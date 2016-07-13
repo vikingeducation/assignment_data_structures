@@ -10,9 +10,7 @@ class LinkedList
     @last = first_node
   end
 
-  def add_first_node(word, definition)
-    @last = @head = Node.new(word, definition, nil)
-  end
+  
 
   def add_node_to_end(word, definition)
     if @head.nil?
@@ -51,21 +49,51 @@ class LinkedList
   end
 
   def read(index)
+    current_node = scan(index)
+    [current_node.word, current_node.definition]
+  end
+
+  def scan(index)
     counter = 0
+    current_node = @head
+    prev_node = nil
     while counter < index
       prev_node = current_node
       next_node = current_node.next
       current_node = next_node 
       counter += 1
     end
-    
+    current_node
+  end
 
+  def add_node_at_index(index, word, definition)
+    counter = 0
+    current_node = @head
+    prev_node = nil
+    while counter < index
+      prev_node = current_node
+      next_node = current_node.next
+      current_node = next_node 
+      counter += 1
+    end
+    new_node = Node.new(word, definition)
+    if prev_node
+      prev_node.next = new_node
+    else
+      @head = new_node
+    end
+    new_node.next = current_node
   end
 
 
 
 
 
+  #private
+
+  def add_first_node(word, definition)
+    @last = @head = Node.new(word, definition, nil)
+  end
 
 
 end

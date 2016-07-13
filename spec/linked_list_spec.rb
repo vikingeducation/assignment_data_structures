@@ -83,13 +83,38 @@ describe LinkedList do
   end
 
   describe '#read' do
+
     let(:l){LinkedList.new(Node.new('cat', 'feline'))}
-    it 'should read the word and definition at a given index' do
+    
+    it 'should read the word and definition at 0' do
       expect(l.read(0)).to eq(['cat','feline'])
+    end
+
+    it 'should read the word and definition of the given index' do
+      l.add_node_to_end('dog', 'canine')
+      expect(l.read(1)).to eq(['dog', 'canine'])
     end
 
   end
 
+  describe '#add_node_at_index' do
+
+    let(:l){LinkedList.new(Node.new('cat', 'feline'))}
+
+    it 'should insert the node at the head if argument is 0' do
+      l.add_node_at_index(0, 'dog', 'canine')
+      expect(l.head.word).to eq('dog')
+    end
+
+    it 'should insert the node at the given index' do
+      l.add_node_to_end('dog', 'canine')
+      l.add_node_to_end('cow', 'bovine')
+      l.add_node_at_index(2, 'hawk', 'bird')
+      expect(l.)
+
+
+
+  end
 
 
 
