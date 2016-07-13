@@ -17,6 +17,7 @@ class Stack
   def push(val)
     # iterate through the entire thing
     # at end of iteration, add last value where it belongs
+    raise if empty?
     new_data = Array.new(@data.length + 1) 
     (new_data.length - 1).times do |counter|
       new_data[counter] = @data[counter]
@@ -27,6 +28,7 @@ class Stack
   end
 
   def pop
+    raise if empty?
     temp_var = @data[@data.length - 1]
 
     new_data = Array.new(@data.length - 1) 
@@ -38,6 +40,7 @@ class Stack
   end
 
   def peek
+    raise if empty?
     @data[@data.length - 1]
   end
 

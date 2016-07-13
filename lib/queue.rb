@@ -25,6 +25,7 @@ class Queue
   end
 
   def dequeue
+    raise if empty?
     temp_var = @data[@data.length - 1]
     new_data = Array.new(@data.length - 1) 
     new_data.length.times do |counter|
