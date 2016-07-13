@@ -44,7 +44,6 @@ class LinkedList
     puts "#{current_node.word}: #{current_node.definition}"
   end
 
-  def 
 
 
 
