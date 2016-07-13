@@ -1,12 +1,17 @@
 Node = Struct.new(:value, :next)
 
+  
 
 class LinkedList
+
+  attr_reader :moves
+
   def initialize
     @last = nil
     @first = nil
     @number_of_nodes = 0
     @current_node = @first
+    @moves = 1
   end
 
   def add_node(input)
@@ -47,7 +52,6 @@ class LinkedList
     counter = 0
     current_node = @first
     until counter == index
-      puts "Traversing... current node value = #{current_node.value}"
       current_node = current_node.next
       counter += 1
     end
@@ -55,12 +59,14 @@ class LinkedList
   end
 
   def find_value(value)
+    @moves = 1
     counter = 0
     current_node = @first
     until counter == @number_of_nodes
       return current_node if current_node.value == value
       current_node = current_node.next
       counter += 1
+      @moves += 1
     end
     nil
   end

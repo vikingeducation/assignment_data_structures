@@ -1,4 +1,6 @@
 require './linked_list'
+
+
 class HashTable
   def initialize
     @buckets = Array.new(26) { nil }
@@ -11,7 +13,14 @@ class HashTable
   
   def define(word)
     index = hash(word)
-    @buckets[index].find_value(word)
+    ll = @buckets[index]
+    results = ll.find_value(word) unless ll == nil
+    number_of_moves = ll.nil? ? 1 : ll.moves
+    if results
+      puts "The definition of #{word} is #{word}. Finished in #{number_of_moves} moves."
+    else
+      puts "#{word.capitalize} is not in the dictionary. Finished in #{number_of_moves} moves."
+    end
   end
 
   def un_hash(index)
@@ -33,6 +42,7 @@ class HashTable
     puts "***********"
     @buckets.length.times do |index|
       render_bucket(index, @buckets[index].full_list) unless @buckets[index].nil?
+      puts if @buckets[index]
     end
     puts "***********"
   end
@@ -40,7 +50,7 @@ class HashTable
   def render_bucket(index, ll_array)
     print "#{un_hash(index)}:    "
     ll_array.each do |item|
-      print item
+      print "#{item}   "
     end
   end
 
@@ -59,7 +69,7 @@ class HashTable
     puts "What would you like to do?"
     puts "insert => i render => r definition => d quit => q"
     begin
-      result = gets.chomp
+      result = gets.chomp.downcase
     end until %w(i r d q).include?(result)
     case result
     when 'i'
@@ -78,8 +88,6 @@ class HashTable
     result = gets.chomp
     if define(result)
       define(result)
-    else
-      puts 'That word is not in the dictionary.'
     end
   end
 
