@@ -1,4 +1,3 @@
-require 'pry'
 module DataStructuresAssignment
 
   class Node
@@ -16,7 +15,7 @@ module DataStructuresAssignment
   end
 
   class LinkedList
-    attr_reader :head, :tail
+    attr_reader :head, :tail, :size
 
     def initialize
       @head = Node.new("First node.")
@@ -25,17 +24,18 @@ module DataStructuresAssignment
       @size = 1
     end
 
-    def insert( node, position )
+    def insert( data, position )
+      node = Node.new(data)
       case position
       #Insert at head
-      when 0
+      when 0, :head
         node.set_pointer(@head)
         @head = node
       #Insert at tail
-      when @size - 1
+      when (@size - 1), :tail
         @tail.set_pointer(node)
         @tail = node
-      when Integer
+      else
         ith_minus_node = find_node(position)
         node.set_pointer(ith_minus_node.pointer)
         ith_minus_node.set_pointer(node)
@@ -81,21 +81,42 @@ module DataStructuresAssignment
       end
     end
   end
+
+  class HashTable
+
+    def initialize
+      @slots = Array.new(1000,nil)
+    end
+
+    def hash(data)
+      data[0].ord - 97
+    end
+
+    def insert(key)
+      hashed = hash(key)
+      @slots[hashed] = LinkedList.new unless @slots[hashed]
+      @slots[hashed].insert(hashed,:tail)
+    end
+
+    def render_slots
+      @slots.each do |slot|
+        if slot
+          puts "Node count: #{slot.size}"
+          puts slot.render_list
+        end
+      end
+    end
+
+    def define
+    end
+
+  end
+
 end
 
 
 include DataStructuresAssignment
 
-list = LinkedList.new
-2.times do
-  list.insert(Node.new("Another node at the head."), 0)
-end
-list.insert(Node.new("Another node at the tail."), 2)
-list.insert(Node.new("Another node at the tail."), 3)
-2.times do
-  list.insert(Node.new("This is in the middle."), 2)
-end
-# list.render_list
-# binding.pry
-list.reverse_list
-list.render_list
+hashtable = HashTable.new
+hashtable.insert("Hello, world")
+hashtable.render_slots
