@@ -23,3 +23,4 @@ class Stack
     @stack.length == 0
   end
 end
+
