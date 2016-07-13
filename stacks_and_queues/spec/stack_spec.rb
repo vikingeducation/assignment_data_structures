@@ -48,4 +48,13 @@ describe 'Stack' do
       expect{ full_stack.peek }.to change{ full_stack.stack.length }.by(0)
     end
   end
+
+  # it 'can load and unload a string in the reverse order' do
+  #   dequeued_string = ""
+  #   queue = MyQueue.new
+  #   str.each_char { |char| queue.enqueue(char) }
+    
+  #   queue.queue.length.times { dequeued_string << queue.dequeue }
+  #   expect(dequeued_string).to eq("hello")
+  # end
 end

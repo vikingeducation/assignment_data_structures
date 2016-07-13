@@ -3,6 +3,7 @@ require 'queue'
 describe MyQueue do 
   let(:queue) { MyQueue.new }
   let(:full_queue) { queue.enqueue(1).enqueue(2) }
+  let(:str){ "hello" }
 
   describe '#initialize' do
     it 'instantiates a MyQueue object' do
@@ -48,14 +49,17 @@ describe MyQueue do
     end
   end
 
-  specify 'can load and unload a string in the same order' do
-    let(:str){ "hello" }
+ 
+  
 
-    it 'returns "hello" when enqueued and dequeued' do
-      # str.length.times do
-      #   queue.enqueue(queue.dequeue)
-      # end
-    end
+  it 'can load and unload a string in the same order' do
+    dequeued_string = ""
+    queue = MyQueue.new
+    str.each_char { |char| queue.enqueue(char) }
+    
+    queue.queue.length.times { dequeued_string << queue.dequeue }
+    expect(dequeued_string).to eq("hello")
   end
+  
 end
 
