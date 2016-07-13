@@ -1,45 +1,62 @@
-Node = Struct.new(:word,:next_node)
+Node = Struct.new(:word, :definition, :next_node)
 
 class HashTable
+  attr_reader :buckets
 
-def initialize
-  @buckets=[]
-end
-
-def hash(word)
-#takes a word and returns an array index based on its first letter
-  word[0].downcase.ord-97
-end
-
-def insert(word)
-  index=hash(word)
-  if @buckets[index]
-    @buckets[index].add_node(word)
-  else
-    @buckets[index]=LinkedList.new
-    @buckets[index].add_node(word)
+  def initialize
+    @buckets= Array.new(26){nil}
   end
-end
+
+  def hash(word)
+  #takes a word and returns an array index based on its first letter
+    word[0].downcase.ord-97
+  end
+
+  def insert(word)
+    index = hash(word)
+    if @buckets[index]
+      @buckets[index].add_node(word)
+    else
+      @buckets[index] = LinkedList.new
+      @buckets[index].add_node(word)
+    end
+  end
+
+  def render_list
+    @buckets.each_with_index do |linked_list ,ind|
+      letter = (ind + 97).chr
+      if !linked_list.nil?
+        count = linked_list.counter
+        first_plural = count == 1 ? "is" : "are"
+        second_plural = count == 1 ? "" : "s"
+        puts "There #{first_plural} #{count} word#{second_plural} for #{letter}"
+      else
+        puts "There were zero words for #{letter}"
+      end
+    end
+  end
 
 end
 
 class LinkedList
-  attr_reader :first, :last
+  attr_reader :first, :last, :counter
 
   def initialize
     @first=nil
     @last=nil
+    @counter = 0
   end
 
-  def add_node(word)
+  def add_node(word, definition)
     if @first.nil?
-      @first=Node.new(word, nil)
+      @first=Node.new(word, definition, nil)
       @last=@first
     else
-      new_node=Node.new(word,nil)
+      new_node=Node.new(word, definition, nil)
       @last.next_node=new_node
       @last=new_node
     end
+    @counter += 1
   end
 
   def find_last_node
@@ -65,11 +82,12 @@ class LinkedList
   end
 
   #The method below uses O(n) to insert a new node
-  def insert_node(index, word)
+  def insert_node(index, word, definition)
     node_before_index = find_node(index - 1)
     node_at_current_index = find_node(index)
-    new_node = Node.new(word,node_at_current_index)
+    new_node = Node.new(word, definition, node_at_current_index)
     node_before_index.next_node = new_node
+    @counter += 1
   end
 
   #The method below uses O(n) to reverse a new node
@@ -92,3 +110,10 @@ class LinkedList
   end
 
 end
+
+h = HashTable.new
+h.insert("hi")
+h.insert("blue")
+h.insert("box")
+h.insert("zebra")
+h.render_list
