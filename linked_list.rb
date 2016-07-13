@@ -43,13 +43,15 @@ class LinkedList
 
 # specific to dictionary with definitions
   def match(str)
-    puts "not found" if @head.nil?
+    return ['Result not found', 0] if @head.nil?
     holder = @head
+    counter = 1
     while holder
-      return holder.data[1] if holder.data[0] == str
+      return [holder.data[1], counter] if holder.data[0] == str
       holder = holder.next
+      counter += 1
     end
-    puts "definition not found"
+     ['Result not found', counter]
   end
 
 
