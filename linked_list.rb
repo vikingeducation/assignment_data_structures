@@ -1,14 +1,16 @@
 Node = Struct.new(:data, :next)
 
 class LinkedList
-  attr_accessor :head, :last
+  attr_reader :head, :last, :length
 
   def initialize(first_node = nil)
     @head = first_node
     @last = first_node
+    @length = 0
   end
 
   def add_first_node(data)
+    @length += 1
     @head = Node.new(data, nil)
     @last = @head
   end
@@ -17,20 +19,23 @@ class LinkedList
     if @head.nil?
       add_first_node(data)
     else
+      @length += 1
       new_node = Node.new(data, nil)
       @last.next = new_node
       @last = new_node
     end
+
   end
 
   # O(n), because it depends linearly on amount of items in list
   def search(index)
     current_node = @head
     index.times do
+      print current_node.data + " -> "
       return nil if current_node.next.nil?
-      puts current_node.data
       current_node = current_node.next
     end
+    puts current_node.data
     current_node
   end
 
@@ -43,6 +48,7 @@ class LinkedList
 
 
   def insert_node(data, index)
+    @length += 1
     prior_node = search(index-1)
     new_node = Node.new(data, prior_node.next)
     prior_node.next = new_node
@@ -65,5 +71,3 @@ class LinkedList
   end
 
 end
-
-list = LinkedList.new
