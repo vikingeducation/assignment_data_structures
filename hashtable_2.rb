@@ -1,20 +1,27 @@
 require_relative 'linked_list'
 
+$MAX_LENGTH = 1000
+
 class HashTable
   attr_accessor :buckets
 
-  def initialize
-    @buckets = Array.new(26)
+  def initialize(size=26)
+    @buckets = Array.new(size)
   end
 
   def hash(string)
-    string[0].downcase.ord-97
+    total = 0
+    string.split("").each do |char|
+      total += char.ord
+    end
+    total%buckets.length
   end
 
   def insert(string)
     index = hash(string.keys[0].to_s)
     @buckets[index] ||= LinkedList.new
     @buckets[index].add_node(string)
+    balance if @buckets[index].length > $MAX_LENGTH
   end
 
   def render_list
@@ -55,4 +62,17 @@ class HashTable
     end
   end
 
+  def balance
+    new_h = HashTable.new(@buckets.length*2)
+
+    @buckets.each
+
+
+
+
+  end
+
 end
+
+# h = HashTable.new
+# h.add_dictionary(h.load("5desk.txt"))
