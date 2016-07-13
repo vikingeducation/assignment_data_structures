@@ -29,6 +29,16 @@ class LinkedList
     p "#{holder.data} in #{steps} steps"
   end
 
+  def contents
+    result = []
+    holder = @head
+    until holder.next.nil?
+      result << holder.data
+      holder = holder.next
+    end
+    result
+  end
+
 # constant time
   def add_node(data)
     if @head.nil?
@@ -71,11 +81,11 @@ class LinkedList
   end
 end
 
-list = LinkedList.new
-list.add_node('a')
-list.add_node('b')
-list.add_node('c')
-list.read_node(2)
-list.reverse
-list.read_node(2)
-list.read_node(1)
+# list = LinkedList.new
+# list.add_node('a')
+# list.add_node('b')
+# list.add_node('c')
+# list.read_node(2)
+# list.reverse
+# list.read_node(2)
+# list.read_node(1)
