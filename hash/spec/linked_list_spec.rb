@@ -6,6 +6,7 @@ describe LinkedList do
   let(:node2) { Node.new(2, nil) } 
   let(:node3) { Node.new(3, nil) } 
   let(:ll_with_one_node) { LinkedList.new(node1) }
+  let(:filled_ll) { ll.append(node1).append(node2).append(node3) }
 
   describe '#intialize' do 
     it "instantiates LinkedList" do 
@@ -52,20 +53,12 @@ describe LinkedList do
 
   describe '#insert' do
 
-    let(:filled_ll) { ll.append(node1).append(node2) }
-
-    # it 'raises ArgumentError if ll is empty and index is out-of-bound' do
-    #   expect { ll.insert(node1, 2).head }.to raise_error(ArgumentError)
-    # end
-
     it "sets head to new node if ll is empty" do 
       expect(ll.insert(node1, 0).head).to eq(node1)
     end
 
     it "sets pointer of new node to the node that was in position 1" do
-      #node1 node2 
       filled_ll.insert(node3, 1)
-      #node1 node3 node2 
       expect(filled_ll.head.next.next).to eq(node2)
     end
 
@@ -73,14 +66,22 @@ describe LinkedList do
       filled_ll.insert(node3, 1)
       expect(filled_ll.head.next).to eq(node3)
     end
-    # it "sets head to new node if ll is non-empty and index is 0" do
-    #   filled_ll.insert(node2, 0)
-    #   expect(filled_ll.head).to eq(node2)
-    # end
+  end
+
+  describe "#read" do
+    it 'returns the first node if no index is provided' do
+      expect(filled_ll.read).to eq(node1)
+    end
+
+    it 'returns the second node if index is 1' do
+      expect(filled_ll.read(1)).to eq(node2)
+    end
+
+    it 'returns the third node if index is 2' do
+      expect(filled_ll.read(2)).to eq(node3)
+    end
   end
   
-  
-  #read
   #delete 
 
 end

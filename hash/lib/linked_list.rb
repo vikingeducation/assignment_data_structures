@@ -22,7 +22,6 @@ class LinkedList
     if empty?
       append(new_node)
     else
-      crawler = 0
       current_node = @head
       previous_node = nil
 
@@ -36,6 +35,16 @@ class LinkedList
     end   
     self
   end
+
+  def read(index = 0)
+    current_node = @head
+
+    index.times do
+      current_node = current_node.next
+    end
+    current_node
+  end
+
 
   private
 
