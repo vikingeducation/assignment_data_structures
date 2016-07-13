@@ -46,13 +46,24 @@ describe LinkedList do
 
   describe '#insert' do
 
-    let(:filled_ll) { ll.append(node1).append(node2).append(node1).append(node2) }
+    let(:filled_ll) { ll.append(node1).append(node2)
+      .append(node1).append(node2) }
 
-    it "" do 
+    it 'raises ArgumentError if ll is empty and index is out-of-bound' do
+      expect { ll.insert(node1, 2).head }.to raise_error(ArgumentError)
     end
 
-    # it "sets previous nodes pointer equal to new node" do
-    #   filled_ll.insert(node1)
+    it "sets head to new node if ll is empty" do 
+      expect(ll.insert(node1, 0).head).to eq(node1)
+    end
+
+    it "sets head.next to new node if ll is non-empty and index is 1" do
+      filled_ll.insert(node1, 1)
+      expect(filled_ll.head.next).to eq(node1)
+    end
+    # it "sets head to new node if ll is non-empty and index is 0" do
+    #   filled_ll.insert(node2, 0)
+    #   expect(filled_ll.head).to eq(node2)
     # end
   end
   #insert
