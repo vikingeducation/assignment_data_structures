@@ -31,8 +31,16 @@ module DataStructuresAssignment
         @tail.set_pointer(node)
         @tail = node
       when Integer
-        
+        find(position)
       end
+    end
+
+    def find(idx)
+      i = 0
+      #Iteratively search for position in list.
+      while i < idx
+      end
+
     end
 
   end
