@@ -36,4 +36,17 @@ A: O(n)- Accessing through each char of string to push it into a new array.
 
 Q: Inserting a value to a Hash
 A: O(1)- Does not matter how big/small the hash is because the pointer is located at the end of a linked list and will insert the value next.
+
 Q: Retrieving the keys of a Hash ({ foo: "bar" }.keys)
+A: O(n) - Need to go through each key and add it to the keys array
+
+
+
+
+
+
+
+
+
+
+
