@@ -135,14 +135,7 @@ p list.head
 
 
 
-=======
 
-list.print_list
-
-list.reverse
-
-list.print_list
->>>>>>> dc8443fe7a53ab73989efa38f8dfa9fd8c68aa81
 
 
 
