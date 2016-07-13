@@ -1,9 +1,6 @@
 Node = Struct.new(:value, :next)
 
-  
-
 class LinkedList
-
   attr_reader :moves
 
   def initialize

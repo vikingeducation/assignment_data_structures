@@ -1,16 +1,28 @@
 require './linked_list'
 
-
 class HashTable
   def initialize
     @buckets = Array.new(26) { nil }
+    add_defs_to_dict
+  end
+
+  def read_dict_file
+    dict = File.readlines("5desk.txt", "r").map do |item| 
+      item.strip
+    end
+  end
+
+  def add_defs_to_dict
+    read_dict_file.each do |word|
+      insert(word)
+    end
   end
 
   def hash(word)
     char = word.chars.first
     char.ord - 97
   end
-  
+ 
   def define(word)
     index = hash(word)
     ll = @buckets[index]
