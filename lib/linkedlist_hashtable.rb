@@ -1,4 +1,5 @@
-require "pry"
+require 'pry'
+
 module DataStructuresAssignment
 
   class Node
@@ -75,7 +76,10 @@ module DataStructuresAssignment
       #Iteratively search for position in list.
       node_output = @head
       while i < @size
-        return node_output if node_output.data == key
+        if node_output.data == key
+          puts "It took #{i} #{i > 1 ? 'steps' : 'step'} to find this key"
+          return node_output
+        end
         node_output = node_output.pointer
         i += 1
       end
@@ -148,11 +152,5 @@ dictionary = File.readlines("5desk.txt").map(&:strip)
 hashtable = HashTable.new
 
 dictionary.each { |word| hashtable.insert(word) }
-# hashtable.define("aardvark")
-# hashtable.render_slots
-truths = dictionary.all? do |word|
-  binding.pry
-  hashtable.define(word)
-end
-
-puts truths
+binding.pry
+puts dictionary.all? { |word| hashtable.define(word) }
