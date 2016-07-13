@@ -142,7 +142,7 @@ end
 
 include DataStructuresAssignment
 
-dictionary = File.readlines("5desk.txt"){ |line| line.strip }
+dictionary = File.readlines("5desk.txt").map(&:strip)
 
 hashtable = HashTable.new
 hashtable.insert("Hello, world")
@@ -150,5 +150,5 @@ hashtable.insert("Hello, world")
 hashtable.define("Hello, world")
 
 dictionary[0..5].each { |word| hashtable.insert(word) }
-# hashtable.define("aardvark")
-hashtable.render_slots
+hashtable.define("aardvark")
+# hashtable.render_slots
