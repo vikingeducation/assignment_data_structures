@@ -36,7 +36,6 @@ class LinkedList
         current_node = current_node.next_node
         counter += 1
       end
-      current_node
   end
 
   def insert_node(index, word, definition)
@@ -44,7 +43,6 @@ class LinkedList
     node_at_current_index = find_node(index)
     new_node = Node.new(word, definition,node_at_current_index)
     node_before_index.next_node = new_node
-    puts find_node(index)
   end
 
 
@@ -66,3 +64,4 @@ my_list.add_node("chair", "object to sit in")
 #p my_list.last
 #my_list.find_node(3)
 my_list.insert_node(1, "banana", "I am a fruit rich in potassium")
+my_list.find_node(1)
