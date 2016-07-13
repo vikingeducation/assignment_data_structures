@@ -55,7 +55,7 @@ class LinkedList
     current_node = @first
     next_node = @first.next_node
     current_node.next_node=nil
-    prior_node = nil
+
     #this loop does not work
     while next_node
       prior_node = current_node
