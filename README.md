@@ -27,5 +27,8 @@ Big-O Notation
 10.Inserting a value to a Hash: O(1)
    Akin to adding a new node into a linked list. Will reset the nodes to point to the new nodes very quickly.
 11.Retrieving the keys of a Hash ({ foo: "bar" }.keys): O(n)
+   Go through the entire table, grabbing the integers and recomputing each integer
+   into their respective keys, then store them in an output array for the user.
+
 
 [A Ruby-based data structures assignment for the Viking Code School which uses arrays, hashes, linked lists, structs, graphs and trees](http://www.vikingcodeschool.com)
