@@ -37,15 +37,33 @@ class HashTable
     puts results[1].data.to_s
 
   end
+
+  def load(filename)
+    word_list = []
+
+    File.readlines(filename).each do |line|
+      word_list << line.strip
+    end
+
+    word_list
+  end
+
+  def add_dictionary(word_list)
+    word_list.length.times do |count|
+      insert({ word_list[count].to_sym => 
+        "The definition of #{word_list[count]}" })
+    end
+  end
+
 end
 
+# h = HashTable.new
+# h.insert(apple: "fruit")
+# h.insert(actuary: "job")
+# h.insert(ace: "card")
+# h.insert(banana: "fruit")
+# h.insert(derek: "name")
+# h.insert(zebra: "animal")
+# h.insert(zoo: "place")
 
-h = HashTable.new
-h.insert(apple: "fruit")
-h.insert(actuary: "job")
-h.insert(ace: "card")
-h.insert(banana: "fruit")
-h.insert(derek: "name")
-h.insert(zebra: "animal")
-h.insert(zoo: "place")
-h.render_list
+# h.add_dictionary(load("5desk.txt"))

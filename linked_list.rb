@@ -93,4 +93,14 @@ class LinkedList
     return[index, nil]
   end
 
+  def load(filename)
+    word_list = []
+
+    File.readlines(filename).each do |line|
+      word_list << line.strip
+    end
+
+    word_list
+  end
+
 end
