@@ -8,11 +8,11 @@ class HashTable
   end
 
   def hash(string)
-    string.keys[0].to_s[0].downcase.ord-97
+    string[0].downcase.ord-97
   end
 
   def insert(string)
-    index = hash(string)
+    index = hash(string.keys[0].to_s)
     @buckets[index] ||= LinkedList.new
     @buckets[index].add_node(string)
   end
@@ -25,6 +25,16 @@ class HashTable
         @buckets[list].search(@buckets[list].length-1)
       end
     end
+  end
+
+  def define(word)
+    results = @buckets[hash(word)].find_key(word.to_sym)
+    puts "search took #{results[0]+1} steps :"
+    if results[1].nil?
+      puts "no word found"
+      return nil
+    end
+    puts results[1].data.to_s
 
   end
 end

@@ -28,7 +28,7 @@ class LinkedList
   end
 
   # O(n), because it depends linearly on amount of items in list
-  def search(index)
+  def search(index)  # works only on hashes
     current_node = @head
     index.times do
       print current_node.data.to_s + " -> "
@@ -70,7 +70,7 @@ class LinkedList
     @head = current_node
   end
 
-  def find(value)
+  def find(value) # returns index
     index = 0
     current_node = @head
     until current_node.nil?
@@ -81,18 +81,16 @@ class LinkedList
     nil
   end
 
-  def find_key(key)
+  def find_key(key) #returns node
     return nil unless @head.data.is_a?(Hash)
     index = 0
     current_node = @head
     until current_node.nil?
-      return index if current_node.data.keys.include?(key)
+      return [index, current_node] if current_node.data.keys.include?(key)
       current_node = current_node.next
       index += 1
     end
-    nil
+    return[index, nil]
   end
 
 end
-
-
