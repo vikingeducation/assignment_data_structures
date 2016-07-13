@@ -51,6 +51,7 @@ class LinkedList
 
   def reverse
     #reassign first node to point to nil
+    prior_node=nil
     current_node = @first
     next_node = @first.next_node
     current_node.next_node=nil
@@ -59,7 +60,7 @@ class LinkedList
     while next_node
       prior_node=current_node
       current_node=next_node
-      next_node=current_node.next_node
+      next_node=current_node.next_node 
       current_node.next_node=prior_node
     end
 
