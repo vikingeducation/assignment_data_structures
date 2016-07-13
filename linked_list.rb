@@ -7,7 +7,7 @@ class LinkedList
     @tail = first_node
   end
 
-  def add_node_end(word, definition)
+  def add_node_end(word, definition = nil)
     if @head == nil
       add_first_node(word, definition)
       puts "You added the word #{word} to the first node of the list because there was no head"
@@ -68,13 +68,26 @@ class LinkedList
       next_node = current_node.next
       if current_node == @head
         current_node.next = nil
-        @tail = current_node
+        # @tail = current_node
       else
         current_node.next = previous_node
       end
       previous_node = current_node
       current_node = next_node
     end
+    head_variable = @head
+    tail_variable = @tail
+    @tail = head_variable
+    @head = tail_variable
   end
 
 end
+
+# list = LinkedList.new
+# list.add_node_end("Apple", "A fruit")
+# list.add_node_end("Banana", "Another fruit")
+# list.add_node_end("Cactus", "Not a fruit")
+# list.add_node_end("Durian", "Actually a fruit")
+# list.read_list
+# list.reverse_list
+# list.read_list
