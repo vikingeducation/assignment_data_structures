@@ -42,6 +42,15 @@ module DataStructuresAssignment
       @size += 1
     end
 
+# A -> B -> C -> D
+# A...B...C... D? If C.pointer.pointer == nil, stop.
+# C.pointer.pointer = C.
+# C.pointer = ...B?
+
+# i = @size-1
+# node = @tail
+# node.pointer = find_node(i-1)
+
     def find_node(idx)
       i = 0
       #Iteratively search for position in list.
@@ -63,6 +72,9 @@ module DataStructuresAssignment
         idx += 1
         node = node.pointer
       end
+    end
+
+    def reverse
     end
 
   end
