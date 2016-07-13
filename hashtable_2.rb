@@ -56,14 +56,3 @@ class HashTable
   end
 
 end
-
-# h = HashTable.new
-# h.insert(apple: "fruit")
-# h.insert(actuary: "job")
-# h.insert(ace: "card")
-# h.insert(banana: "fruit")
-# h.insert(derek: "name")
-# h.insert(zebra: "animal")
-# h.insert(zoo: "place")
-
-# h.add_dictionary(h.load("5desk.txt"))
