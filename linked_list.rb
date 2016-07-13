@@ -110,16 +110,6 @@ class LinkedList
 
   
 
-  def print_list
-    counter = 0
-    current_node = @head
-    loop do
-      puts "Node at index #{counter}: #{current_node.data}"
-      break if current_node.next.nil?
-      current_node = current_node.next
-      counter += 1
-    end
-  end
 
 
    current = previous
