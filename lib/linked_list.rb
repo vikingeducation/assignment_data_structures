@@ -4,6 +4,7 @@ class LinkedList
   attr_reader :head
 
   def initialize(first_node = nil)
+    raise "Please only enter nodes as an argument" unless first_node.is_a?(Node)
     @head = first_node
     @tail = first_node
     @length = 0
