@@ -1,3 +1,4 @@
+require 'pry'
 module DataStructuresAssignment
 
   class Node
@@ -42,18 +43,19 @@ module DataStructuresAssignment
       @size += 1
     end
 
-# A -> B -> C -> D
-# A...B...C... D? If C.pointer.pointer == nil, stop.
-# C.pointer.pointer = C.
-# C.pointer = ...B?
-
-# while i > 0
-  # i = @size-1
-  # node = find_node(i)
-  # node.pointer = find_node(i-1)
-  # i -= 1
-# end
-# find_node(i).pointer = nil
+    def reverse_list
+      current = @head
+      nxt = current.pointer
+      current.set_pointer(nil)
+      @last = current
+      until nxt.nil?
+        prv = current
+        current = nxt
+        nxt = nxt.pointer
+        current.set_pointer(prv)
+      end
+      @head = current
+    end
 
     def find_node(idx)
       i = 0
@@ -77,12 +79,7 @@ module DataStructuresAssignment
         node = node.pointer
       end
     end
-
-    def reverse
-    end
-
   end
-
 end
 
 
@@ -97,4 +94,7 @@ list.insert(Node.new("Another node at the tail."), 3)
 2.times do
   list.insert(Node.new("This is in the middle."), 2)
 end
+# list.render_list
+# binding.pry
+list.reverse_list
 list.render_list
