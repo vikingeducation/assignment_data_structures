@@ -57,9 +57,29 @@ class LinkedList
     get_node_at(index).value
   end
 
-    
-
-
+  def reverse
+    counter = @number_of_nodes - 1
+    temp = @first
+    @first = @last
+    @last = temp
+    until counter <= 0
+      get_node_at(counter).next = get_node_at(counter - 1) unless counter == 0
+      get_node_at(counter).next = nil if counter == 0
+      counter -= 1
+    end
+  end
 end
 
 
+ll = LinkedList.new
+
+ll.add_node(1)
+ll.add_node(2)
+ll.add_node(3)
+
+ll.reverse
+
+
+puts ll.get_node_at(0)
+puts ll.get_node_at(1)
+puts ll.get_node_at(2)
