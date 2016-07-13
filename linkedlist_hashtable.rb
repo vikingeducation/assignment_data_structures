@@ -43,6 +43,7 @@ module DataStructuresAssignment
       @size += 1
     end
 
+    # O(n)
     def reverse_list
       current = @head
       nxt = current.pointer
