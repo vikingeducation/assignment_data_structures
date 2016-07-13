@@ -14,7 +14,7 @@ class Queue
       if counter == 0
         @array[counter] = value
       else
-        @array[counter] = @array[counter -1]
+        @array[counter] = @array[counter - 1]
       end
       counter -= 1
     end

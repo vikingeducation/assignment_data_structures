@@ -6,6 +6,7 @@ class LinkedList
   def initialize(first_node = nil)
     @head = first_node
     @tail = first_node
+    @length = 0
   end
 
   def add_node_end(node)
@@ -17,6 +18,7 @@ class LinkedList
       @tail = node
       puts "You added the word #{node.word} to the last node of the list"
     end
+    @length += 1
   end
 
   # O(n)
@@ -32,6 +34,7 @@ class LinkedList
     new_node.next = current_node.next
     current_node.next = new_node
     puts "Your new node has been added to the #{counter}th/st place in the list"
+    @length += 1
   end
 
   def add_first_node(word, definition)
@@ -64,28 +67,22 @@ class LinkedList
   def reverse_list
     current_node = @head
     previous_node = nil
+    next_node = @head.next
+    @tail = @head
     while current_node != nil
       next_node = current_node.next
-      if current_node == @head
-        current_node.next = nil
-        # @tail = current_node
-      else
-        current_node.next = previous_node
-      end
+      current_node.next = previous_node
       previous_node = current_node
       current_node = next_node
     end
-    head_variable = @head
-    tail_variable = @tail
-    @tail = head_variable
-    @head = tail_variable
+    @head = previous_node
   end
 
   def find(word)
     counter = 1
     current_node = @head
     while current_node != nil
-      break if current_node.word == word
+      break if current_node.word == word.downcase
       current_node = current_node.next
       counter += 1
     end
@@ -96,10 +93,10 @@ class LinkedList
 end
 
 # list = LinkedList.new
-# list.add_node_end("Apple", "A fruit")
-# list.add_node_end("Banana", "Another fruit")
-# list.add_node_end("Cactus", "Not a fruit")
-# list.add_node_end("Durian", "Actually a fruit")
+# list.add_node_end(Node.new("Apple", "A fruit", nil))
+# list.add_node_end(Node.new("Banana", "Another fruit", nil))
+# list.add_node_end(Node.new("Cactus", "Not a fruit", nil))
+# list.add_node_end(Node.new("Durian", "Actually a fruit", nil))
 # list.read_list
 # list.reverse_list
 # list.read_list

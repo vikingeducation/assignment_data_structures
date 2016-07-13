@@ -5,7 +5,7 @@ class HashTable
   attr_accessor :buckets
 
   def initialize
-    @buckets = Array.new(26){LinkedList.new}
+    @buckets = []
   end
 
   def hash(string)
@@ -13,8 +13,10 @@ class HashTable
   end
 
   def insert(word, definition = "This word has not been defined")
-    new_node = Node.new(word, definition, nil)
-    @buckets[hash(word)].add_node_end(new_node)
+    new_node = Node.new(word.downcase, definition, nil)
+    index = hash(word)
+    @buckets[index] ||= LinkedList.new
+    @buckets[index].add_node_end(new_node)
   end
 
   def render_list
