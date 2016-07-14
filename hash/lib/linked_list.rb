@@ -68,7 +68,6 @@ class LinkedList
 
   def reverse
     current_node = @head
-    previous_node = nil
     next_node = current_node.next
     reversed_ll = LinkedList.new
 
