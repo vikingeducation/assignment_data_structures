@@ -130,6 +130,30 @@ describe LinkedList do
 
   end
 
+  describe '#count' do
+    let(:l){LinkedList.new(Node.new('cat', 'feline'))}
+    it 'counts number of nodes in list' do
+      expect(l.count).to eq(1)
+    end
+
+    it 'counts number nodes in list when list is greater than 1' do
+      l.add_node_to_end('dog', 'canine')
+      l.add_node_to_end('cow', 'bovine')
+      expect(l.count).to eq(3)
+    end
+
+  end
+
+  describe '#define_word' do
+
+    let(:l){LinkedList.new(Node.new('cat', 'feline'))}
+
+    it 'should return the search term if found' do
+      l.add_node_to_end('dog', 'canine')
+      expect(l.define('dog')).to eq('canine')
+    end
+  end
+
 
 
 

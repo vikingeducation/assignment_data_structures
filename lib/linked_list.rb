@@ -71,6 +71,31 @@ class LinkedList
     current_node
   end
 
+  def define(word)
+    current_node = @head
+    if @head.next == nil
+      return current_node.definition if word == current_node.word
+    else
+      until current_node == nil
+        next_node = current_node.next
+        return current_node.definition if word == current_node.word
+        current_node = next_node
+      end  
+    end
+    false
+  end
+
+  def count
+    counter = 1
+    current_node = @head
+    until current_node.next == nil
+      next_node = current_node.next
+      current_node = next_node 
+      counter += 1
+    end
+    counter
+  end
+
   def add_node_at_index(index, word, definition)
     #the Big-O value for this operation is O(n) because a scan of each node up until the node @ index must take place, so time is a function of no. of nodes
     counter = 0
