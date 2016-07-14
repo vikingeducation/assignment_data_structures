@@ -1,5 +1,5 @@
 
-Node = Struct.new(:data, :next)
+Node = Struct.new(:word, :definition, :next)
 
 
 class LinkedList 
@@ -13,24 +13,24 @@ class LinkedList
   end
 
    # To add the first node
-  def add_first_node(data)
-    @head = Node.new(data, nil)
+  def add_first_node(word, definition)
+    @head = Node.new(word, definition, nil)
     @tail = @head
   end
 
   # Add a node to the end of the list
-  def add_node(data)
+  def add_node(word, definition)
     # change tactics if we're adding the first node
     if @head.nil?
-      add_first_node(data)
+      add_first_node(word, definition)
     else
-      new_node = Node.new(data, nil)
+      new_node = Node.new(word, definition, nil)
       # point the tail node to our new one
       @tail.next = new_node
       # set our new node as the official tail node
       @tail = new_node
     end
-    puts "Added node with value: #{data}"
+    puts "Added node with value: #{word}"
   end
 
   def get_size
@@ -70,12 +70,12 @@ class LinkedList
     current_node = @head
 
     while i < index
-      puts "the node is: #{@current_node.data}"
+      puts "the node is: #{@current_node.word}"
       current_node = current_node.next
       i += 1 
     end
 
-    current_node.data
+    current_node.word
   end
 
   def insert_node_at_index(new_node, index)
@@ -114,19 +114,19 @@ class LinkedList
 end
 
 list = LinkedList.new()
-list.add_node(1)
-list.add_node(2)
-list.add_node(3)
+list.add_node(1, "this is a definition")
+list.add_node(2, "asdf")
+list.add_node(3, "asdgfsgfdg")
 
-list.add_node(10)
+list.add_node(10, "definition here")
 p list.get_size
-# puts "#{list.head.data} , #{list.head.next}"
-# puts "#{list.tail.data}, #{list.tail.next}"
+# puts "#{list.head.word} , #{list.head.next}"
+# puts "#{list.tail.word}, #{list.tail.next}"
 
 p list.head
 p list.reverse
 p list.head
-#list.head.next.data
+#list.head.next.word
 
 
 
