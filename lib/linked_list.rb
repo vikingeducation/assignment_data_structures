@@ -22,7 +22,7 @@ class LinkedList
       @last.next = new_word
       @last = new_word
     end
-    puts "Added node for #{word} with definition #{definition}."
+    #puts "Added node for #{word} with definition #{definition}."
   end
 
   def remove_node(index) # 3
@@ -73,12 +73,15 @@ class LinkedList
 
   def define(word)
     current_node = @head
+    steps = 0
     if @head.next == nil
-      return current_node.definition if word == current_node.word
+      steps += 1
+      return [current_node.definition, steps] if word == current_node.word
     else
       until current_node == nil
         next_node = current_node.next
-        return current_node.definition if word == current_node.word
+        steps += 1
+        return [current_node.definition, steps] if word == current_node.word
         current_node = next_node
       end  
     end

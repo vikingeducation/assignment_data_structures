@@ -4,7 +4,7 @@ require_relative 'lib/linked_list'
 
 class HashTable 
 
-  attr_reader :buckets
+  attr_reader :buckets, :dictionary
 
   def initialize
     @buckets = [] # buckets is an array of linked lists
@@ -28,7 +28,7 @@ class HashTable
   def render_list
     printable_lists = @buckets.select {|list| list != nil}
     printable_lists.each do |linked_list|
-      puts "Number of words that with #{linked_list.head.word[0]}: #{linked_list.count}"
+      puts "Number of words that start with #{linked_list.head.word[0]}: #{linked_list.count}"
     end
   end
 
@@ -37,7 +37,8 @@ class HashTable
       puts "Sorry that word is not found. In fact, no word starting with that letter exists."
     else
       if @buckets[hash(word)].define(word) 
-        puts "The definition of #{word} is #{@buckets[hash(word)].define(word)}"
+        puts "The definition of #{word} is #{@buckets[hash(word)].define(word)[0]}"
+        puts "It took #{@buckets[hash(word)].define(word)[1]} steps"
         @buckets[hash(word)].define(word)
       else
         puts "That word doesn't exist"
@@ -45,11 +46,25 @@ class HashTable
     end
   end
 
+  def file_load(path)
+    @dictionary = File.readlines(path).map(&:chomp)
+  end
+
 end
 
 
 h = HashTable.new
-h.insert(['cat', 'feline'])
-h.insert(['dog', 'canine'])
+h.file_load("lib/5desk.txt")
+h.dictionary.each do |word|
+  h.insert([word.downcase, "definition of word is #{word}"])
+end
 h.render_list
-h.define('dog')
+h.define('sync')
+h.define('xylophone')
+
+
+
+
+
+
+
