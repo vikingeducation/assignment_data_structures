@@ -16,7 +16,7 @@ describe HashTable do
   describe '#insert' do
     it "inserts 'hannah' into the 7th linked list" do 
       ht.insert('hannah')
-      expect(ht.buckets[7].head.data).to eq('hannah')
+      expect(ht.buckets[7].head).to eq('hannah')
     end
 
   end

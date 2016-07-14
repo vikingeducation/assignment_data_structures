@@ -1,6 +1,7 @@
-require 'linked_list'
+require_relative 'linked_list'
 
 class HashTable
+  attr_reader :buckets
   def initialize
     @buckets = []
     26.times do
@@ -16,4 +17,4 @@ class HashTable
     @buckets[hash(word)].append(word)
   end
 
-
+end
