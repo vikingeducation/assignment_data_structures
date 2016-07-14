@@ -120,13 +120,10 @@ list.add_node(3, "asdgfsgfdg")
 
 list.add_node(10, "definition here")
 p list.get_size
-# puts "#{list.head.word} , #{list.head.next}"
-# puts "#{list.tail.word}, #{list.tail.next}"
 
 p list.head
 p list.reverse
 p list.head
-#list.head.next.word
 
 
 

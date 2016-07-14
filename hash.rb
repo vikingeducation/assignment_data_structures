@@ -5,8 +5,7 @@ class HashTable
   def initialize
     @buckets = []
   end
-
-
+  
   def hash(word)
     word[0].downcase.ord - 97
   end
@@ -29,7 +28,6 @@ class HashTable
 
   def define(word)
     current_node = @buckets[hash(word)].head
-    #assuming the node.data is a hash
     count = 0
     while current_node != nil
       if current_node.word == word
@@ -41,10 +39,5 @@ class HashTable
       count += 1
     end
     puts "traversed #{count} nodes to search for word"
-  end 
-
-
-
-    
-
+  end
 end
