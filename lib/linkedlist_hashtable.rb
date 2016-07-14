@@ -1,4 +1,3 @@
-require 'pry'
 require 'prime'
 
 module DataStructuresAssignment
@@ -101,18 +100,26 @@ module DataStructuresAssignment
 
   class HashTable
     attr_reader :slots
+    
     def initialize
-      @slots = Array.new(13,nil)
+      array_size = get_next_prime((61406) / 1000)
+      @slots = Array.new(array_size,nil)
     end
 
     def hash(data)
-      data[0].downcase.ord - 97
+      (data[0].downcase.ord - 97) % @slots.size
     end
 
     def insert(key)
       hashed = hash(key)
-      return @slots[hashed] = LinkedList.new(Node.new(key)) unless @slots[hashed]
-      @slots[hashed].insert(key,:tail)
+      until hashed <= @slots.size
+        array_resize
+      end
+      if @slots[hashed]
+        @slots[hashed].insert(key,:tail)
+      else
+        @slots[hashed] = LinkedList.new(Node.new(key))
+      end
     end
 
     def render_slots
@@ -140,31 +147,13 @@ module DataStructuresAssignment
     end
 
     private
-
-      #
-      # Load Factor = number_of_occupied_slots / array_size
-      # Load Factor == 1/2 --> @slots = get_new_array
-
-      # def get_new_array
-      #   i = @slots.size
-      #   for i = @slots.size; i != is_prime?(i); i++
-      #   new_array Array.new(i,nil)
-      #   @slots --> new_array
-      #   If array.size == 15 => 0, 2, 7, 15, 100
-      # end
-      # get_prime
-      # To determine the size of the new array, had to find the next size
-      # that was also a prime number.
-      #
-      # is_prime?
-
       def array_resize
         current_size = @slots.size
         new_array = Array.new(get_next_prime(current_size),nil)
-        # @slots.each do |
-        # # new_slots.keys --> new keys
-        # # new_slots.populate --> old data in slots
-        # end
+        @slots.each_with_index do |slot,i|
+          new_array[i] = slot
+        end
+        @slots = new_array
       end
 
       def get_next_prime(current_size)
@@ -184,12 +173,4 @@ dictionary = File.readlines("5desk.txt").map(&:strip)
 hashtable = HashTable.new
 
 dictionary.each { |word| hashtable.insert(word) }
-# binding.pry
 hashtable.define("ha")
-# puts dictionary[40000..41000].all? { |word| hashtable.define(word) }
-
-
-###### BIG O NOTATION ######
-
-# Search in a slot O(n)
-# Insert in a single list first? Ordered?
