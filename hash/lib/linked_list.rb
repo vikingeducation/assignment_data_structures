@@ -70,10 +70,14 @@ class LinkedList
     current_node = @head
     previous_node = nil
     next_node = current_node.next
-    new_linked_list = LinkedList.new
+    reversed_ll = LinkedList.new
 
-    while current_node != nil
+    while next_node != nil
+      reversed_ll.insert(current_node)
+      current_node = current_node.next
+      next_node = next_node.next
     end
+    reversed_ll
   end
 
 

@@ -7,6 +7,7 @@ describe LinkedList do
   let(:node3) { Node.new(3, nil) } 
   let(:ll_with_one_node) { LinkedList.new(node1) }
   let(:filled_ll) { ll.append(node1).append(node2).append(node3) }
+  let(:reversed_ll) {ll.append(node3).append(node2).append(node1)}
 
   describe '#intialize' do 
     it "instantiates LinkedList" do 
@@ -91,6 +92,16 @@ describe LinkedList do
     it 'deletes the last element of a 3-node ll' do
       filled_ll.delete(2)
       expect(filled_ll.head.next.next).to eq(nil)
+    end
+  end
+
+  describe "#reverse" do
+    it 'reverses a linked_list' do
+      expect(filled_ll.reverse.head).to eq(reversed_ll.head)
+    end
+
+    it 'reverses a linked_list' do
+      expect(filled_ll.reverse.last).to eq(reversed_ll.last)
     end
   end
 
