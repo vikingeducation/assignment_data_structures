@@ -66,6 +66,16 @@ class LinkedList
     self
   end
 
+  def reverse
+    current_node = @head
+    previous_node = nil
+    next_node = current_node.next
+    new_linked_list = LinkedList.new
+
+    while current_node != nil
+    end
+  end
+
 
   private
 
