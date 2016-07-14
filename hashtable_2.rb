@@ -1,12 +1,11 @@
 require_relative 'linked_list_2'
 
-$MAX_LENGTH = 1000
-
 class HashTable
   attr_accessor :buckets
 
-  def initialize(size=26)
+  def initialize(size=26, tuning = 1000)
     @buckets = Array.new(size)
+    @tuning = tuning
   end
 
   def hash(string)
@@ -21,7 +20,7 @@ class HashTable
     index = hash(string.keys[0].to_s)
     @buckets[index] ||= LinkedList.new
     @buckets[index].add_node(string)
-    balance if @buckets[index].length > $MAX_LENGTH
+    balance if @buckets[index].length > @tuning
   end
 
   def render_list
@@ -64,10 +63,12 @@ class HashTable
 
   def balance
     new_h = HashTable.new(@buckets.length*2)
-
+    print "#{@buckets.length} "
     @buckets.each do |linked_list|
-      linked_list.each do |node|
-        new_h.insert(node.data)
+      unless linked_list.nil?
+        linked_list.each do |node|
+          new_h.insert(node.data)
+        end
       end
     end
 
