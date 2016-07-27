@@ -6,30 +6,50 @@ class Stack
 
 		@stack = []
 
+		# stores popped items
 		@pop = []
-
 
 	end
 
 
 	def push( item )
 
-		@stack[ @stack.length - 1 ] = item
+		@stack[ @stack.length ] = item
 
 	end
 
 
 	def pop
 
-		unless empty?
+		@pop[ @pop.length ] = @stack[ @stack.length - 1 ]
 
-			@pop = @stack[ @stack.length - 1 ]
+		@stack[ @stack.length - 1 ] = nil
 
-		end
+		shrink_array
 
 	end
 
 
+	def shrink_array
+
+		index = 0
+		arr = []
+
+		until index == @stack.length
+
+			if @stack[ index ] != nil
+
+				arr[ index ] = @stack[ index ]
+
+			end
+
+			index += 1
+
+		end
+
+		@stack = arr
+
+	end
 
 
 
@@ -37,7 +57,7 @@ class Stack
 
 		unless empty?
 
-			return @stack[ @stack.length - 1 ]
+			puts @stack[ @stack.length - 1 ]
 
 		end
 
@@ -52,6 +72,12 @@ class Stack
 	end
 
 
+	def print
+
+		puts @pop
+
+	end
+
 
 
 end #/.Stack
@@ -60,6 +86,9 @@ end #/.Stack
 arr = Stack.new
 arr.push( "h" )
 arr.push( "e" )
+
+arr.peek
+
 arr.push( "l" )
 arr.push( "l" )
 arr.push( "o" )
@@ -68,4 +97,4 @@ arr.push( "o" )
 	arr.pop
 end
 
-arr.peek
+arr.print

@@ -44,12 +44,10 @@ class Queue
 
 			end
 
-			@dequeue = @queue[ index - (index - 1) ]
-
 			@queue[ index - 1 ] = nil
 
 		end
-binding.pry
+
 	end
 
 
