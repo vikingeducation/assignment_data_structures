@@ -2,10 +2,11 @@ require 'pry'
 
 class Stack
 
-	def initialize( stack )
+	def initialize
 
-		@stack = stack
-		@pop = nil
+		@stack = []
+
+		@pop = []
 
 
 	end
@@ -13,19 +14,20 @@ class Stack
 
 	def push( item )
 
-		@stack[ @stack.length ] = item
+		@stack[ @stack.length - 1 ] = item
 
 	end
 
 
 	def pop
 
-		@pop = @stack[ @stack.length - 1 ]
+		unless empty?
 
-		return @pop
+			@pop = @stack[ @stack.length - 1 ]
+
+		end
 
 	end
-
 
 
 
@@ -33,13 +35,19 @@ class Stack
 
 	def peek
 
+		unless empty?
+
+			return @stack[ @stack.length - 1 ]
+
+		end
+
 
 	end
 
 
 	def empty?
 
-
+		@stack.empty?
 
 	end
 
@@ -49,6 +57,15 @@ class Stack
 end #/.Stack
 
 
-arr = Stack.new( [1,2,3,4,5,6,7] )
-arr.push( 8 )
-arr.pop
+arr = Stack.new
+arr.push( "h" )
+arr.push( "e" )
+arr.push( "l" )
+arr.push( "l" )
+arr.push( "o" )
+
+5.times do
+	arr.pop
+end
+
+arr.peek
