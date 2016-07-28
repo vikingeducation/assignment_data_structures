@@ -5,6 +5,9 @@
 	# Insert nodes at a particular index or, separately, at the end of the list (so store a reference to the last node). In the comments, state the Big-O time of this operation.
 
 # Build a method #reverse on your LinkedList class that will entirely flip the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions.
+
+require 'pry'
+
 Node = Struct.new( :word, :definition, :next )
 
 class LinkedList
@@ -25,6 +28,8 @@ class LinkedList
 
 	end
 
+
+
 	def add_node( word, definition )
 
 		if @head.nil?
@@ -35,21 +40,29 @@ class LinkedList
 
 			new_node = Node.new( word, definition )
 
+			@last.next = new_node
+
 			@last = new_node
 
 		end
 
-		puts "Added node with value: #{word} and #{definition}"
+		puts "Added node with value: #{word}: #{definition}"
 
 	end
 
  # Big O is O(n) since the size of the linked list determines length to traverse the nodes
 	def find_node( index )
 
+
 		count = 0
 		current_node = @head
 
 		while count < index
+
+
+		raise "No node at index" if current_node.next == nil
+
+			print_node( current_node, count )
 
 			current_node = current_node.next
 			count += 1
@@ -63,4 +76,25 @@ class LinkedList
 	end
 
 
+	def print_node( node, index )
+
+		puts "Currently at index #{index}: #{node.word}"
+
+	end
+
+
+
 end
+
+
+list = LinkedList.new( Node.new( "Cat", "Something that meows", nil ))
+
+
+list.find_node( 0 )
+
+list.add_node("Bear", "A bear")
+list.add_node("Fish", "A swimmer")
+list.add_node("Garden", "A grower")
+list.add_node("Shirt", "A shirt")
+
+list.find_node( 4 )
