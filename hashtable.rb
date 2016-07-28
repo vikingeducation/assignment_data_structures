@@ -87,7 +87,7 @@ class LinkedList
 	def insert_node( word, definition, index )
 
 
-		new_node = Node.new( word, definition )
+
 
 		count = 0
 		current_node = @head
@@ -103,10 +103,58 @@ class LinkedList
 
 		end
 
-		new_node.next = current_node
-		last_node.next = new_node
+		if last_node.next == nil
 
-		puts "Inserted #{new_node.word} at index: #{count}"
+			add_node( word, definition )
+
+		else
+
+			new_node = Node.new( word, definition )
+			new_node.next = current_node
+			last_node.next = new_node
+
+			puts "Inserted #{new_node.word} at index: #{count}"
+
+		end
+
+	end
+
+
+	def remove_node
+
+		return nil if @head.nil?
+
+		node = @head
+
+		@head = @head.next
+
+		return node
+
+	end
+
+
+
+
+	def reverse
+
+		# starting at the first node
+		return if @head.nil?
+
+		temp = self.remove_node
+		temp.next = nil
+		@last = temp
+
+		until @head.nil?
+
+			node = self.remove_node
+			node.next = temp
+			temp = node
+
+		end
+
+		@head = temp
+			# it's next node should point back to it
+			# the node after a node should be the next to the previous node
 
 	end
 
@@ -123,9 +171,9 @@ list.add_node("Garden", "A grower")
 list.add_node("Shirt", "A shirt")
 
 
-list.insert_node( "Dragon", "fire breather", 3 )
+list.insert_node( "Dragon", "fire breather", 4 )
 
 
-list.find_node( 4 )
+list.find_node( 5 )
 
-
+list.reverse
