@@ -83,6 +83,33 @@ class LinkedList
 	end
 
 
+	# this is O(1) assuming we've already foung the node since we're only moving references
+	def insert_node( word, definition, index )
+
+
+		new_node = Node.new( word, definition )
+
+		count = 0
+		current_node = @head
+		last_node = @head
+
+
+		while count < index
+
+			last_node = current_node
+			current_node = current_node.next
+
+			count += 1
+
+		end
+
+		new_node.next = current_node
+		last_node.next = new_node
+
+		puts "Inserted #{new_node.word} at index: #{count}"
+
+	end
+
 
 end
 
@@ -90,11 +117,15 @@ end
 list = LinkedList.new( Node.new( "Cat", "Something that meows", nil ))
 
 
-list.find_node( 0 )
-
 list.add_node("Bear", "A bear")
 list.add_node("Fish", "A swimmer")
 list.add_node("Garden", "A grower")
 list.add_node("Shirt", "A shirt")
 
+
+list.insert_node( "Dragon", "fire breather", 3 )
+
+
 list.find_node( 4 )
+
+
