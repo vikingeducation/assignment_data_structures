@@ -71,6 +71,10 @@ class LinkedList
 
 	def find_word( word )
 
+		puts ""
+		puts "FIND WORD"
+		puts ""
+
 		count = 0
 		current_node = @head
 
@@ -80,6 +84,7 @@ class LinkedList
 
 			if current_node.word == word
 
+				# how to return count of steps as well?
 				return current_node.definition
 
 			elsif current_node.next.nil?

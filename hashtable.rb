@@ -93,4 +93,4 @@ word.insert( "zebra" )
 puts "render"
 word.render_list
 
-word.define("zebra")
+word.define("car")
