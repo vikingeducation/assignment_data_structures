@@ -1,8 +1,6 @@
 require_relative 'linkedlist'
 require_relative 'dictionary'
 
-require 'pry'
-
 class Hashtable
 
 	def initialize
@@ -97,7 +95,5 @@ word.load_dictionary
 
 word.render_list
 
-word.define("zaire")
-
-word.define("qoasdoa")
+word.define("Park")
 

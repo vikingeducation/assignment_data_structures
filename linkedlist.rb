@@ -47,6 +47,7 @@ class LinkedList
 
 		count = 0
 		current_node = @head
+		last_node = nil
 
 		while count < index
 
@@ -55,14 +56,15 @@ class LinkedList
 
 			print_node( current_node, count )
 
+			last_node = current_node
 			current_node = current_node.next
 			count += 1
 
 		end
 
-		puts "Found node at index #{count}"
-		puts "Word is #{current_node.word}"
-		puts "Definition is #{current_node.definition}"
+		puts "At index #{count}: #{current_node.word}"
+
+		return last_node, count
 
 	end
 
@@ -84,7 +86,6 @@ class LinkedList
 
 			if current_node.word == word
 
-				# how to return count of steps as well?
 				return current_node.definition
 
 			elsif current_node.next.nil?
@@ -112,6 +113,9 @@ class LinkedList
 	end
 
 
+
+
+
 	def print_list
 
 		count = 0
@@ -130,22 +134,19 @@ class LinkedList
 
 	end
 
+
+
+
 	# this is O(1) assuming we've already foung the node since we're only moving references
 	def insert_node( word, definition, index )
 
 		count = 0
 		current_node = @head
-		last_node = @head
+		last_node = nil
 
 
-		while count < index
-
-			last_node = current_node
-			current_node = current_node.next
-
-			count += 1
-
-		end
+		last_node, count = find_node( index )
+		current_node = last_node.next
 
 		if last_node.next.nil?
 
@@ -202,7 +203,7 @@ class LinkedList
 
 end
 
-=begin
+
 list = LinkedList.new( Node.new( "Cat", "Something that meows", nil ))
 
 
@@ -212,13 +213,12 @@ list.add_node("Garden", "A grower")
 list.add_node("Shirt", "A shirt")
 
 
-list.insert_node( "Dragon", "fire breather", 4 )
+#list.insert_node( "Dragon", "fire breather", 3 )
+list.print_list
 
-
-list.find_node( 5 )
 
 list.reverse
 
 list.print_list
-=end
+
 
