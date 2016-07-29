@@ -50,8 +50,31 @@ class Hashtable
 
 		end
 
+	end
+
+
+	def define( word )
+
+		# determines which bucket to look into
+		index = hash( word )
+		# then looks through each item in that bucket
+		result = @buckets[ index ].find_word( word )
+
+		if result == false
+
+			puts "Sorry, the word is not here."
+
+		else
+
+			puts "Found it! #{word}: #{result}"
+
+		end
+		# until the word is found
+		# returns the
 
 	end
+
+
 
 
 end
@@ -69,3 +92,5 @@ word.insert( "zebra" )
 
 puts "render"
 word.render_list
+
+word.define("zebra")

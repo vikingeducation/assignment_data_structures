@@ -67,14 +67,46 @@ class LinkedList
 	end
 
 
+
+
+	def find_word( word )
+
+		count = 0
+		current_node = @head
+
+		loop do
+
+			print_node( current_node, count )
+
+			if current_node.word == word
+
+				return current_node.definition
+
+			elsif current_node.next.nil?
+
+				return false
+
+			end
+
+			count += 1
+			current_node = current_node.next
+
+		end
+
+
+	end
+
+
+
+
+
 	def print_node( node, index )
 
 		puts "Currently at index #{index}: #{node.word}"
 
 	end
 
-# what needs to pass in here to generate the list?
-# created to be used in Hashtable for rendering list
+
 	def print_list
 
 		count = 0
