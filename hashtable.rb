@@ -1,4 +1,5 @@
 require_relative 'linkedlist'
+require_relative 'dictionary'
 
 require 'pry'
 
@@ -8,6 +9,7 @@ class Hashtable
 
 		@buckets  = []
 		@list = nil
+		@dictionary = Dictionary.new
 
 	end
 
@@ -75,6 +77,17 @@ class Hashtable
 	end
 
 
+	def load_dictionary
+
+		@dictionary.process_dictionary
+
+		@dictionary.arr.each do | w |
+
+			insert( w )
+
+		end
+
+	end
 
 
 end
@@ -82,15 +95,9 @@ end
 
 word = Hashtable.new
 
-word.insert( "cat" )
-word.insert( "kangaroo" )
-word.insert( "boy" )
-word.insert( "dear" )
-word.insert( "car" )
-word.insert( "egg" )
-word.insert( "zebra" )
+word.load_dictionary
 
-puts "render"
 word.render_list
 
-word.define("car")
+word.define("zaire")
+
