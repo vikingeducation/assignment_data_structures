@@ -14,7 +14,7 @@ class LinkedList
 
 	def add_first_node( word, definition )
 
-		@head = Node.new( data, definition, nil )
+		@head = Node.new( word, definition, nil )
 		@last = @head
 
 	end
