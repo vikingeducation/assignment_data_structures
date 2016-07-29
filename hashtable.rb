@@ -8,7 +8,6 @@ class Hashtable
 	def initialize
 
 		@buckets  = []
-		@list = nil
 		@dictionary = Dictionary.new
 
 	end
@@ -27,7 +26,7 @@ class Hashtable
 
 		index = hash( word )
 
-		if @buckets[ index ] == nil
+		if @buckets[ index ].nil?
 
 			@buckets[ index ] = LinkedList.new( Node.new( word, "it is a #{word}", nil) )
 
@@ -57,13 +56,13 @@ class Hashtable
 
 	def define( word )
 
-		# determines which bucket to look into
 		index = hash( word )
-		# then looks through each item in that bucket
+
 		result = @buckets[ index ].find_word( word )
 
 		if result == false
 
+			# O(n) - must traverse through every word for that letter
 			puts "Sorry, the word is not here."
 
 		else
@@ -71,8 +70,7 @@ class Hashtable
 			puts "Found it! #{word}: #{result}"
 
 		end
-		# until the word is found
-		# returns the
+
 
 	end
 
@@ -100,4 +98,6 @@ word.load_dictionary
 word.render_list
 
 word.define("zaire")
+
+word.define("qoasdoa")
 

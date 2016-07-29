@@ -147,7 +147,7 @@ class LinkedList
 
 		end
 
-		if last_node.next == nil
+		if last_node.next.nil?
 
 			add_node( word, definition )
 
