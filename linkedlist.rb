@@ -51,7 +51,7 @@ class LinkedList
 		while count < index
 
 
-		raise "No node at index" if current_node.next == nil
+		raise "No node at index" if current_node.next.nil?
 
 			print_node( current_node, count )
 
@@ -73,6 +73,25 @@ class LinkedList
 
 	end
 
+# what needs to pass in here to generate the list?
+# created to be used in Hashtable for rendering list
+	def print_list
+
+		count = 0
+		current_node = @head
+
+		loop do
+
+			print_node( current_node, count )
+
+			return if current_node.next.nil?
+
+			count += 1
+			current_node = current_node.next
+
+		end
+
+	end
 
 	# this is O(1) assuming we've already foung the node since we're only moving references
 	def insert_node( word, definition, index )
@@ -163,4 +182,6 @@ list.find_node( 5 )
 
 list.reverse
 
+list.print_list
 =end
+

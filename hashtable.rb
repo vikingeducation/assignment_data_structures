@@ -39,12 +39,12 @@ class Hashtable
 
 
 	def render_list
-
-		@buckets.each_with_index do | e, i |
+# how do we drill down to each item in the linked list - currently only printing the head of the linked list
+		@buckets.each do | e |
 
 			unless e.nil?
-binding.pry
-				puts e.head
+
+				e.print_list
 
 			end
 
@@ -61,10 +61,11 @@ word = Hashtable.new
 
 word.insert( "cat" )
 word.insert( "kangaroo" )
-word.insert( "b" )
+word.insert( "boy" )
 word.insert( "dear" )
 word.insert( "car" )
-word.insert( "e" )
-word.insert( "z" )
+word.insert( "egg" )
+word.insert( "zebra" )
 
+puts "render"
 word.render_list
