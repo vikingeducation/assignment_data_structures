@@ -38,7 +38,7 @@ class Hashtable
 
 
 	def render_list
-# how do we drill down to each item in the linked list - currently only printing the head of the linked list
+
 		@buckets.each do | e |
 
 			unless e.nil?
@@ -88,12 +88,4 @@ class Hashtable
 
 end
 
-
-word = Hashtable.new
-
-word.load_dictionary
-
-word.render_list
-
-word.define("Park")
 

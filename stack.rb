@@ -82,19 +82,3 @@ class Stack
 
 end #/.Stack
 
-
-arr = Stack.new
-arr.push( "h" )
-arr.push( "e" )
-
-arr.peek
-
-arr.push( "l" )
-arr.push( "l" )
-arr.push( "o" )
-
-5.times do
-	arr.pop
-end
-
-arr.print

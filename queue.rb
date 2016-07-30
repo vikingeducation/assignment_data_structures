@@ -1,5 +1,3 @@
-require 'pry'
-
 class Queue
 
 	def initialize
@@ -8,7 +6,6 @@ class Queue
 
 		@dequeue = []
 
-
 	end
 
 
@@ -16,7 +13,6 @@ class Queue
 
 		index = @queue.length
 
-		# move the elements up one index to open up index 0
 		until index == 0
 
 			@queue[ index ] = @queue[ index - 1 ]
@@ -25,10 +21,8 @@ class Queue
 
 		end
 
-		# place element at index 0
 		@queue[ index ] = item
 
-binding.pry
 	end
 
 
@@ -95,18 +89,3 @@ binding.pry
 end #/.queue
 
 
-arr = Queue.new
-arr.enqueue( "h" )
-arr.enqueue( "e" )
-arr.enqueue( "l" )
-
-arr.peek
-
-arr.enqueue( "l" )
-arr.enqueue( "o" )
-
-5.times do
-	arr.dequeue
-end
-
-arr.print

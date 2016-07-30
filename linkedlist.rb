@@ -1,4 +1,3 @@
-
 Node = Struct.new( :word, :definition, :next )
 
 class LinkedList
@@ -202,23 +201,5 @@ class LinkedList
 
 
 end
-
-
-list = LinkedList.new( Node.new( "Cat", "Something that meows", nil ))
-
-
-list.add_node("Bear", "A bear")
-list.add_node("Fish", "A swimmer")
-list.add_node("Garden", "A grower")
-list.add_node("Shirt", "A shirt")
-
-
-#list.insert_node( "Dragon", "fire breather", 3 )
-list.print_list
-
-
-list.reverse
-
-list.print_list
 
 

@@ -18,7 +18,7 @@ Determine the Big O of the following (and ideally explain briefly why):
 	- O(n) - same concept as inserting an element at the beginning, space at the end of the array may not be empty and the array must be rebuilt
 
 4.  Upcasing a String
-	- O(1) - we are changing the values (upcasing) each letter in the string which which requires us to find them which is O(1)
+	- O(n) - we are changing the values (upcasing) each letter in the string which which requires us to find them which is O(1)
 
 5.  Reversing a String
 	- O(n) - you would have to create a new array to hold the new string, creating a new array is O(n)
