@@ -54,6 +54,20 @@ class LinkedList
     puts "Removed node at index #{index} with value: #{current_node.data}"
   end
 
+  def search_node(data)
+    counter = 0
+    current_node = @head
+    loop do
+      if current_node.data[0] == data
+        return current_node.data[1]
+      end
+      break if current_node.next.nil?
+      current_node = current_node.next
+      counter += 1
+    end
+    return nil
+  end
+
   def find_node(index)
     counter = 0
     current_node = @head
