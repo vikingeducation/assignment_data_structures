@@ -1,33 +1,37 @@
 class Queue
-
   def initialize
-    @arr = []
+    @array = []
   end
 
-  def enqueue(object)
-    @arr[@arr.length] = object
-    @arr
+  def enqueue(obj)
+    arr_length = @array.length
+    @array[arr_length] = obj
   end
 
   def dequeue
-    if @arr.length == 1
-      @arr = nil
-    else
-      @arr = @arr[1..@arr.length - 1] unless empty?
-    end
-    @arr
+    return nil if @array.empty?
+
+    length = @array.length
+    @array[0] = nil
+    peek
   end
+
+  def peek
+    return @array[0]
+  end
+
+  private
 
   def empty?
-    @arr == nil
+    @array.length == 0
   end
-
 end
 
-queue = Queue.new
+q = Queue.new
 
-p queue.enqueue(1)
-p queue.enqueue(2)
-p queue.enqueue(3)
-p queue.dequeue
-p queue.dequeue
+p q.enqueue(1)
+p q.enqueue(2)
+p q.enqueue(3)
+
+p q.dequeue
+p q.peek
