@@ -27,11 +27,3 @@ class HashTable
     word.downcase.ord - 97
   end
 end
-
-table = HashTable.new
-
-table.insert("Farruh")
-table.insert("Timur")
-table.insert("Guli")
-
-puts table.render_list

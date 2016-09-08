@@ -55,13 +55,3 @@ class LinkedList
   end
 
 end
-
-
-l1 = LinkedList.new(Node.new("First node!", nil))
-
-p l1.find_node(0)
-p l1.insert_node("Second node!")
-p l1.insert_node("Third node!")
-p l1.insert_node("Fourth node!")
-
-p l1.print_list
