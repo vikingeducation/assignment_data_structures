@@ -1,8 +1,5 @@
 Node = Struct.new(:data, :next)
 
-# Insert
-# Destroy
-
 class LinkedList
   attr_accessor :head, :last
 
@@ -40,6 +37,12 @@ class LinkedList
     end
   end
 
+  def add_first_node(data)
+    @head = Node.new(data, nil)
+    @last = @head
+  end
+
+  # Time complexity of print_list is O(n)
   def print_list
     current = @head.next
     counter = 0
