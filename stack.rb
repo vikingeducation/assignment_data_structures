@@ -1,13 +1,16 @@
 class Stack
-
+  attr_reader :arr
+  def initialize(arr)
+    @arr = arr
+  end
   #
-  def self.my_push(arr, value)
+  def push(value)
     arr[arr.length] = value
     arr
   end
 
-  def self.my_pop(arr)
-    return "Array is empty" if Stack.my_empty?(arr)
+  def pop
+    return "Array is empty" if empty?
     return_pop = arr[arr.length - 1]
     return_array = []
     counter = 0
@@ -21,31 +24,37 @@ class Stack
     return_pop
   end
 
-  def self.peek(arr)
-    return "Array is empty" if Stack.my_empty?(arr)
+  def peek
+    return "Array is empty" if empty?
     arr[arr.length-1]
   end
 
-  def self.my_empty?(arr)
+  def empty?
     arr.length == 0
   end
 
-  def self.my_reverse(string)
-    counter = 0
-    return_string = ""
-    while counter < string.length
-      return_string += Stack.my_pop(string)
-      counter += 1
-    end
-    return_string
+  def to_s
+    @arr
   end
 end
 
 
-p Stack.my_reverse("hello")
-# p "My push is: #{Stack.my_push([1,2,3], 4)}"
-# destroy = []
-# p destroy
-# p "My pop is: #{Stack.my_pop(destroy)}"
-# p destroy
-# p "This is our peek: #{Stack.peek(destroy)}"
+def reverse(string)
+  counter = 0
+  return_string = ""
+  while counter < string.length
+    return_string += string.Stack.pop
+    counter += 1
+  end
+  return_string
+end
+
+
+stack = Stack.new([1,2,3])
+s = Stack.new("Hello")
+
+puts "My push is: #{stack.push(6)}"
+puts "My pop is: #{stack.pop}"
+puts "Stack after pop is: #{stack.to_s}"
+puts "This is our peek: #{stack.peek}"
+puts "Reverse is #{s.reverse}"
