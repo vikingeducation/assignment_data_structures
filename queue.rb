@@ -56,4 +56,23 @@ def queue_test
   puts queue.peek(1)
 end
 
-queue_test
+def load_string(string)
+  queue = load_queue(string)
+  loaded_string = ""
+  until queue.empty?
+    loaded_string << queue.dequeue
+  end
+  loaded_string
+end
+
+def load_queue(values)
+  queue = Queue.new
+  index = 0
+  while index < values.length
+    queue.enqueue(values[index])
+    index += 1
+  end
+  queue
+end
+
+p load_string("cheetah")
