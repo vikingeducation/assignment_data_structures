@@ -46,12 +46,23 @@ def stack_test
   puts test.peek
 end
 
-def reverse_string(str)
-  stack = Stack.new
-  new_string = ""
-  i = 0
-  while i < str.length
-    str[i]
+def reverse_string(string)
+  stack = load_stack(string)
+  reversed_string = ""
+  until stack.empty?
+    reversed_string << stack.pop
   end
-  puts new_string
+  reversed_string
 end
+
+def load_stack(values)
+  stack = Stack.new
+  index = 0
+  while index < values.length
+    stack.push(values[index])
+    index += 1
+  end
+  stack
+end
+
+p reverse_string("cheetah")
