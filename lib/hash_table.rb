@@ -1,4 +1,4 @@
-Node = Struct.new(:data, :pointer)
+Node = Struct.new(:word, :definition, :pointer)
 
 class LinkedList
   attr_reader :head, :tail
@@ -9,17 +9,17 @@ class LinkedList
   end
 
   # Time complexity: O(1)
-  def add_node(data)
-    new_node = Node.new(data, nil)
-    tail.pointer = new_node unless empty?
+  def add_node(word, definition)
+    new_node = Node.new(word, definition, nil)
+    @tail.pointer = new_node unless empty?
     @head = new_node if empty?
     @tail = new_node
   end
 
   # Time complexity: O(n)
-  def insert_node(index, data)
+  def insert_node(index, word, definition)
     prev_node = access_node_at(index-1)
-    new_node = Node.new(data, prev_node.pointer)
+    new_node = Node.new(word, definition, prev_node.pointer)
     prev_node.pointer = new_node
     puts "Node inserted at position #{index}"
     new_node
@@ -29,8 +29,9 @@ class LinkedList
   def read(index)
     node = access_node_at(index, true)
     if node
-      puts "Returning #{node.data} after #{index} steps"
-      node.data
+      output = "#{node.word}: #{node.definition} after #{index} steps"
+      puts output
+      node
     else
       puts "Nothing to see here. Move along."
       nil
@@ -42,7 +43,21 @@ class LinkedList
   end
 
   def reverse
-
+    # next = current.pointer
+    # change current pointer to previous node
+    # previous = node
+    current_node = head
+    next_node = current_node.pointer
+    last = tail
+    @tail = head
+    previous = nil
+    begin
+      p next_node = current_node.pointer if current_node
+      p current_node.pointer = previous
+      p previous = current_node
+      p current_node = next_node if next_node
+    end until !current_node.pointer
+    @head = current_node
   end
 
   private
@@ -51,25 +66,11 @@ class LinkedList
     puts "Looping through linked list" if debug
     index.times do |i|
       if current_node
-        puts "On step #{i}, found #{current_node.data}" if debug
+        puts "On step #{i}, found #{current_node.word}" if debug
         current_node = current_node.pointer
       end
     end
-    if current_node
-      # puts "Returning #{current_node.data} after #{index} steps"
-      current_node
-    else
-      # puts "Nothing to see here. Move along."
-      nil
-    end
+    current_node
   end
 
 end
-
-# Head [] tail
-# Head [] -> [+] tail
-# Head [] -> [] -> [+] tail
-
-# Create the list
-# Read nodes at a particular index (add a printout which tracks the crawler's progress or at least returns the number of steps). In the comments, state the Big-O time of this operation.
-# Insert nodes at a particular index or, separately, at the end of the list (so store a reference to the last node). In the comments, state the Big-O time of this operation.
