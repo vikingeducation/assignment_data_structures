@@ -89,4 +89,13 @@ class LinkedList
     end
   end
 
+  def reverse
+    # fille me in!
+    # ------------------------------
+    # previous_last = last
+    # last = head
+    # head = previous_last
+    # last.next = nil
+  end
+
 end
