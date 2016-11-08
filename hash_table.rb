@@ -23,8 +23,23 @@ class HashTable
 
   def render_list
     ("A".."Z").each_with_index do |letter, index|
-      puts "#{letter}: #{}"
+      bucket_length = @buckets[index] ? @buckets[index].length : 0
+      puts "#{ letter }: #{ bucket_length }"
     end
   end
 
+  def define(word)
+    @buckets[hash(word)]
+    # locate correct bucket
+    # if bucket empty - not found
+    # else iterate through each node
+    # searching for matching word
+    # when match found return definition
+    # if end of list - not found
+  end
+
 end
+
+table = HashTable.new
+
+table.render_list

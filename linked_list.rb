@@ -12,7 +12,7 @@ class LinkedList
     @last = first_node
   end
 
-  def add_first_node(word, defintion)
+  def add_first_node(word, definition)
     @head = Node.new(word, definition, nil)
     @last = head
   end
@@ -28,6 +28,16 @@ class LinkedList
       # set last to new node
       @last = new_node
     end
+  end
+
+  def length
+    length = 0
+    current_node = @head
+    while current_node
+      length += 1
+      current_node = current_node.next
+    end
+    length
   end
 
   def remove_node(index)
@@ -104,3 +114,4 @@ class LinkedList
     @head = previous_last
   end
 end
+
