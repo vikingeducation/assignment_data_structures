@@ -1,3 +1,6 @@
+require 'pry'
+require 'pry-byebug'
+
 class Stack
   # push
   # pop
@@ -11,8 +14,8 @@ class Stack
 
   def initialize(arr = [])
     @stack = Array.new( 100 )
-    set_stack(arr)
     @next_index = 0
+    set_stack(arr)
   end
 
   def set_stack(arr)
@@ -27,10 +30,11 @@ class Stack
   end
 
   def pop
-    item = stack[next_index - 1]   # grab item
-    stack[next_index - 1 ] = nil   # set it to nil
-    self.next_index -= 1           # moving pointer
-    item                           # return item
+    return false if empty?
+    item = stack[next_index - 1]            # grab item
+    stack[next_index - 1 ] = nil            # set it to nil
+    self.next_index -= 1                    # moving pointer
+    item                                    # return item
   end
 
   # Top item only
@@ -44,7 +48,7 @@ class Stack
 
   protected
 
-  attr_accessor :next_index  
+  attr_accessor :next_index
 
   private
 
@@ -59,13 +63,14 @@ class Queue
   # enqueue
   # dequeue
   # peek
-  # empty?
+  # empty? -> first same as next
   # load and unload a string in the same order
 
 def initialize(arr = [])
     @queue = Array.new( 100 )
     set_queue(arr)
-    @next_index = 0
+    @first_index = 0
+    @last_index = 99 # starting at end of queue, to put first entry at 0
   end
 
   def set_queue(arr)
@@ -75,46 +80,36 @@ def initialize(arr = [])
   end
 
   def enqueue(item)
+    next_index = last_index + 1
+    next_index = 0 if next_index == 100
+
     queue[next_index] = item
-    self.next_index += 1
+    self.last_index = next_index
   end
 
   def dequeue
     item = queue[0]                # grab item
-    queue[next_index - 1 ] = nil   # set it to nil
-    self.next_index -= 1           # moving pointer
-    item                           # return item
+    self.first_index += 1  # moving first pointer to next item
+    # TODO: Account for wrapping and full queue
+    # self.first_index = 0 if self_index == 100
+    item
   end
-
-  # def pop
-  #   item = queue[next_index - 1]   # grab item
-  #   queue[next_index - 1 ] = nil   # set it to nil
-  #   self.next_index -= 1           # moving pointer
-  #   item                           # return item
-  # end
 
   # Top item only
   def peek
-    queue[next_index - 1]
+    queue[first_index]
   end
 
   def empty?
-    queue[0] == nil
+    first_index == next_index
   end
 
   protected
 
-  attr_accessor :next_index  
+  attr_accessor :last_index, :first_index
 
   private
 
-  attr_reader :queue  
+  attr_reader :queue
 
 end
-
-
-
-
-
-
-
