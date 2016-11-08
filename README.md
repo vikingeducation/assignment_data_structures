@@ -43,7 +43,23 @@ A: O(n) because in worst case scenario we are looking at every single element to
 
 9. splitting a String
 
-A: 
+A: O(n) as we must iterate through each character in order to find the given
+   delimiter to split on
 
-Inserting a value to a Hash
-Retrieving the keys of a Hash ({ foo: "bar" }.keys)
+10. Inserting a value to a Hash
+
+  1) O(1) - determine hash value for key
+
+  2) O(1) - locate index - index_number * memory_per_element
+
+  3) O(n) - traverse linked list
+
+  4) O(1) - mutate linked list by adding new node
+
+11. Retrieving the keys of a Hash ({ foo: "bar" }.keys)
+
+  O(n^2) - iterate through each node in linked list at each array index
+
+  array.each do |linked_list|
+    linked_list.each
+  end
