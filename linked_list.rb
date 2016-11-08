@@ -41,10 +41,11 @@ class LinkedList
 
   def find_node(index)
     current = @head
-    index.times do |i|
+    0.upto(index-1) do |i|
       current = current.next
     end
     current
+    # Linear time O(n)
   end
 
   def insert_node(data, index)

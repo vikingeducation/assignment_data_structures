@@ -4,7 +4,7 @@ class TempQueue < TempStack
   
   def enqueue(value)
     queue = [value]
-    @array = queue + @array
+    @array = queue + @array # fair game?
   end
 
   def dequeue

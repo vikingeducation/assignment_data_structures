@@ -3,9 +3,7 @@ Buckets and buckets of data!
 
 [A Ruby-based data structures assignment for the Viking Code School which uses arrays, hashes, linked lists, structs, graphs and trees](http://www.vikingcodeschool.com)
 
-<b>Pramod Jacob</b>
-
-<b>Kenny Kottenstette</b>
+<b>Pramod Jacob, Kenny Kottenstette</b>
 
 Determine the Big O of the following (and ideally explain briefly why):
 

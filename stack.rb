@@ -8,13 +8,13 @@ class TempStack
 
   def push(value)
     position = @array.length
-    @array[position] = value
+    @array[position] = value # fair game?
   end
 
   def pop
     last_value = @array[@array.length-1]
     if @array.length != 1
-      @array = @array[0..@array.length-2] 
+      @array = @array[0..@array.length-2] # fair game?
     else 
       @array = [] 
     end
@@ -26,7 +26,7 @@ class TempStack
   end  
 
   def empty?
-    @array.length.zero?
+    @array.length == 0
   end
 
 end
