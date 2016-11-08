@@ -35,11 +35,32 @@ class LinkedList
 
   def create_list(dictionary)
     # iterate over dictionary and set node for each
-    node = Node.new("cat", "cat definition", first)
-    first = node
+    dictionary.each do |word, definition|
+      node = Node.new(word, definition, first)
+      last ||= node
+      first = node
+
+    end
   end
 
-  def insert(node, index)
+# "cat" --> "dog" --> "egg"
+#   0          1         2
+
+# "cat" --> "dog" --> "giraffe" --> egg"
+#   0          1         2            3
+
+# insert("giraffe", 2)
+
+  def insert(node, target_index)
+    index = 0
+    target_node = first
+    while index < target_index
+      previous_node = target_node
+      target_node = target_node.next
+      index += 1
+    end
+    previous_node.next = node
+    node.next = target_node
   end
 
 
