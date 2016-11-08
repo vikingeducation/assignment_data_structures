@@ -12,7 +12,7 @@ class Stack
   def initialize(arr)
     @stack = Array.new( arr.length * 4 )
     set_stack
-    @last = 0
+    @next_index = 0
   end
 
   def set_stack
@@ -22,8 +22,8 @@ class Stack
   end
 
   def push(item)
-    stack[last] = item
-    last += 1
+    stack[next_index] = item
+    next_index += 1
   end
 
   def pop
@@ -42,5 +42,5 @@ class Stack
 
   private
   attr_reader :stack
-  attr_accessor :last
+  attr_accessor :next_index
 end
