@@ -41,6 +41,10 @@ class LinkedList
     head.nil?
   end
 
+  def reverse
+
+  end
+
   private
   def access_node_at(index, debug=false)
     current_node = head

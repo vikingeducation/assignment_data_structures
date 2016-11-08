@@ -33,7 +33,10 @@ describe LinkedList do
 
   describe '#reverse' do
     it 'flips the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions' do
-
+      ll_noded.reverse
+      expect(ll_noded.read(0)).to eq('third')
+      expect(ll_noded.read(1)).to eq('second')
+      expect(ll_noded.read(2)).to eq('first')
     end
   end
 
