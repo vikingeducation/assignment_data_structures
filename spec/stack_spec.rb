@@ -28,25 +28,35 @@ describe Stack do
       expect(long_stack.pop_from_stack).to eq(6)
     end
 
-  end 
+  end
 
-  describe '#peek' do 
+  describe '#peek' do
     it 'looks at top of stack' do
       expect(long_stack.peek).to eq(6)
     end
   end
 
   describe "basic integration test" do
-    it "reverses a string" do 
+    it "reverses a string" do
       sample_stack.push_to_stack("H")
       sample_stack.push_to_stack("e")
       sample_stack.push_to_stack("l")
       sample_stack.push_to_stack("l")
-      sample_stack.push_to_stack("o")  
+      sample_stack.push_to_stack("o")
       return_string = []
       5.times {return_string << sample_stack.pop_from_stack}
       expect(return_string).to eq(["o","l","l","e","H"])
     end
   end
+
+  describe '#empty?' do
+    it 'returns true if empty' do
+      expect(sample_stack.empty?).to be true
+    end
+    it 'returns false if not empty' do
+      expect(long_stack.empty?).to be false
+    end
+  end
+
 
 end
