@@ -46,4 +46,12 @@ def stack_test
   puts test.peek
 end
 
-stack_test
+def reverse_string(str)
+  stack = Stack.new
+  new_string = ""
+  i = 0
+  while i < str.length
+    str[i]
+  end
+  puts new_string
+end
