@@ -103,5 +103,4 @@ class LinkedList
     @last = @head
     @head = previous_last
   end
-
 end
