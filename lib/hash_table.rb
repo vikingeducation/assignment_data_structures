@@ -48,7 +48,6 @@ class LinkedList
     # previous = node
     current_node = head
     next_node = current_node.pointer
-    last = tail
     @tail = head
     previous = nil
     begin
@@ -56,7 +55,7 @@ class LinkedList
       p current_node.pointer = previous
       p previous = current_node
       p current_node = next_node if next_node
-    end until !current_node.pointer
+    end until !next_node
     @head = current_node
   end
 
