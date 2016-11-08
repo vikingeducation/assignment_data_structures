@@ -5,14 +5,14 @@ Buckets and buckets of data!
 
 Determine the Big O of the following (and ideally explain briefly why):
 
-Accessing an item by index in an array
-Unshifting a new item into the beginning of an array
-Pushing an item onto the end of an array
-Upcasing a String
-Reversing a String
-The Enumerable#each method
-The Enumerable#include? method
-Finding the max of an array
-splitting a String
-Inserting a value to a Hash
-Retrieving the keys of a Hash ({ foo: "bar" }.keys)
+Accessing an item by index in an array - Constant time
+Unshifting a new item into the beginning of an array - Linear
+Pushing an item onto the end of an array - Linear
+Upcasing a String - Linear
+Reversing a String - Linear
+The Enumerable#each method - Linear
+The Enumerable#include? method - Linear
+Finding the max of an array - Linear
+splitting a String - Linear
+Inserting a value to a Hash - Constant
+Retrieving the keys of a Hash ({ foo: "bar" }.keys) - Constant
