@@ -6,7 +6,8 @@ class LinkedList
 
   def initialize(node = nil)
     @first_node = node
-    @current_node = @first_node
+    @current_node = node
+    @final_node = node
   end
 
   def node_list
@@ -22,23 +23,33 @@ class LinkedList
 
   def add(node, index = nil)
     reset_current_node
+    initialize(node) if @first_node == nil
     unless index
-      if @current_node == nil
-        @current_node = node
-        @first_node = node
-      else
-        until @current_node.pointer == nil
-          crawl
-        end
-        @current_node.pointer = node
-      end
+      @final_node.pointer = node
+      @final_node = node
     else
-      crawl(index-1)
+      crawl(index - 1)
       # point new node to next node
       node.pointer = @current_node.pointer
-      # point current node to new node   
-      @current_node.pointer = node 
+      # point current node to new node
+      @current_node.pointer = node
     end
+  end
+
+  def read(index)
+    crawl(index)
+    @current_node.data
+  end
+
+  def remove(index)
+    crawl(index - 1)
+
+    @current_node.pointer = @current_node.pointer.pointer
+    crawl
+    @current_node.pointer = nil unless @current_node.pointer.nil?
+
+    # removing last node
+    # 2nd to last pointer = nil
   end
 
   private
@@ -54,7 +65,7 @@ class LinkedList
     def crawl(index = nil)
       if index
         reset_current_node
-        index.times do 
+        index.times do
           crawl
         end
       else
@@ -71,3 +82,7 @@ l.add(Node.new("carrot",nil))
 l.add(Node.new("bacon", nil), 1)
 puts l.inspect
 l.node_list
+
+l.remove(3)
+
+p l.node_list
