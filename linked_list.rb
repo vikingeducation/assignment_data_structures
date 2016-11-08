@@ -65,37 +65,46 @@ class LinkedList
     #o(1) constant time
   end
 
-  def reverse
-    current = @head
+  def reverse # 1   3 -> 4
+    previous = @head # 1
+    current = @head.next # 3
+    puts "----------------------"
     loop do
-      one_nodes_ahead = current.next
-      two_nodes_ahead = current.next.next
-
-      one_nodes_ahead.next = current
-      current = one_nodes_ahead
-
-
+      following = current.next 
+      puts following
+      current.next = previous 
+      puts current
+      break if following.nil?
+      previous = current 
+      current = following 
     end
-
+    @head.next = nil
+    puts "----------------------"
   end
 
 end
 
 l = LinkedList.new
-l.add_node("abc")
-l.add_node("def")
-l.add_node("ghi")
-l.add_node("jkl")
+l.add_node("1")
+l.add_node("3")
+l.add_node("4")
 puts "----------------------"
-steps = l.read_node(1)
-p "Steps: #{steps}"
+l.read_node(2)
+# l.add_node("5")
 puts "----------------------"
-node = l.find_node(3)
-p "Node: #{node}"
-puts "----------------------"
-l.insert_node("2",1)
-l.read_node(4)
-l.append_node('zxcvzxcv')
+# steps = l.read_node(3)
+# p "Steps: #{steps}"
+# puts "----------------------"
+# node = l.find_node(3)
+# p "Node: #{node}"
+# puts "----------------------"
+# l.insert_node("2",1)
+# l.read_node(4)
+# puts "----------------------"
+# l.append_node('6')
+# l.read_node(6)
+# puts "----------------------"
+l.reverse
 l.read_node(6)
-
+puts "----------------------"
 
