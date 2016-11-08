@@ -1,3 +1,6 @@
+<b>Pramod Jacob</b>
+<b>Kenny Kottenstette</b>
+
 # assignment_data_structures
 Buckets and buckets of data!
 
