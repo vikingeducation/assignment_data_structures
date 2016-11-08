@@ -30,6 +30,7 @@ class Queue
 
     while index < @array.length
       enq_array[index + 1] = @array[index]
+      index += 1
     end
 
     @array = enq_array
@@ -37,18 +38,34 @@ class Queue
 
   def deq
     # pop
+    deq_array = Array.new(@array.length - 1)
+
+    index = 0
+
+    while index < @array.length - 1
+      deq_array[index] = @array[index]
+      index += 1
+    end
+    @array = deq_array
   end
 
-  def peek
-
+  def peek(index = 0)
+    @array[index]
   end
 
   def empty?
-
+    @array.length == 0
   end
 end
 
 q = Queue.new
 
 q.enq(3)
-puts q.array
+print q.array
+puts
+q.enq(5)
+print q.array
+puts
+q.deq
+print q.array
+puts
