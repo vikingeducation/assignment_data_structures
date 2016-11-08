@@ -35,22 +35,21 @@ class LinkedList
     current_node
   end
 
+  # O(n) because we only iterate through each item once and change its pointer
   def reverse
-    #reverses linked list 
     current_node = @head
+    previous_previous = nil
     while current_node.pointer != nil
       @previous = current_node
       current_node = current_node.pointer
+      @previous.pointer = previous_previous
+      previous_previous = @previous
     end
-    @previous.pointer
+    @previous = current_node
+    current_node = current_node.pointer
+    @previous.pointer = previous_previous
+    previous_previous = @previous
+    @head, @tail = @tail, @head
   end
+
 end
-
-A B C D
-
-A ==> B ==> C ==> D
-
-A, B
-A = nil
-
-
