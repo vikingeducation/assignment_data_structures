@@ -15,12 +15,27 @@ class LinkedList
     @tail = new_node
   end
 
+  def insert_node(index, data)
+
+  end
+
+  # Time complexity: O(n)
   def read(index)
     current_node = head
+    puts "Looping through linked list"
     index.times do |i|
-      current_node = current_node ? current_node.pointer : nil
+      if current_node
+        puts "On step #{i}, found #{current_node.data}"
+        current_node = current_node.pointer
+      end
     end
-    current_node ? current_node.data : nil
+    if current_node
+      puts "Returning #{current_node.data} after #{index} steps"
+      current_node.data
+    else
+      puts "Nothing to see here. Move along."
+      nil
+    end
   end
 
   def empty?
