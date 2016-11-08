@@ -44,7 +44,6 @@ class LinkedList
 
   def reverse
     current_node = head
-    next_node = current_node.pointer
     @tail = head
     previous = nil
     begin
