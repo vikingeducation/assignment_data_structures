@@ -66,11 +66,11 @@ class Queue
   # empty? -> first same as next
   # load and unload a string in the same order
 
-def initialize(arr = [])
+  def initialize(arr = [])
     @queue = Array.new( 100 )
-    set_queue(arr)
     @first_index = 0
     @last_index = 99 # starting at end of queue, to put first entry at 0
+    set_queue(arr)
   end
 
   def set_queue(arr)
@@ -80,15 +80,15 @@ def initialize(arr = [])
   end
 
   def enqueue(item)
+    # return false if full?
     next_index = last_index + 1
-    next_index = 0 if next_index == 100
-
+    next_index = 0 if next_index == 100 # allows next_index to wrap
     queue[next_index] = item
     self.last_index = next_index
   end
 
   def dequeue
-    item = queue[0]                # grab item
+    item = queue[first_index]                # grab item
     self.first_index += 1  # moving first pointer to next item
     # TODO: Account for wrapping and full queue
     # self.first_index = 0 if self_index == 100
@@ -101,8 +101,16 @@ def initialize(arr = [])
   end
 
   def empty?
-    first_index == next_index
+    return true if first_index - last_index == 1
+    return true if last_index == 99 && first_index == 0
+    false
   end
+
+  # def full?
+  #   return true if first_index - last_index == 1
+  #   return true if last_index == 99 && first_index == 0
+  #   false
+  # end
 
   protected
 
