@@ -37,8 +37,6 @@ describe LinkedList do
       expect(ll_noded.read(0).definition).to eq("third word")
       expect(ll_noded.read(1).definition).to eq("second word")
       expect(ll_noded.read(2).definition).to eq('first word')
-      p ll_noded.head
-      p ll_noded.tail
     end
   end
 

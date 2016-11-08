@@ -47,7 +47,7 @@ class LinkedList
     @tail = head
     previous = nil
     begin
-      next_node = current_node.pointer if current_node
+      next_node = current_node.pointer
       current_node.pointer = previous
       previous = current_node
       current_node = next_node if next_node
