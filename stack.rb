@@ -1,5 +1,6 @@
 class Stack
-  attr_reader :arr
+  attr_accessor :arr
+
   def initialize(arr)
     @arr = arr
   end
@@ -19,7 +20,7 @@ class Stack
       return_array[counter] = arr[counter]
       counter += 1
     end
-    arr = return_array
+    @arr = return_array
     # puts arr
     return_pop
   end
@@ -41,9 +42,18 @@ end
 
 def reverse(string)
   counter = 0
-  return_string = ""
+  arr = []
   while counter < string.length
-    return_string += string.Stack.pop
+    arr[counter] = string[counter]
+    counter += 1
+  end
+  
+  stack = Stack.new(arr)
+
+  counter = 0
+  return_string = ""
+  while counter < arr.length
+    return_string += stack.pop
     counter += 1
   end
   return_string
@@ -51,10 +61,10 @@ end
 
 
 stack = Stack.new([1,2,3])
-s = Stack.new("Hello")
+s = "Hello"
 
-puts "My push is: #{stack.push(6)}"
-puts "My pop is: #{stack.pop}"
-puts "Stack after pop is: #{stack.to_s}"
-puts "This is our peek: #{stack.peek}"
-puts "Reverse is #{s.reverse}"
+# puts "My push is: #{stack.push(6)}"
+ puts "My pop is: #{stack.pop}"
+ puts "Stack after pop is: #{stack.to_s}"
+# puts "This is our peek: #{stack.peek}"
+ puts "Reverse is #{s.reverse}"
