@@ -19,19 +19,30 @@ class LinkedList
 
   end
 
-  # Time complexity: O(n)
-  def read(index)
+  def access_node_at(index, debug=false)
     current_node = head
-    puts "Looping through linked list"
+    puts "Looping through linked list" if debug
     index.times do |i|
       if current_node
-        puts "On step #{i}, found #{current_node.data}"
+        puts "On step #{i}, found #{current_node.data}" if debug
         current_node = current_node.pointer
       end
     end
     if current_node
-      puts "Returning #{current_node.data} after #{index} steps"
-      current_node.data
+      # puts "Returning #{current_node.data} after #{index} steps"
+      current_node
+    else
+      # puts "Nothing to see here. Move along."
+      nil
+    end
+  end
+
+  # Time complexity: O(n)
+  def read(index)
+    node = access_node_at(index, true)
+    if node
+      puts "Returning #{node.data} after #{index} steps"
+      node.data
     else
       puts "Nothing to see here. Move along."
       nil
