@@ -59,9 +59,13 @@ class LinkedList
   end
 
   def append_node(data) 
-    new_node = Node.new(data, nil)
-    @tail.next = new_node
-    @tail = new_node
+    if @head.nil?
+      add_first_node(data)
+    else
+      new_node = Node.new(data, nil)
+      @tail.next = new_node
+      @tail = new_node
+    end
     #o(1) constant time
   end
 
@@ -84,27 +88,27 @@ class LinkedList
 
 end
 
-l = LinkedList.new
-l.add_node("1")
-l.add_node("3")
-l.add_node("4")
-puts "----------------------"
-l.read_node(2)
-# l.add_node("5")
-puts "----------------------"
-# steps = l.read_node(3)
-# p "Steps: #{steps}"
+# l = LinkedList.new
+# l.add_node("1")
+# l.add_node("3")
+# l.add_node("4")
 # puts "----------------------"
-# node = l.find_node(3)
-# p "Node: #{node}"
+# l.read_node(2)
+# # l.add_node("5")
 # puts "----------------------"
-# l.insert_node("2",1)
-# l.read_node(4)
-# puts "----------------------"
-# l.append_node('6')
+# # steps = l.read_node(3)
+# # p "Steps: #{steps}"
+# # puts "----------------------"
+# # node = l.find_node(3)
+# # p "Node: #{node}"
+# # puts "----------------------"
+# # l.insert_node("2",1)
+# # l.read_node(4)
+# # puts "----------------------"
+# # l.append_node('6')
+# # l.read_node(6)
+# # puts "----------------------"
+# l.reverse
 # l.read_node(6)
 # puts "----------------------"
-l.reverse
-l.read_node(6)
-puts "----------------------"
 
