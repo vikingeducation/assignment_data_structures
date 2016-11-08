@@ -67,14 +67,16 @@ class LinkedList
     end
   end
 
-  def reverse_list(list, previous=nil)
-    @head = @list.next
-    @list.next = previous
-    if current_head
-      reverse_list(current_head, list)
-    else
-      list
+  def reverse_list()
+    arr = []
+    current_node = @head
+
+    loop do
+      break if current_node.next.nil?
+      arr << current_node.next
+      current_node = current_node.next
     end
+    p arr[0]
   end
 
 end
@@ -91,5 +93,5 @@ l1.find_node(0)
 l1.add_node("second node")
 l1.add_node("third node")
 l1.insert("1.5 node", 0)
-l1.print_list
-p l1.reverse_list(l1)
+#l1.print_list
+l1.reverse_list
