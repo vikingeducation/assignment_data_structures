@@ -9,8 +9,7 @@
 #                 methods: create list (feed in words and definitions)
 #                           read Node at an indexing
 #                           insert Node at an index
-#                           reverse the List
-#                           (discuss bigO in comments)
+#                           reverse the List #                           (discuss bigO in comments)
 #                           (printout along crawl)
 
 # looping over hash
@@ -18,6 +17,11 @@
 # first item = first node
 # point first node to next node, and so on
 # build the list by prepended
+
+    # if target_node == nil, previous node is tail
+      # break out of loop
+      # set previous_node.next to new node
+      # set tail == new_node
 
 dict_test = {"cat" => "cat definition", "dog" => "dog definition", "red" => "red definition"}
 
@@ -53,22 +57,54 @@ class LinkedList
 
   # updating the last? inserting at the end?
   def insert(node, target_index = nil)
-    @items += 1
     index = 0
     target_node = @head
     puts "index: #{index}"
     puts "Node key: #{target_node.word}"
-    while index < target_index
-      previous_node = target_node
-      target_node = target_node.next
-      puts "index: #{index}"
-      puts "Node key: #{target_node.word}"
-      index += 1
+
+    # if items == 0 (linked list is empty)
+      # set head to node that we're adding
+      # set tail """"""
+
+    # if we are inserting node at index 0
+      # set node.next to pointer ahead
+      # set head to new node (node)
+
+    if @items == 0
+      @head = node
+      @tail = node
+
+    elsif target_index == 0
+      node.next = @head
+      @head = node
+
+    else
+      while index < target_index
+        crawl_once
+      end
+      puts "inserting after #{previous_node.word}"
+      previous_node.next = node
+      puts "inserting before #{target_node.word}"
+      node.next = target_node
     end
-    puts "inserting after #{previous_node.word}"
-    previous_node.next = node
-    puts "inserting before #{target_node.word}"
-    node.next = target_node
+
+    @items += 1
+
+  end
+
+  def crawl_once
+
+    previous_node = target_node
+    target_node = target_node.next
+
+    if target_node.nil?
+      @tail = node
+      break
+    end
+
+    puts "index: #{index}"
+    puts "Node key: #{target_node.word}"
+    index += 1
   end
 
  # tail
