@@ -44,12 +44,42 @@ class LinkedList
   def remove(index)
     crawl(index - 1)
 
-    @current_node.pointer = @current_node.pointer.pointer
-    crawl
-    @current_node.pointer = nil unless @current_node.pointer.nil?
+    unless @current_node.pointer.pointer.nil? #last node
+      @current_node.pointer = @current_node.pointer.pointer
+      crawl
+    end
+    
+    @current_node.pointer = nil 
+    @final_node = @current_node
+
+
+    # Find note to remove at index 
+    # If that node is not the end
+      # take previous pointer and point it to next node pointer
+      # set node to final node
+    # If we delete first node
+      # Update 2nd node to first node 
+    # Else if it is the end
+      # Take previous node and point it to nil
+
 
     # removing last node
     # 2nd to last pointer = nil
+  end
+
+  def update(data, index)
+    crawl(index)
+    @current_node.data = data
+  end
+
+  def reverse
+    data = @current_node.data
+    @current_node.data = @first_node.data
+    @first_node.data = data
+    index = 0
+    crawl
+    index += 1 
+
   end
 
   private
@@ -80,9 +110,6 @@ l.add(Node.new("apple",nil))
 l.add(Node.new("banana",nil))
 l.add(Node.new("carrot",nil))
 l.add(Node.new("bacon", nil), 1)
-puts l.inspect
-l.node_list
-
-l.remove(3)
-
+l.update("carrot sticks", 3)
 p l.node_list
+p l.inspect
