@@ -1,7 +1,7 @@
 Node = Struct.new(:data, :next)
 
 class LinkedList
-  
+
   attr_accessor :head, :last
 
   def initialize(first_node=nil)
@@ -51,8 +51,30 @@ class LinkedList
       counter += 1
     end
     insert_node = Node.new(data)
-    insert#new node points to current_node.next
-    current_node.pointer = Node.new(data)
+    insert_node.next = current_node.next
+    #new node points to current_node.next
+    current_node.next = insert_node
+  end
+
+  def print_list
+    counter = 0
+    current_node = @head
+    loop do
+      puts "Node at index #{counter}: #{current_node.data}"
+      break if current_node.next.nil?
+      current_node = current_node.next
+      counter += 1
+    end
+  end
+
+  def reverse_list(list, previous=nil)
+    @head = @list.next
+    @list.next = previous
+    if current_head
+      reverse_list(current_head, list)
+    else
+      list
+    end
   end
 
 end
@@ -63,7 +85,11 @@ end
 
 l1 = LinkedList.new(Node.new("first_node", nil))
 l1.find_node(0)
-l2 = LinkedList.new
-l2.add_node("another first node")
-p l2.head
+# l2 = LinkedList.new
+# l2.add_node("another first node")
+# p l2.head
 l1.add_node("second node")
+l1.add_node("third node")
+l1.insert("1.5 node", 0)
+l1.print_list
+p l1.reverse_list(l1)
