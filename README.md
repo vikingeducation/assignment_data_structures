@@ -5,7 +5,7 @@ Buckets and buckets of data!
 
 
 Accessing an item by index in an array
-  O(1) because every element has the same number of bytes. 
+  O(1) because every element has the same number of bytes.
   Starting place + byte_per_element * index.
 
 Unshifting a new item into the beginning of an array
@@ -44,12 +44,18 @@ Splitting a String
   Iterate over every element and insert it into the array.
   O(n) where n increases with the length of the string.
 
-
 Inserting a value to a Hash
-  
+  Assume a well-balanced hash
+  Run input thru hash function
+  Locate index of associative array based on hashed input
+  Prepend new value to head of linked list
+  O(1) because no iteration over array or linked list occurs
 
 Retrieving the keys of a Hash ({ foo: "bar" }.keys)
-
-
+  Assuming keys aren't stored, only hashed keys are stored
+  Iterate over every array bucket
+  Within every bucket, iterate over the values of the linked list
+  Return unhashed version of values
+  O(n) with a large coefficient, n is a static number of linked lists with nodes increasing
 
 Completed by Christian Carey and Catherine Kwak
