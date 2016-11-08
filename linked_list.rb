@@ -89,13 +89,19 @@ class LinkedList
     end
   end
 
+  # O(n) each node must be traversed once
   def reverse
-    # fille me in!
-    # ------------------------------
-    # previous_last = last
-    # last = head
-    # head = previous_last
-    # last.next = nil
+    current_node = @head
+    previous_node = nil
+    while current_node
+      next_node = current_node.next
+      current_node.next = previous_node
+      previous_node = current_node
+      current_node = next_node
+    end
+    previous_last = @last
+    @last = @head
+    @head = previous_last
   end
 
 end
