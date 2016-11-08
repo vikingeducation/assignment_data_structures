@@ -8,6 +8,7 @@ class LinkedList
     @tail = nil
   end
 
+  # Time complexity: O(1)
   def add_node(data)
     new_node = Node.new(data, nil)
     tail.pointer = new_node unless empty?
@@ -15,10 +16,32 @@ class LinkedList
     @tail = new_node
   end
 
+  # Time complexity: O(n)
   def insert_node(index, data)
-
+    prev_node = access_node_at(index-1)
+    new_node = Node.new(data, prev_node.pointer)
+    prev_node.pointer = new_node
+    puts "Node inserted at position #{index}"
+    new_node
   end
 
+  # Time complexity: O(n)
+  def read(index)
+    node = access_node_at(index, true)
+    if node
+      puts "Returning #{node.data} after #{index} steps"
+      node.data
+    else
+      puts "Nothing to see here. Move along."
+      nil
+    end
+  end
+
+  def empty?
+    head.nil?
+  end
+
+  private
   def access_node_at(index, debug=false)
     current_node = head
     puts "Looping through linked list" if debug
@@ -37,21 +60,6 @@ class LinkedList
     end
   end
 
-  # Time complexity: O(n)
-  def read(index)
-    node = access_node_at(index, true)
-    if node
-      puts "Returning #{node.data} after #{index} steps"
-      node.data
-    else
-      puts "Nothing to see here. Move along."
-      nil
-    end
-  end
-
-  def empty?
-    head.nil?
-  end
 end
 
 # Head [] tail
