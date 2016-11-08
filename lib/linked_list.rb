@@ -8,7 +8,7 @@ class LinkedList
   end
 
   def add_node(node)
-    @tail.pointer = node
+    @tail.pointer = node if @head
     node.pointer = nil
     @tail = node
     @head = @tail if @head == nil
@@ -21,7 +21,7 @@ class LinkedList
   end
 
   def access(index)
-    crawl(index).word, crawl(index).def
+    return crawl(index).word, crawl(index).def
   end
 
   def crawl(desired_index)
@@ -34,18 +34,23 @@ class LinkedList
     end
     current_node
   end
+
+  def reverse
+    #reverses linked list 
+    current_node = @head
+    while current_node.pointer != nil
+      @previous = current_node
+      current_node = current_node.pointer
+    end
+    @previous.pointer
+  end
 end
 
-#Its going to have a head node
-#it can add a node.
-##it can add the node at the begining (default)
-##it can add the node at a specified point
-#it can delete values
-##it crawls to the value and removes it, fixing references
-#it will have a method reverse to reverse the list.
-#make big O notes
-#has a last node
+A B C D
 
-#add node
-#start at head
-#crawl
+A ==> B ==> C ==> D
+
+A, B
+A = nil
+
+
