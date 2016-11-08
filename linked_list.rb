@@ -57,59 +57,83 @@ class LinkedList
 
   # updating the last? inserting at the end?
   def insert(node, target_index = nil)
-    index = 0
-    target_node = @head
-    puts "index: #{index}"
-    puts "Node key: #{target_node.word}"
-
-    # if items == 0 (linked list is empty)
-      # set head to node that we're adding
-      # set tail """"""
-
-    # if we are inserting node at index 0
-      # set node.next to pointer ahead
-      # set head to new node (node)
 
     if @items == 0
-      @head = node
-      @tail = node
-
+      set_initial_node(node)
     elsif target_index == 0
-      node.next = @head
-      @head = node
-
+      set_head_node(node)
+    elsif target_index == nil
+      set_tail_node(node)
     else
-      while index < target_index
-        crawl_once
-      end
-      puts "inserting after #{previous_node.word}"
-      previous_node.next = node
-      puts "inserting before #{target_node.word}"
-      node.next = target_node
+      find_node_and_parent(target_index)
+
+      @tail = node if at_tail?
+
+      @previous_node.next = node
+      node.next = @target_node
     end
 
     @items += 1
+  end
 
+  def read_at(target_index)
+    if target_index >= @items
+      puts "Sorry that index is out of range."
+      return false
+    elsif target_index == nil
+      @target_node = @tail
+    else
+      find_node_and_parent(target_index)
+    end
+
+    puts "Your word is #{@target_node.word}."
+    puts "The definition is #{@target_node.definition}"
+  end
+
+  def find_node_and_parent(target_index)
+    index = 0
+    @target_node = @head
+    print_status(index)
+
+    while index < target_index
+      crawl_once
+      index += 1
+      print_status(index)
+      break if at_tail?
+    end
+  end
+
+  def set_initial_node(node)
+    @head = node
+    @tail = node
+  end
+
+  def set_head_node(node)
+    node.next = @head
+    @head = node
+  end
+
+  def set_tail_node(node)
+    @tail.next = node
+    @tail = node
   end
 
   def crawl_once
-
-    previous_node = target_node
-    target_node = target_node.next
-
-    if target_node.nil?
-      @tail = node
-      break
-    end
-
-    puts "index: #{index}"
-    puts "Node key: #{target_node.word}"
-    index += 1
+    @previous_node = @target_node
+    @target_node = @target_node.next
   end
 
- # tail
- #set tail.next to new_node
- # set tail = new_node
+  def at_tail?
+    @target_node.nil?
+  end
 
+  def print_status(index)
+    puts "index: #{index}"
+    puts "Node key: #{@target_node.word}"
+  end
+
+  def print
+    find_node_and_parent(@items - 1)
+  end
 
 end
