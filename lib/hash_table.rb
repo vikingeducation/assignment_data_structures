@@ -43,18 +43,15 @@ class LinkedList
   end
 
   def reverse
-    # next = current.pointer
-    # change current pointer to previous node
-    # previous = node
     current_node = head
     next_node = current_node.pointer
     @tail = head
     previous = nil
     begin
-      p next_node = current_node.pointer if current_node
-      p current_node.pointer = previous
-      p previous = current_node
-      p current_node = next_node if next_node
+      next_node = current_node.pointer if current_node
+      current_node.pointer = previous
+      previous = current_node
+      current_node = next_node if next_node
     end until !next_node
     @head = current_node
   end
