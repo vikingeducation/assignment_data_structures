@@ -49,11 +49,34 @@ class LinkedList
   end
 
   def insert_node(data, index)
-    new_node = Node.new(data, nil)
-    node_after = find_node(index)
+    new_node = Node.new(data, nil)    
     node_before = find_node(index-1)
+    node_after = node_before.next
     new_node.next = node_after
     node_before.next = new_node
+    # ideally constant time o(1), 
+    # in actuality o(n) because traversal is required to read
+  end
+
+  def append_node(data) 
+    new_node = Node.new(data, nil)
+    @tail.next = new_node
+    @tail = new_node
+    #o(1) constant time
+  end
+
+  def reverse
+    current = @head
+    loop do
+      one_nodes_ahead = current.next
+      two_nodes_ahead = current.next.next
+
+      one_nodes_ahead.next = current
+      current = one_nodes_ahead
+
+
+    end
+
   end
 
 end
@@ -72,6 +95,7 @@ p "Node: #{node}"
 puts "----------------------"
 l.insert_node("2",1)
 l.read_node(4)
-
+l.append_node('zxcvzxcv')
+l.read_node(6)
 
 
