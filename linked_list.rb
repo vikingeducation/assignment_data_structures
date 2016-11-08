@@ -26,20 +26,20 @@ Node = Struct.new(:word, :definition, :next)
 class LinkedList
   # has address of the first node, then methods to act on the list that connects
   # to the first node
-  attr_reader :first, :last
+  attr_reader :head, :tail, :items
 
   def initialize()
-    @first = nil
-    @last = nil
+    @head = nil
+    @tail = nil
+    @items = 0
   end
 
   def create_list(dictionary)
     # iterate over dictionary and set node for each
     dictionary.each do |word, definition|
-      node = Node.new(word, definition, first)
-      last ||= node
-      first = node
-
+      node = Node.new(word, definition, @head)
+      @tail ||= node
+      @head = node
     end
   end
 
@@ -51,19 +51,29 @@ class LinkedList
 
 # insert("giraffe", 2)
 
-  def insert(node, target_index)
+  # updating the last? inserting at the end?
+  def insert(node, target_index = nil)
+    @items += 1
     index = 0
-    target_node = first
+    target_node = @head
+    puts "index: #{index}"
+    puts "Node key: #{target_node.word}"
     while index < target_index
       previous_node = target_node
       target_node = target_node.next
+      puts "index: #{index}"
+      puts "Node key: #{target_node.word}"
       index += 1
     end
+    puts "inserting after #{previous_node.word}"
     previous_node.next = node
+    puts "inserting before #{target_node.word}"
     node.next = target_node
   end
 
+ # tail
+ #set tail.next to new_node
+ # set tail = new_node
 
-  protected
-  attr_writer :first, :last
+
 end
