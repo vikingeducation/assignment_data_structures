@@ -1,6 +1,5 @@
-
 # use a struct as node
-Node = Struct.new(:data, :next)
+Node = Struct.new(:word, :defintion, :next)
 
 # creates unordered linked-list
 class LinkedList
@@ -13,17 +12,17 @@ class LinkedList
     @last = first_node
   end
 
-  def add_first_node(data)
-    @head = Node.new(data, nil)
+  def add_first_node(word, defintion)
+    @head = Node.new(word, definition, nil)
     @last = head
   end
 
-  def add_node(data)
+  def add_node(word, definition)
     unless head
-      add_first_node(data)
+      add_first_node(word, definition)
     else
       # create node
-      new_node = Node.new(data)
+      new_node = Node.new(word, definition)
       # link new node to end of the list
       @last.next = new_node
       # set last to new node
@@ -45,8 +44,19 @@ class LinkedList
 
     # perform pointer reassignment
     next_node = current_node.next
-    current_node.next = nil         # clear pointer ??? not gc automatically?
+    current_node.next = nil
     previous_node.next = next_node
+  end
+
+  def insert_node(word, definition, insertion_point)
+    # create new node
+    new_node = Node.new(word, definition)
+    # locate index immediately before our insertion point
+    previous_node = find_node(insertion_point - 1)
+    # set new node's pointer to what previous node was pointing at
+    new_node.next = previous_node.next
+    # set previous node's pointer to new node
+    previous_node.next = new_node
   end
 
   def find_node(index)
@@ -57,10 +67,13 @@ class LinkedList
     # crawl to index position
     while current_position < index
       current_node = current_node.next
+      print "#{current_index}: #{current_node} - "
       current_position += 1
     end
 
     # return node
+    # This process's time complexity = O(n)
+    # (Traversal iterates through each node to locate your node)
     current_node
   end
 
@@ -77,26 +90,3 @@ class LinkedList
   end
 
 end
-
-
-# Build a list with an initial node
-l1 = LinkedList.new(Node.new("First node!", nil))
-## Verify that the node exists now
-l1.find_node(0)
-## Initialize another list to test our `add_new_node` method
-l2 = LinkedList.new
-l2.add_node("Other First node...")
-l2.head
-## Add some more nodes
-l1.add_node("Second Node")
-l1.add_node("Third Node")
-l1.add_node("Fourth Node")
-# Find node
-l1.find_node(3)
-
-## Double check our list
-l1.print_list
-
-## Remove a node
-l1.remove_node(2)  # "Third Node"
-l1.print_list
