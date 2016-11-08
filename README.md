@@ -37,15 +37,17 @@ Linear time O(n). Array needs to be traversed only once while using the each met
 Linear time O(n). Array needs to be traversed only once to find include?'s argument. (Constant time if value is early in array?)
 
 8. Finding the max of an array
-Linear time O(n) - traverses one through the array
 
+Linear time O(n). Traveres through the array once. 
 
 9. Splitting a String
-Linear time O(n)
 
+Linear time O(n). 
 
 10. Inserting a value to a Hash
-Contstant Time O(1) - Values can be inserted quickly if the key is known and it points to a linked list.
+
+Constant time O(1). Values can be inserted quickly if the key is known and it points to a linked list.
 
 11. Retrieving the keys of a Hash ({ foo: "bar" }.keys)
-Linear time O(n) - Requires traversing all the keys in the hash table.
+
+Linear time O(n). Requires traversing all the keys in the hash table.
