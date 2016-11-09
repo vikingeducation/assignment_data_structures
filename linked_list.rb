@@ -1,18 +1,19 @@
-Node = Struct.new(:data, :next) # data = anything, # next = Node
+Node = Struct.new(:data, :next) 
 
 class LinkedList
 
-  attr_accessor :head, :tail
+  attr_accessor :head, :tail, :length
 
   def initialize(first_node = nil)
     @head =  first_node 
     @tail = first_node 
+    @length = 0
   end
 
   def add_first_node(data)
     @head = Node.new(data, nil)
     @tail = @head 
-    puts "Added first node: #{data}"
+    @length += 1
   end
 
   def add_node(data)
@@ -22,8 +23,8 @@ class LinkedList
       new_node = Node.new(data, nil)
       @tail.next = new_node
       @tail = new_node
-      puts "Added a node: #{data}"
     end
+    @length += 1
   end
 
   def read_node(index)
@@ -54,6 +55,7 @@ class LinkedList
     node_after = node_before.next
     new_node.next = node_after
     node_before.next = new_node
+    @length += 1
     # ideally constant time o(1), 
     # in actuality o(n) because traversal is required to read
   end
@@ -66,25 +68,26 @@ class LinkedList
       @tail.next = new_node
       @tail = new_node
     end
+    @length += 1
     #o(1) constant time
   end
 
-  def reverse # 1   3 -> 4
-    previous = @head # 1
-    current = @head.next # 3
-    puts "----------------------"
-    loop do
-      following = current.next 
-      puts following
-      current.next = previous 
-      puts current
-      break if following.nil?
-      previous = current 
-      current = following 
-    end
-    @head.next = nil
-    puts "----------------------"
-  end
+  # def reverse # 1   3 -> 4
+  #   previous = @head # 1
+  #   current = @head.next # 3
+  #   puts "----------------------"
+  #   loop do
+  #     following = current.next 
+  #     puts following
+  #     current.next = previous 
+  #     puts current
+  #     break if following.nil?
+  #     previous = current 
+  #     current = following 
+  #   end
+  #   @head.next = nil
+  #   puts "----------------------"
+  # end
 
 end
 
