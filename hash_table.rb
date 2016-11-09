@@ -10,8 +10,15 @@ class HashTable
     key[0].ord - 97
   end
 
+  def load_dictionary(filepath = "5desk.txt")
+    File.readlines(filepath).each do |word|
+      word = word.strip
+      insert(word, "#{word} #{word}s")
+    end
+  end
+
   def insert(word, definition)
-    bucket_index = hash(word)
+    bucket_index = hash(word.downcase)
     unless @buckets[bucket_index]
       list = LinkedList.new
       list.add_node(word, definition)
@@ -49,6 +56,5 @@ end
 
 table = HashTable.new
 
-table.insert("meow", "Cats don't say this!")
-table.insert("mama", "She is cool I guess.")
-table.define("mama")
+table.load_dictionary
+table.define("A")
