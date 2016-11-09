@@ -13,29 +13,32 @@ class LinkedList
   def node_list
     index = 0
     reset_current_node
-    until end_of_list
+    until end_of_list?
       puts "Node #{index}: #{@current_node.data}"
       crawl
       index += 1
     end
-    puts "Node #{index}: #{@current_node.data}"
+    puts "Node #{index}: #{@current_node.data}" unless empty?
   end
 
   def add(node, index = nil)
     # Big O: O(n). Worst case is crawling to the end of list.
     reset_current_node
-    initialize(node) if @first_node == nil
-    unless index
-      @last_node.pointer = node
-      @last_node = node
+    if empty?
+      initialize(node)
     else
-      crawl(index - 1) unless index == 0
-      # point new node to next node
-      node.pointer = @current_node.pointer
-      # point current node to new node
-      @current_node.pointer = node
-      @first_node = node if index == 0 
-      @last_node = node if node.pointer.nil?
+      unless index
+        @last_node.pointer = node
+        @last_node = node
+      else
+        crawl(index - 1) unless index == 0
+        # point new node to next node
+        node.pointer = @current_node.pointer
+        # point current node to new node
+        @current_node.pointer = node
+        @first_node = node if index == 0
+        @last_node = node if node.pointer.nil?
+      end
     end
   end
 
@@ -80,15 +83,19 @@ class LinkedList
       next_node = @current_node.pointer
       @current_node.pointer = prev_node
       break if next_node.nil?
-    end 
+    end
 
     @first_node = @current_node
   end
 
   private
 
-    def end_of_list
-      @current_node.pointer == nil
+    def end_of_list?
+      empty? || @current_node.pointer.nil?
+    end
+
+    def empty?
+      @first_node.nil?
     end
 
     def reset_current_node
@@ -107,12 +114,12 @@ class LinkedList
     end
 end
 
-# l = LinkedList.new
+l = LinkedList.new
 
-# l.add(Node.new("apple",nil))
+l.add(Node.new("apple",nil))
 # l.add(Node.new("banana",nil))
 # l.add(Node.new("carrot",nil))
 # l.add(Node.new("bacon", nil), 3)
 
-# l.node_list
+l.node_list
 # puts l.last_node
