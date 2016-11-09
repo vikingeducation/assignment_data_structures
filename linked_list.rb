@@ -40,7 +40,15 @@ class LinkedList
     # Linear time O(n)
   end
 
-  def find_node(index)
+  def find_node_by_data(data)
+    current = @head
+    while current.data != data
+      current = current.next
+    end
+    current
+  end
+
+  def find_node_by_index(index)
     current = @head
     0.upto(index-1) do |i|
       current = current.next
@@ -51,13 +59,13 @@ class LinkedList
 
   def insert_node(data, index)
     new_node = Node.new(data, nil)    
-    node_before = find_node(index-1)
+    node_before = find_node_by_index(index-1)
     node_after = node_before.next
     new_node.next = node_after
     node_before.next = new_node
     @length += 1
-    # ideally constant time o(1), 
-    # in actuality o(n) because traversal is required to read
+    # Ideally constant time O(1), 
+    # Actually O(n) because traversal is required to read
   end
 
   def append_node(data) 
@@ -69,7 +77,7 @@ class LinkedList
       @tail = new_node
     end
     @length += 1
-    #o(1) constant time
+    # Constant time O(1) 
   end
 
   # def reverse # 1   3 -> 4
@@ -97,20 +105,20 @@ end
 # l.add_node("4")
 # puts "----------------------"
 # l.read_node(2)
-# # l.add_node("5")
+# l.add_node("5")
 # puts "----------------------"
-# # steps = l.read_node(3)
-# # p "Steps: #{steps}"
-# # puts "----------------------"
-# # node = l.find_node(3)
-# # p "Node: #{node}"
-# # puts "----------------------"
-# # l.insert_node("2",1)
-# # l.read_node(4)
-# # puts "----------------------"
-# # l.append_node('6')
-# # l.read_node(6)
-# # puts "----------------------"
+# steps = l.read_node(3)
+# p "Steps: #{steps}"
+# puts "----------------------"
+# node = l.find_node(3)
+# p "Node: #{node}"
+# puts "----------------------"
+# l.insert_node("2",1)
+# l.read_node(4)
+# puts "----------------------"
+# l.append_node('6')
+# l.read_node(6)
+# puts "----------------------"
 # l.reverse
 # l.read_node(6)
 # puts "----------------------"
