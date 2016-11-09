@@ -10,8 +10,8 @@ class HashTable
   end
 
   def insert(word)
-    hash = hash(word)
-    if @buckets[hash].nil?
+    hash_key = hash(word)
+    if @buckets[hash_key].nil?
       sub_list = LinkedList.new
       sub_list.add_first_node(word)
     else
