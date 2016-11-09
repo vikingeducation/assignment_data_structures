@@ -18,7 +18,7 @@ class HashTable
   def define(word)
     hashed = hash(word)
     value = @buckets[hashed].find(word) 
-    value ? value : "No definition found."
+    value || "No definition found."
   end
 
   def render_list
