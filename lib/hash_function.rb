@@ -6,26 +6,29 @@ class HashFunction
   end
 
   def our_hash(word)
-    (word.downcase.ord - 97) 
+    (word.downcase.ord - 97)
   end
 
-  def insert(word, definition = "")
+  def insert(word, definition = word)
     @buckets[our_hash(word)].add_node(Node.new(word, definition, nil))
   end
 
   def render_list
     puts "Rendering hash state"
-    @buckets.each_with_index do |list, number| 
+    @buckets.each_with_index do |list, number|
       puts "#{(number +97).chr} has #{list.length} entries"
     end
   end
 
   def define(word)
-    bucket_index = our_hash(word)
-    access_number = 0
-    until word_testing == word
-      access_list = @buckets[bucket_index].access(1)
+    return_values = @buckets[our_hash(word)].get_definition(word)
+    if return_values[0] == false
+      puts return_values[1]
+      raise "word not found"
+    else
+      puts "Your definition is: #{return_values[0]}"
+      puts "#{return_values[1]} steps to find defintion"
+      return_values[0]
+    end
   end
 end
-
-HashFunction.new.render_list

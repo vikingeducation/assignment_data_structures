@@ -36,14 +36,20 @@ class LinkedList
     current_node
   end
 
-  def get_definition
-
+  def get_definition(word)
+    counter = 0
+    while true
+      break if counter > length
+      return access(counter)[1], counter if word == access(counter)[0]
+      counter += 1
+    end
+    return false, counter
   end
 
   def length
     current_node = @head
     current_index = 0
-    until @head == nil || current_node.pointer == nil 
+    until @head == nil || current_node.pointer == nil
       @previous = current_node
       current_node = current_node.pointer
       current_index += 1
