@@ -1,3 +1,5 @@
+require 'pry'
+
 # Node Struct ->  word
 #                 definition
 #                 pointer to next node
@@ -47,6 +49,28 @@ class LinkedList
     end
   end
 
+#   def reverse
+#   # [] --> [] --> [] --> [] --> []
+#   # @head                      @tail
+
+#   # 1) @tail = @head
+#   # 2) current_node = @head
+#   # 3) target_node = current_node.next
+#   # 4) @tail.next = nil
+
+#   # until current_node.next == nil
+
+#     # 5) previous_node = current_node  
+#     # 6) current_node = target_node
+#     # 7) target_node = current_node.next
+#     # 8) current_node.next = previous_node
+
+#   # end
+
+#   # current_node.next = previous_node
+#   # @head = current_node
+# end
+
 # "cat" --> "dog" --> "egg"
 #   0          1         2
 
@@ -56,8 +80,8 @@ class LinkedList
 # insert("giraffe", 2)
 
   # updating the last? inserting at the end?
-  def insert(node, target_index = nil)
-
+  def insert(value, target_index = nil)
+    node = Node.new(value, "def", nil)
     if @items == 0
       set_initial_node(node)
     elsif target_index == 0
@@ -93,14 +117,14 @@ class LinkedList
   def find_node_and_parent(target_index)
     index = 0
     @target_node = @head
-    print_status(index)
 
     while index < target_index
+      print_status(index)
       crawl_once
       index += 1
-      print_status(index)
       break if at_tail?
     end
+    print_status(index)
   end
 
   def set_initial_node(node)
@@ -112,6 +136,48 @@ class LinkedList
     node.next = @head
     @head = node
   end
+
+  # def reverse
+  #   current_node = @head
+  #   next_node = current_node.next
+  #   @tail = @head
+  #   @tail.next = nil
+  #   until current_node.next == nil
+  #     previous_node = current_node  
+  #     current_node = next_node
+  #     next_node = current_node.next
+  #     current_node.next = previous_node
+  #   end
+  #   current_node.next = previous_node
+  #   @head = current_node    
+  # end
+
+
+# [] --> [] <-- [] <-- [] <-- []
+             # p_node   c_node  n_node
+
+
+# [] --> [] --> [] --> [] --> []
+ # @head                      @tail
+
+ # 1) current_node = @head
+ # 2) target_node = current_node.next
+ # 3) @tail = @head
+ # 4) @tail.next = nil
+
+ # until current_node.next == nil
+
+   # 5) previous_node = current_node  
+   # 6) current_node = next_node
+   # 7) next_node = current_node.next
+   # 8) current_node.next = previous_node
+
+ # end
+
+ # current_node.next = previous_node
+ # @head = current_node
+
+
 
   def set_tail_node(node)
     @tail.next = node
