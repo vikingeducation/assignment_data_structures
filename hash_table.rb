@@ -3,7 +3,7 @@ require_relative 'linked_list'
 class HashTable
 
   def initialize
-    @buckets = Array.new(25) { LinkedList.new }
+    @buckets = Array.new(26) { LinkedList.new }
   end
 
   def hash(word)
@@ -36,3 +36,4 @@ h = HashTable.new
 h.insert("all")
 puts h.define("all")
 puts h.define("some")
+h.render_list
