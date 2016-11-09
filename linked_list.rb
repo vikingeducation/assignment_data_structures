@@ -61,7 +61,7 @@ class LinkedList
     @current_node.data = data
   end
 
-  def reverse!
+  def reverse
     # Big O: O(n), goes through whole list once.
     reset_current_node
 
@@ -107,3 +107,12 @@ class LinkedList
     end
 end
 
+# l = LinkedList.new
+
+# l.add(Node.new("apple",nil))
+# l.add(Node.new("banana",nil))
+# l.add(Node.new("carrot",nil))
+# l.add(Node.new("bacon", nil), 3)
+
+# l.node_list
+# puts l.last_node
