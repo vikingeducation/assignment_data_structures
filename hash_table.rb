@@ -7,7 +7,7 @@ class HashTable
   end
 
   def hash(word)
-    first_letter = word[0].downcase   
+    first_letter = word.term[0].downcase   
     first_letter.ord - 97    
   end
 
@@ -29,17 +29,20 @@ class HashTable
     end
   end
 
-  def define(word)
-    list = @buckets[hash(word)] 
+  def define(term)
+    list = @buckets[hash(term)] 
     return "Not Found!" if list.nil?
 
+    list.find_node_by_data(term)
   end
 
 end
 
 h = HashTable.new
 
-Word = Struct.new(:word, :definition)
+Word = Struct.new(:term, :definition)
+
+h.define('bob')
 
 h.insert(Word.new('bob', 'a person named bob'))
 h.insert(Word.new('bill', 'a person named bill'))
@@ -47,3 +50,5 @@ h.insert(Word.new('charlie', 'a person named charlie'))
 h.insert(Word.new('kenny', 'a person named kenny'))
 h.insert(Word.new('pramod', 'a person named pramod'))
 h.render_list
+
+h.define('bob')
