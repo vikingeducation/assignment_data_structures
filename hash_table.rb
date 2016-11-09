@@ -1,4 +1,4 @@
-require 'linked_list'
+require './linked_list'
 
 class HashTable
   def initialize
@@ -19,8 +19,8 @@ class HashTable
     end
   end
 
-  def render_list(list)
-    list.print_list
+  def render_list()
+    self.print_list
   end
 
   def define(word)
@@ -33,4 +33,6 @@ class HashTable
 end
 
 h = HashTable.new
+p h.hash("apple")
 h.insert("Aardvark")
+#h.render_list
