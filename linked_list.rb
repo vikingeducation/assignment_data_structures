@@ -1,5 +1,5 @@
 # use a struct as node
-Node = Struct.new(:word, :defintion, :next)
+Node = Struct.new(:word, :definition, :next)
 
 # creates unordered linked-list
 class LinkedList
@@ -38,6 +38,16 @@ class LinkedList
       current_node = current_node.next
     end
     length
+  end
+
+  def each
+    return enum_for(:each) unless block_given?
+    current_node = @head
+    while current_node
+      yield current_node
+      current_node = current_node.next
+    end
+    self
   end
 
   def remove_node(index)

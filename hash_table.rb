@@ -29,17 +29,26 @@ class HashTable
   end
 
   def define(word)
-    @buckets[hash(word)]
-    # locate correct bucket
-    # if bucket empty - not found
-    # else iterate through each node
-    # searching for matching word
-    # when match found return definition
-    # if end of list - not found
+    word = word.downcase
+    bucket_content = @buckets[hash(word)]
+    if bucket_content.nil?
+      puts "Ain't got nothin' buddy-o. Be cool & try again."
+    else
+      bucket_content.each.with_index do |node, index|
+        if node.word.downcase == word
+          puts node.definition
+          puts "Steps taken: #{index + 1}"
+          return word
+        end
+      end
+      puts "Ain't got nothin' buddy-o. Be cool & try again."
+    end
   end
 
 end
 
 table = HashTable.new
 
-table.render_list
+table.insert("meow", "Cats don't say this!")
+table.insert("mama", "She is cool I guess.")
+table.define("mama")
