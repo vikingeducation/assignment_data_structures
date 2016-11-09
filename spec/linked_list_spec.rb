@@ -1,4 +1,3 @@
-
 require 'linked_list'
 
 describe LinkedList do
@@ -33,13 +32,18 @@ describe LinkedList do
     end
   end
 
-  describe '#remove_node' do
-    it 'removes the node at the given index' do
-    end
-  end
+  # describe '#remove_node' do
+  #   it 'removes the node at the given index' do
+  #   end
+  # end
 
-  describe 'Enumerable methods' do
-    it 'responds to Enumerable methods'
+  # describe 'Enumerable methods' do
+  #   it 'responds to Enumerable methods' do
+  #     Enumerable.instance_methods(false).each do |method|
+  #       expect(list.respond_to?(method)).to be true
+  #     end
+  #   end
+
   end
 
 end
