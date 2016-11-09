@@ -1,43 +1,26 @@
 require 'rspec'
 require 'hash_table'
 
-describe LinkedList do
-  let(:ll) { LinkedList.new }
-  let(:ll_noded) do
-    ln = LinkedList.new
-    ln.add_node('first',"first word")
-    ln.add_node('second',"second word")
-    ln.add_node('third',"third word")
-    ln
-  end
+describe HashTable do
+  let(:ht) { HashTable.new }
 
   describe '#new' do
-    it 'initializes as empty' do
-      expect(ll.empty?).to be true
+    it 'creates an empty buckets array' do
+      expect(ht.buckets.length).to eq(26)
     end
   end
 
-  describe '#read' do
-    it 'returns the data at a particular index in the list or nil' do
-      expect(ll_noded.read(1).definition).to eq('second word')
-      expect(ll_noded.read(4)).to be_nil
+  describe '#hash' do
+    it 'returns index number of the first letter of a word' do
+      expect(ht.hash('apple')).to eq(0)
+      expect(ht.hash('butter')).to eq(1)
     end
   end
 
-  describe '#insert_node' do
-    it 'places a node at specified index' do
-      ll_noded.insert_node(1, "random",'first and a half')
-      expect(ll_noded.read(1).definition).to eq('first and a half')
+  describe '#insert' do
+    it "adds a word onto the end of a bucket's list" do
+      ht.insert('apple', 'fruit')
+      expect(ht.buckets[0].read(0).definition).to eq('fruit')
     end
   end
-
-  describe '#reverse' do
-    it 'flips the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions' do
-      ll_noded.reverse
-      expect(ll_noded.read(0).definition).to eq("third word")
-      expect(ll_noded.read(1).definition).to eq("second word")
-      expect(ll_noded.read(2).definition).to eq('first word')
-    end
-  end
-
 end
