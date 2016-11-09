@@ -2,12 +2,12 @@ Node = Struct.new(:data, :pointer)
 
 class LinkedList
 
-  attr_reader :node_list
+  attr_reader :node_list, :first_node, :last_node
 
   def initialize(node = nil)
     @first_node = node
     @current_node = node
-    @final_node = node
+    @last_node = node
   end
 
   def node_list
@@ -22,17 +22,20 @@ class LinkedList
   end
 
   def add(node, index = nil)
+    # Big O: O(n). Worst case is crawling to the end of list.
     reset_current_node
     initialize(node) if @first_node == nil
     unless index
-      @final_node.pointer = node
-      @final_node = node
+      @last_node.pointer = node
+      @last_node = node
     else
-      crawl(index - 1)
+      crawl(index - 1) unless index == 0
       # point new node to next node
       node.pointer = @current_node.pointer
       # point current node to new node
       @current_node.pointer = node
+      @first_node = node if index == 0 
+      @last_node = node if node.pointer.nil?
     end
   end
 
@@ -50,7 +53,7 @@ class LinkedList
     end
 
     @current_node.pointer = nil
-    @final_node = @current_node
+    @last_node = @current_node
   end
 
   def update(data, index)
@@ -58,8 +61,9 @@ class LinkedList
     @current_node.data = data
   end
 
-  def reverse
-    # reset_current_node
+  def reverse!
+    # Big O: O(n), goes through whole list once.
+    reset_current_node
 
     next_node = nil
 
@@ -67,18 +71,18 @@ class LinkedList
     if @current_node == @first_node
       next_node = @current_node.pointer
       @current_node.pointer = nil
-      @current_node = @final_node
+      @last_node = @current_node
     end
 
-    begin
+    loop do
       prev_node = @current_node
       @current_node = next_node
-      p @current_node
       next_node = @current_node.pointer
       @current_node.pointer = prev_node
-    end while next_node.nil?
+      break if next_node.nil?
+    end 
 
-    @current_node = @first_node
+    @first_node = @current_node
   end
 
   private
@@ -103,17 +107,3 @@ class LinkedList
     end
 end
 
-l = LinkedList.new
-
-l.add(Node.new("apple",nil))
-l.add(Node.new("banana",nil))
-l.add(Node.new("carrot",nil))
-l.add(Node.new("bacon", nil), 1)
-l.update("carrot sticks", 3)
-
-l.node_list
-
-l.reverse
-
-puts "reversed:"
-l.node_list
