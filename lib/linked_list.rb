@@ -3,13 +3,18 @@ Node = Struct.new(:word, :definition, :next)
 
 # creates unordered linked-list
 class LinkedList
-  include Enumerable
+
   # track first & last nodes for more efficient operations
   attr_accessor :head, :last
 
   def initialize(first_node = nil)
     @head = first_node
     @last = first_node
+  end
+
+  def add_first_node(word, definition)
+    @head = Node.new(word, definition, nil)
+    @last = head
   end
 
   def add_node(word, definition)
@@ -116,12 +121,4 @@ class LinkedList
     @last = @head
     @head = previous_last
   end
-
-  private
-
-    def add_first_node(word, definition)
-      @head = Node.new(word, definition, nil)
-      @last = head
-    end
-
 end
