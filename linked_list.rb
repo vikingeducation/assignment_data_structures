@@ -73,16 +73,10 @@ class LinkedList
   def reverse
     # Big O: O(n), goes through whole list once.
     reset_current_node
-
-    next_node = nil
-
-    # first element only
-    if @current_node == @first_node
-      next_node = @current_node.pointer
-      @current_node.pointer = nil
-      @last_node = @current_node
-    end
-
+    next_node = @current_node.pointer
+    @current_node.pointer = nil
+    @last_node = @current_node
+  
     loop do
       prev_node = @current_node
       @current_node = next_node
@@ -134,9 +128,10 @@ end
 # l = LinkedList.new
 
 # l.add(Node.new("apple",nil))
-# # l.add(Node.new("banana",nil))
-# # l.add(Node.new("carrot",nil))
-# # l.add(Node.new("bacon", nil), 3)
+# l.add(Node.new("banana",nil))
+# l.add(Node.new("carrot",nil))
+# l.reverse
+# l.add(Node.new("bacon", nil), 3)
 
 # l.node_list
-# # puts l.last_node
+# puts l.last_node
