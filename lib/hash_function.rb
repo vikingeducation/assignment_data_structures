@@ -31,4 +31,15 @@ class HashFunction
       return_values[0]
     end
   end
+
+  def load_dict
+    File.readlines("dictionary.txt").each do |word|
+      insert(word, word)
+    end
+  end
 end
+
+a = HashFunction.new
+
+a.load_dict
+a.render_list
