@@ -73,10 +73,20 @@ class LinkedList
 
     loop do
       break if current_node.next.nil?
+      # puts "Trying to save this to array #{current_node.next}"
       arr << current_node.next
       current_node = current_node.next
     end
-    p arr[0]
+    current_node = @head
+    current_node.next = nil
+    counter = 1
+    while counter < (arr.length - 1)
+      current_node = arr[counter]
+      current_node.next = arr[counter - 1]
+      # break if current_node.nil?
+      counter += 1
+    end
+
   end
 
 end
@@ -93,5 +103,6 @@ l1.find_node(0)
 l1.add_node("second node")
 l1.add_node("third node")
 l1.insert("1.5 node", 0)
-#l1.print_list
+l1.print_list
 l1.reverse_list
+l1.print_list
