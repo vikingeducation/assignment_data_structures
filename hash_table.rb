@@ -16,11 +16,17 @@ class HashTable
   end
 
   def define(word)
+    hashed = hash(word)
+    value = @buckets[hashed].find(word) 
+    value ? value : "No definition found."
   end
 
   def render_list
-    @buckets.each do |bucket|
-      bucket.node_list
+    @buckets.each_with_index do |bucket, index|
+      print (index + 65).chr
+      print ": "
+      print bucket.number_of_nodes
+      puts
     end
   end
 end
@@ -28,5 +34,5 @@ end
 h = HashTable.new
 
 h.insert("all")
-
-h.render_list
+puts h.define("all")
+puts h.define("some")

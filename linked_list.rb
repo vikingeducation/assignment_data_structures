@@ -47,6 +47,12 @@ class LinkedList
     @current_node.data
   end
 
+  def find(data)
+    crawl until end_of_list? || @current_node.data == data
+    return false if @current_node.nil? || @current_node.data != data
+    @current_node.data
+  end
+
   def remove(index)
     crawl(index - 1)
 
@@ -88,6 +94,17 @@ class LinkedList
     @first_node = @current_node
   end
 
+  def number_of_nodes
+    reset_current_node
+    return 0 if empty?
+    index = 1
+    until end_of_list?
+      crawl
+      index+=1
+    end
+    index
+  end
+
   private
 
     def end_of_list?
@@ -114,12 +131,12 @@ class LinkedList
     end
 end
 
-l = LinkedList.new
+# l = LinkedList.new
 
-l.add(Node.new("apple",nil))
-# l.add(Node.new("banana",nil))
-# l.add(Node.new("carrot",nil))
-# l.add(Node.new("bacon", nil), 3)
+# l.add(Node.new("apple",nil))
+# # l.add(Node.new("banana",nil))
+# # l.add(Node.new("carrot",nil))
+# # l.add(Node.new("bacon", nil), 3)
 
-l.node_list
-# puts l.last_node
+# l.node_list
+# # puts l.last_node
