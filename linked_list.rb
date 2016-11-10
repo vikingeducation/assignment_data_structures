@@ -1,4 +1,4 @@
-Node = Struct.new(:data, :next) 
+Node = Struct.new(:term, :definition, :pointer)
 
 class LinkedList
 
@@ -7,43 +7,27 @@ class LinkedList
   def initialize(first_node = nil)
     @head =  first_node 
     @tail = first_node 
-    @length = 0
   end
 
-  def add_first_node(data)
-    @head = Node.new(data, nil)
+  def add_first_node(term, definition)
+    @head = Node.new(term, definition, nil)
     @tail = @head 
-    @length += 1
   end
 
-  def add_node(data)
+  def add_node(term, definition)
     if @head.nil?
-      add_first_node(data)
+      add_first_node(term, definition)
     else
-      new_node = Node.new(data, nil)
-      @tail.next = new_node
+      new_node = Node.new(term, definition, nil)
+      @tail.pointer = new_node
       @tail = new_node
     end
-    @length += 1
   end
 
-  def read_node(index)
+  def find_node_by_term(term)
     current = @head
-    step = 0
-    0.upto(index) do |i| 
-      step += 1
-      puts "At node #{i}, data is: #{current.data}"
-      current = current.next
-      break if current.nil?
-    end
-    step
-    # Linear time O(n)
-  end
-
-  def find_node_by_data(data)
-    current = @head
-    while current.data != data
-      current = current.next
+    while current.term != term
+      current = current.pointer
     end
     current
   end
@@ -51,75 +35,56 @@ class LinkedList
   def find_node_by_index(index)
     current = @head
     0.upto(index-1) do |i|
-      current = current.next
+      current = current.pointer
     end
     current
     # Linear time O(n)
   end
 
-  def insert_node(data, index)
-    new_node = Node.new(data, nil)    
+  def insert_node(term, definition, index)
+    new_node = Node.new(term, definition, nil)    
     node_before = find_node_by_index(index-1)
-    node_after = node_before.next
-    new_node.next = node_after
-    node_before.next = new_node
-    @length += 1
+    node_after = node_before.pointer
+    new_node.pointer = node_after
+    node_before.pointer = new_node
     # Ideally constant time O(1), 
     # Actually O(n) because traversal is required to read
   end
 
-  def append_node(data) 
+  def append_node(term, definition) 
     if @head.nil?
-      add_first_node(data)
+      add_first_node(term, definition)
     else
-      new_node = Node.new(data, nil)
-      @tail.next = new_node
+      new_node = Node.new(term, definition, nil)
+      @tail.pointer = new_node
       @tail = new_node
     end
-    @length += 1
     # Constant time O(1) 
   end
 
-  # def reverse # 1   3 -> 4
-  #   previous = @head # 1
-  #   current = @head.next # 3
-  #   puts "----------------------"
-  #   loop do
-  #     following = current.next 
-  #     puts following
-  #     current.next = previous 
-  #     puts current
-  #     break if following.nil?
-  #     previous = current 
-  #     current = following 
+  # def reverse
+  #   unless @head
+  #     puts "Nothing to reverse."
   #   end
-  #   @head.next = nil
-  #   puts "----------------------"
+  #   prev = @head
+  #   curr = @head.pointer
   # end
 
-end
+  def print_nodes
+    unless @head
+      puts "No nodes to print."
+      return
+    end
+    current = @head
+    step = 0
+    until current.nil? do 
+      step += 1
+      puts "At node #{step}, term is \"#{current.term}\", definition is \"#{current.definition}\""
+      current = current.pointer
+    end
+    step
+    # Linear time O(n)
+  end
 
-# l = LinkedList.new
-# l.add_node("1")
-# l.add_node("3")
-# l.add_node("4")
-# puts "----------------------"
-# l.read_node(2)
-# l.add_node("5")
-# puts "----------------------"
-# steps = l.read_node(3)
-# p "Steps: #{steps}"
-# puts "----------------------"
-# node = l.find_node(3)
-# p "Node: #{node}"
-# puts "----------------------"
-# l.insert_node("2",1)
-# l.read_node(4)
-# puts "----------------------"
-# l.append_node('6')
-# l.read_node(6)
-# puts "----------------------"
-# l.reverse
-# l.read_node(6)
-# puts "----------------------"
+end
 
