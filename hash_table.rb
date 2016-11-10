@@ -7,48 +7,37 @@ class HashTable
   end
 
   def hash(word)
-    first_letter = word.term[0].downcase   
+    first_letter = word[0].downcase  
     first_letter.ord - 97    
   end
 
-  def insert(word)    
-    if @buckets[hash(word)]
-      @buckets[hash(word)].append_node(word)
+  def insert(word, definition)    
+    if @buckets[hash(word)] # exits
+      @buckets[hash(word)].append_node(word, definition)
     else
       @buckets[hash(word)] = LinkedList.new
-      @buckets[hash(word)].add_first_node(word)
+      @buckets[hash(word)].add_first_node(word, definition)
     end
   end
 
   def render_list
     @buckets.each_with_index do |bucket, index|
-      next if bucket.nil?
+      next if bucket.nil? # bucket doesn't have linked list
       puts "Bucket #{index} content:"
-      bucket.read_node(bucket.length-1)
-      puts
+      bucket.print_nodes
     end
+    nil
   end
 
-  def define(term)
-    list = @buckets[hash(term)] 
-    return "Not Found!" if list.nil?
-
-    list.find_node_by_data(term)
+  def define(word)
+    location = hash(word)
+    node = @buckets[location].find_node_by_word(word) || nil
+    if node.nil? 
+      "Definition for #{word} not found. Sorry!"
+    else
+      node.definition
+    end
   end
 
 end
 
-h = HashTable.new
-
-Word = Struct.new(:term, :definition)
-
-h.define('bob')
-
-h.insert(Word.new('bob', 'a person named bob'))
-h.insert(Word.new('bill', 'a person named bill'))
-h.insert(Word.new('charlie', 'a person named charlie'))
-h.insert(Word.new('kenny', 'a person named kenny'))
-h.insert(Word.new('pramod', 'a person named pramod'))
-h.render_list
-
-h.define('bob')

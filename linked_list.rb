@@ -1,4 +1,4 @@
-Node = Struct.new(:term, :definition, :pointer)
+Node = Struct.new(:word, :definition, :pointer)
 
 class LinkedList
 
@@ -9,27 +9,28 @@ class LinkedList
     @tail = first_node 
   end
 
-  def add_first_node(term, definition)
-    @head = Node.new(term, definition, nil)
+  def add_first_node(word, definition)
+    @head = Node.new(word, definition, nil)
     @tail = @head 
   end
 
-  def add_node(term, definition)
+  def add_node(word, definition)
     if @head.nil?
-      add_first_node(term, definition)
+      add_first_node(word, definition)
     else
-      new_node = Node.new(term, definition, nil)
+      new_node = Node.new(word, definition, nil)
       @tail.pointer = new_node
       @tail = new_node
     end
   end
 
-  def find_node_by_term(term)
+  def find_node_by_word(word)
     current = @head
-    while current.term != term
+    while current.pointer
       current = current.pointer
+      return current if current.word == word
     end
-    current
+    nil
   end
 
   def find_node_by_index(index)
@@ -41,8 +42,8 @@ class LinkedList
     # Linear time O(n)
   end
 
-  def insert_node(term, definition, index)
-    new_node = Node.new(term, definition, nil)    
+  def insert_node(word, definition, index)
+    new_node = Node.new(word, definition, nil)    
     node_before = find_node_by_index(index-1)
     node_after = node_before.pointer
     new_node.pointer = node_after
@@ -51,11 +52,11 @@ class LinkedList
     # Actually O(n) because traversal is required to read
   end
 
-  def append_node(term, definition) 
+  def append_node(word, definition) 
     if @head.nil?
-      add_first_node(term, definition)
+      add_first_node(word, definition)
     else
-      new_node = Node.new(term, definition, nil)
+      new_node = Node.new(word, definition, nil)
       @tail.pointer = new_node
       @tail = new_node
     end
@@ -79,7 +80,7 @@ class LinkedList
     step = 0
     until current.nil? do 
       step += 1
-      puts "At node #{step}, term is \"#{current.term}\", definition is \"#{current.definition}\""
+      puts "At node #{step}, word is \"#{current.word}\", definition is \"#{current.definition}\""
       current = current.pointer
     end
     step
