@@ -29,12 +29,12 @@ class HashTable
     end
   end
 
-  def define(term)
-    list = @buckets[hash(term)] 
-    return "Not Found!" if list.nil?
+  # def define(term)
+  #   list = @buckets[hash(term)] 
+  #   return "Not Found!" if list.nil?
 
-    list.find_node_by_data(term)
-  end
+  #   list.find_node_by_data(term)
+  # end
 
 end
 
@@ -42,7 +42,7 @@ h = HashTable.new
 
 Word = Struct.new(:term, :definition)
 
-h.define('bob')
+
 
 h.insert(Word.new('bob', 'a person named bob'))
 h.insert(Word.new('bill', 'a person named bill'))
@@ -51,4 +51,3 @@ h.insert(Word.new('kenny', 'a person named kenny'))
 h.insert(Word.new('pramod', 'a person named pramod'))
 h.render_list
 
-h.define('bob')
