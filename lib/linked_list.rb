@@ -26,9 +26,9 @@ class LinkedList
 
   def find_node_by_word(word)
     current = @head
-    while current.pointer
-      current = current.pointer
+    while current
       return current if current.word == word
+      current = current.pointer
     end
     nil
   end

@@ -12,7 +12,7 @@ class HashTable
   end
 
   def insert(word, definition)    
-    if @buckets[hash(word)] # exits
+    if @buckets[hash(word)] # exists
       @buckets[hash(word)].append_node(word, definition)
     else
       @buckets[hash(word)] = LinkedList.new
@@ -31,7 +31,7 @@ class HashTable
 
   def define(word)
     location = hash(word)
-    node = @buckets[location].find_node_by_word(word) || nil
+    node = @buckets[location].find_node_by_word(word)
     if node.nil? 
       "Definition for #{word} not found. Sorry!"
     else
