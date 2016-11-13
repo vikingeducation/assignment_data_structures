@@ -27,12 +27,16 @@ class Stack
     popped_array = Array.new(@array.length - 1)
 
     index = 0
+    popped_element = @array[-1]
 
     while index < @array.length - 1
       popped_array[index] = @array[index]
       index += 1
     end
+
     @array = popped_array
+
+    popped_element
   end
 
   def push(elem)
