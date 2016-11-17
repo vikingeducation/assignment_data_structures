@@ -1,0 +1,11 @@
+bundle init
+subl Gemflie
+  gem 'rspec'
+  gem 'guard-rspec'
+bundle install
+rspec --init
+subl .rspec
+  --format doc
+guard init rspec
+Guardfile 
+  watch(%r{^lib/(.+)\.rb$}) { |m| "spec/#{ m[1] }_spec.rb" }
