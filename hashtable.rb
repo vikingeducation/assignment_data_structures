@@ -10,14 +10,13 @@ class Hashtable
     word[0].upcase.ord - 65
   end
 
-
   def insert_word(word, definition)
     @buckets[hash(word)] = LinkedList.new if @buckets[hash(word)].nil?
     @buckets[hash(word)].add_node(word, definition)
   end
 
   def render_list
-    @buckets.each do |list|
+    @buckets.each_with_index do |list|
       list.print_nodes
     end
   end
@@ -25,7 +24,7 @@ class Hashtable
   def define(term)
     #O(n)
     now = Time.new
-    list = @buckets[hash(term)].first
+    list = @buckets[hash(term)].head
     steps = 1
     while list.next
       if list.word.downcase == term.downcase
@@ -43,11 +42,13 @@ class Hashtable
     puts "Loading dictionary..."
     now = Time.new
     File.readlines(file_path).each do |word|
-      w = word.strip
-      insert_word(w, "#{w}")
+      insert_word(word.strip, "#{word}")
     end
     puts "...Dictionary loaded!"
     puts "[Dictionary loaded in #{Time.new - now}s]"
     puts
   end
 end
+
+a = Hashtable.new
+a.define('aarhus')

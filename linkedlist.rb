@@ -1,31 +1,31 @@
 Node = Struct.new(:word, :definition, :next)
 
 class LinkedList
-  attr_accessor :first
+  attr_accessor :head
 
   def initialize(first = nil)
-    @first = first
-    @last = first
+    @head = first
+    @tail = first
   end
 
   def add_first(word, definition)
-    @first = Node.new(word, definition)
-    @last = @first
+    @head = Node.new(word, definition)
+    @tail = @head
   end
 
   def add_node(word, definition)
-    if @first.nil?
+    if @head.nil?
       add_first(word, definition)
     else
       new_node = Node.new(word, definition)
-      @last.next = new_node
-      @last = new_node
+      @tail.next = new_node
+      @tail = new_node
     end
   end
 
   def get_node_at(i)
     # O(n), linear time.
-    current = @first
+    current = @head
     prev = nil
     j = 0
     while j < i
@@ -38,7 +38,7 @@ class LinkedList
 
   def read_node(i)
     if i == 0
-      current = @first
+      current = @head
     else
       nodes = get_node_at(i)
       current = nodes[0]
@@ -57,7 +57,7 @@ class LinkedList
 
   def reverse
     # O(n), linear time because it iterates through each node in linked list
-    current = @first
+    current = @head
     prev = nil
     until current.next.nil?
       next_node = current.next
@@ -65,12 +65,12 @@ class LinkedList
       prev = current
       current = next_node
     end
-    @last.next = prev
-    @first, @last = @last, @first
+    @tail.next = prev
+    @head, @tail = @tail, @head
   end
 
   def print_nodes
-    current = @first
+    current = @head
     i = 0
     until current.nil?
       puts "Node #{i}: #{current.word}"

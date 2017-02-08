@@ -4,21 +4,22 @@ class Queue
   end
 
   def enqueue(el)
-    new_size = @stack.size + 1
-    new_stack = Array.new(new_size)
-    new_stack[0] = el
-    @stack.size.times do |i|
-      new_stack[i+1] = @stack[i]
+    @stack[@stack.size] = nil
+    (@stack.size-1).downto(1) do |i|
+      @stack[i] = @stack[i-1]
     end
-    @stack = new_stack
+    @stack[0] = el
+    @stack
   end
 
   def dequeue
-    new_stack = Array.new(@stack.size - 1)
-    for i in 1...@stack.size
-      new_stack[i-1] = @stack[i]
+    return nil if @stack.empty?
+    first = @stack[0]
+    (0...@stack.size).each do |i|
+      @stack[i] = @stack[i+1] if @stack[i+1]
     end
-    @stack = new_stack
+    @stack = @stack.slice(0...@stack.size-1)
+    first
   end
 
   def empty?
