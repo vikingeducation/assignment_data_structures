@@ -5,10 +5,9 @@ class Stack
   end
 
   def pop
-    str2 = ""
+    return nil if @str.empty?
     last_item = @str[@str.length - 1]
-    (@str.length - 1).times { |i| str2[i] = @str[i] }
-    @str = str2
+    @str[@str.length - 1] = ""
     last_item
   end
 
@@ -22,7 +21,7 @@ class Stack
   end
 
   def empty?
-    @str[0] == nil
+    @str.length == 0
   end
 
 end

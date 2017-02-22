@@ -6,18 +6,15 @@ class Queue
   end
 
   def enqueue(letter)
-    str2 = letter
-    (@str.length).times {|i| str2 += @str[i]}
-    @str = str2
+    @str = @str + letter
     @str
   end
 
   def dequeue
-    last_item = @str[@str.length - 1]
-    str2 = ""
-    (@str.length - 1).times { |i| str2[i] = @str[i] }
-    @str = str2
-    last_item
+    return nil if @str.empty?
+    first_item = @str[0]
+    @str[0] = nil
+    first_item
   end
 
   def peek

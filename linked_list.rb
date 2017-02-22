@@ -1,16 +1,16 @@
 Node = Struct.new(:word, :def, :next)
 
 class LinkedList
-  attr_accessor :head, :last
+  attr_accessor :head, :tail
 
   def initialize(first_node = nil)
     @head = first_node
-    @last = first_node
+    @tail = first_node
   end
 
   def add_first_node(word, definition = nil)
     @head = Node.new(word, definition, nil)
-    @last = @head
+    @tail = @head
   end
 
   def add_node(word, definition = nil)
@@ -18,8 +18,8 @@ class LinkedList
       add_first_node(word, definition)
     else
       new_node = Node.new(word, definition, nil)
-      @last.next = new_node
-      @last = new_node
+      @tail.next = new_node
+      @tail = new_node
     end
   end
 
@@ -59,7 +59,7 @@ class LinkedList
       stack << current_node
       current_node = current_node.next
     end
-    stack << @last
+    stack << @tail
     return stack
   end
 
@@ -71,7 +71,7 @@ class LinkedList
       current_node = current_node.next
       if stack.size == 0
         current_node.next = nil
-        @last = current_node
+        @tail = current_node
       end
     end
     new_head
