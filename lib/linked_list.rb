@@ -75,4 +75,14 @@ class LinkedList
     LinkedList.new(acc)
   end
 
+  def length
+    lst, acc = self, 0
+    while lst != nil
+      break if lst.first.nil?
+      acc += 1
+      lst = lst.rest
+    end
+    acc
+  end
+
 end

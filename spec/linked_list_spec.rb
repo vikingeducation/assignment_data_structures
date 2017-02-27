@@ -86,4 +86,14 @@ describe LinkedList do
     end
   end
 
+  describe "#length" do
+    it "returns the number of items" do
+      expect(LinkedList.list(1, 2, 3, 4).length).to eq(4)
+    end
+
+    it "returns 0 if the list is empty" do
+      expect(LinkedList.new.length).to eq(0)
+    end
+  end
+
 end
