@@ -1,15 +1,14 @@
-
-# Stack class which implements methods to push, pop, and peek at the top item.
-# Add an empty? helper.
-# Verify that you can reverse a string with your stack:
-class Stack
+# Class which implements the methods enqueue, dequeue and peek.
+# Add methods for empty?
+# Verify that you can load and unload a string in the same order with your queue.
+class Queue
   attr_accessor :arr
 
   def initialize(arr)
     @arr = arr
   end
 
-  def push(elem)
+  def enqueue(elem)
 
     len = @arr.length
 
@@ -24,17 +23,18 @@ class Stack
 
   end
 
-  def pop
+  def dequeue
     len = @arr.length
 
     new_arr = Array.new(len-1)
     
-    counter = 0
+    item = @arr[0]
+    counter = 1
     while counter < len-1
-      new_arr[counter] = arr[counter]
+      new_arr[counter-1] = arr[counter]
       counter += 1
     end
-    @arr[len-1]
+    item
   end
 
   def peek(index = 0)
