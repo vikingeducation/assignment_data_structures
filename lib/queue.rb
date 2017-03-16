@@ -9,31 +9,26 @@ class Queue
   end
 
   def enqueue(elem)
-
-    len = @arr.length
-
-    new_arr = Array.new(len+1)
-    
-    counter = 0
-    while counter < len
-      new_arr[counter] = arr[counter]
-      counter += 1
+    if empty?
+      @arr << elem
+    else
+      @arr[@arr.length] = elem
     end
-    new_arr[len] = elem
-
+    @arr
   end
 
   def dequeue
     len = @arr.length
 
-    new_arr = Array.new(len-1)
+    new_arr = Array.new
     
     item = @arr[0]
     counter = 1
-    while counter < len-1
-      new_arr[counter-1] = arr[counter]
+    while counter <= len-1
+      new_arr[counter-1] = @arr[counter]
       counter += 1
     end
+    @arr = new_arr
     item
   end
 
@@ -44,6 +39,4 @@ class Queue
   def empty?
     @arr.length == 0 
   end
-
-
 end
