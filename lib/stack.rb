@@ -9,41 +9,46 @@ class Stack
     @arr = arr
   end
 
+
+
   def push(elem)
-
-    len = @arr.length
-
-    new_arr = Array.new(len+1)
-    
-    counter = 0
-    while counter < len
-      new_arr[counter] = arr[counter]
-      counter += 1
+    if empty?
+      @arr << elem
+    else
+      @arr[@arr.length] = elem
     end
-    new_arr[len] = elem
-
+    @arr
   end
+
+
 
   def pop
-    len = @arr.length
 
-    new_arr = Array.new(len-1)
-    
-    counter = 0
-    while counter < len-1
-      new_arr[counter] = arr[counter]
-      counter += 1
+    if empty?
+      nil
+    else
+      len = @arr.length
+
+      last_item = @arr[len-1]
+      new_arr = Array.new
+      
+      counter = 0
+      while counter < len-1
+        new_arr << arr[counter]
+        counter += 1
+      end
+      @arr = new_arr
+      last_item
     end
-    @arr[len-1]
   end
+
 
   def peek(index = 0)
     @arr[index]
   end
 
+
   def empty?
     @arr.length == 0 
   end
-
-
 end

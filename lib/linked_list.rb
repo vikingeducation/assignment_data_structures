@@ -8,7 +8,7 @@
 Node = Struct.new(:data, :next)
 
 class LinkedList
-attr_accessor :head, :last
+attr_accessor :head, :last, :list
 
  # Allow initializing the list with a first node
   def initialize(first_node = nil)
@@ -111,4 +111,4 @@ attr_accessor :head, :last
     @head = prev
     list
   end
-
+end
