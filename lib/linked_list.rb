@@ -5,10 +5,11 @@
 # Read nodes at a particular index (add a printout which tracks the crawler's progress or at least returns the number of steps). In the comments, state the Big-O time of this operation.
 # Insert nodes at a particular index or, separately, at the end of the list (so store a reference to the last node). In the comments, state the Big-O time of this operation.
 # Build a method #reverse on your LinkedList class that will entirely flip the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions.
-Node = Struct.new(:data, :next)
+Node = Struct.new(:word, :defn, :next)
 
 class LinkedList
-attr_accessor :head, :last, :list
+
+attr_accessor :head, :last
 
  # Allow initializing the list with a first node
   def initialize(first_node = nil)
@@ -17,26 +18,26 @@ attr_accessor :head, :last, :list
   end
 
   # To add the first node
-  def add_first_node(data)
-    @head = Node.new(data, nil)
+  def add_first_node(word, defn)
+    @head = Node.new(word, defn, nil)
     @last = @head
   end
 
 
    # Add a node to the end of the list - Big-O is O(1)
-  def add_node(data)
+  def add_node(word, defn)
     # change tactics if we're adding the first node
     if @head.nil?
-      add_first_node(data)
+      add_first_node(word, defn)
     else
-      new_node = Node.new(data)
+      new_node = Node.new(word, defn)
       # point the last node to our new one
       @last.next = new_node
 
       # set our new node as the official last node
       @last = new_node
     end
-      puts "Added node with value: #{data}"
+      puts "Added node with value: #{word}"
   end
 
    # Return the node at that position, like in an array - Big-O is O(n)
@@ -52,16 +53,18 @@ attr_accessor :head, :last, :list
       counter += 1
     end
 
-    puts "Found node at index #{index} with value: #{current_node.data}"
+    puts "Found node at index #{index} with value: #{current_node.word}"
     current_node
   end
 
    # Prints the list - Big-O is O(n)
   def print_list
+    # return nil if list.nil?
     counter = 0
     current_node = @head
+
     loop do
-      puts "Node at index #{counter}: #{current_node.data}"
+      puts "Node at index #{counter}: #{current_node.word}"
       break if current_node.next.nil?
       current_node = current_node.next
       counter += 1
@@ -91,13 +94,13 @@ attr_accessor :head, :last, :list
 
 # Flip the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions.
 # - Big-O is O(n)
-  def reverse(list)
-    return nil if list.nil?
+  def reverse
+    # return nil if list.nil?
     prev = nil
 
     # Store the last node as the head node
-    @last = list.@head
-    curr = list.@head
+    @last = @head
+    curr = @head
 
     while(curr != nil)
       # Swap the current node with the previous node until you reach the end of the list and there is no pointer to the next node
@@ -109,6 +112,5 @@ attr_accessor :head, :last, :list
      # Store the original first node as the tail/last node
     # list.@head = prev
     @head = prev
-    list
   end
 end

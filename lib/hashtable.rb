@@ -26,7 +26,7 @@ class HashTable
 
 
   def hash(word)
-    code = word[0].ord
+    code = word[0].upcase.ord - 65
   end
 
   def insert(key, word)
