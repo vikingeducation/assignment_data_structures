@@ -10,14 +10,14 @@ class DictionaryUI
 
   def initialize
     @dictionaryL = DictionaryLoader.new
-    @dictionaryS = DictionarySearcher.new
-    @results_saver = ResultsSaver.new
+    # @dictionaryS = DictionarySearcher.new
+    # @results_saver = ResultsSaver.new
   end
 
   def run
     get_dictionary
-    search_dictionary
-    process_save
+    # search_dictionary
+    # process_save
   end
 
   def get_dictionary
@@ -63,46 +63,7 @@ class DictionaryUI
     @dictionaryS.output_matches
   end
 
-  def request_save
-    puts "Do you want to save results? y/n? 'q' quits."
-    gets.chomp
-  end
-
-  def process_save
-    
-    save_file = request_save
-
-    if(save_file == "y")
-      puts "What filepath should we write results to?"
-      save_filepath = gets.chomp
-       
-      # Should we overwrite? 
-      if File.file?(save_filepath)
-        puts "That file exists, overwrite? y/n? 'q' quits."
-        overwrite = gets.chomp 
-        overwrite_process(overwrite, save_filepath)
-      else
-        @results_saver.save(@dictionaryS.words_found, save_filepath)
-        puts "File saved"
-      end
-    elsif(save_file == "q")
-        quit
-    elsif (save_file == "n")
-      puts "You chose not to save"
-    end
-  end
-
-  def overwrite_process(overwrite, save_filepath)
-    if(overwrite == "y")       
-      @results_saver.save(@dictionaryS.words_found, save_filepath)
-      puts "File successfully overwritten!"
-    elsif(overwrite == "n")  
-      puts "Choose another filepath"
-      save_filepath = gets.chomp     
-      @results_saver.save(@dictionaryS.words_found, save_filepath) 
-      puts "File saved"
-    end     
-  end
+ 
 
   def quit
     puts "Goodbye! See you next time!"

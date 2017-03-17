@@ -53,7 +53,7 @@ attr_accessor :head, :last
       counter += 1
     end
 
-    puts "Found node at index #{index} with value: #{current_node.word}"
+    puts "Found node at index #{index} with value: #{current_node.word} and definition #{current_node.defn}"
     current_node
   end
 
@@ -69,33 +69,13 @@ attr_accessor :head, :last
       current_node = current_node.next
       counter += 1
     end
+    puts "Size is #{counter}"
   end
 
-
-# previous
-# ↓
-# nil    12 -> 99 -> 37 -> nil
-#        ^
-
-#        previous
-#        ↓ 
-# nil <- 12       99 -> 37 -> nil
-#                 ^
-
-#              previous
-#              ↓
-# nil <- 12 <- 99       37 -> nil
-#                       ^         
-
-# nil <- 12 <- 99 <- 37 
-
-# 1 -> 2 -> 3 -> 4
-                   # ^   
 
 # Flip the order of this list, so the "head" and the "tail" are swapped and all the links point in opposite directions.
 # - Big-O is O(n)
   def reverse
-    # return nil if list.nil?
     prev = nil
 
     # Store the last node as the head node
