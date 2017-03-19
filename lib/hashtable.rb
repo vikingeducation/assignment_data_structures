@@ -32,29 +32,35 @@ class HashTable
   end
 
   def render_list
-    @buckets.each_with_index do |sub_list|
-      sub_list.print_list
+    @buckets.each_with_index do |sub_list, i|
+      if sub_list
+        sub_list.print_list
+      end
     end
   end
 
   def define(word)
     hash_loc = hash(word)
     steps = 0
-    if(@buckets.include?(hash_loc))
-      ll = @buckets[hash_loc]
+    ll = @buckets[hash_loc]
+    len = ll.size
 
-      while(ll.next?)
-        if (ll.word.upcase == word.upcase)
-          steps += 1
-          puts "The definition of #{word} is #{ll.defn}"
-          break
-        else
-          ll.next
-          steps += 1
-        end
-      end
-    else
+    puts "size of linked list is #{len}"
+
+    if(ll.nil?)
       puts "Word: #{word} not found in dictionary"
+    else
+      len.times do |index|
+        steps += 1
+        result = ll.find_node(index)
+        if (result.word == word)
+          puts "The definition of #{word} is #{result.defn}"
+          break
+        # else
+        #   ll.next
+        #   steps += 1
+        # end
+      end
     end
     puts "It took #{steps} steps to run."
   end
@@ -62,14 +68,17 @@ class HashTable
 
 private
 
-# test this separately
-
   def insert(key, word, defn)
-    if(@buckets.include?(key))
-      @buckets[key] += add_node(word, defn)
-    else
+    if(@buckets[key].nil?)
       ll = LinkedList.new
-      @buckets[key] = ll.add_node(word, defn)
+      ll.add_node(word, defn)
+      @buckets[key] = ll
+      puts "The value of this array bucket is new ll: #{key} is #{@buckets[key]}"
+    else
+      ll = @buckets[key]
+      ll.add_node(word, defn)
+      @buckets[key] = ll
+      puts "The value of this array bucket #{key} is #{@buckets[key]}"
     end
   end
 

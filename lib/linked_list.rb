@@ -9,7 +9,7 @@ Node = Struct.new(:word, :defn, :next)
 
 class LinkedList
 
-attr_accessor :head, :last
+attr_accessor :head, :last, :size
 
  # Allow initializing the list with a first node
   def initialize(first_node = nil)
@@ -37,7 +37,7 @@ attr_accessor :head, :last
       # set our new node as the official last node
       @last = new_node
     end
-      puts "Added node with value: #{word}"
+      # puts "Added node with value: #{word}"
   end
 
    # Return the node at that position, like in an array - Big-O is O(n)
@@ -69,6 +69,7 @@ attr_accessor :head, :last
       current_node = current_node.next
       counter += 1
     end
+    @size = counter
     puts "Size is #{counter}"
   end
 

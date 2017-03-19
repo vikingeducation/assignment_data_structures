@@ -1,23 +1,17 @@
 # DictionaryUI is the main class which handles the user interaction loop.
 
 require_relative 'dictionary_loader'
-require_relative 'dictionary_searcher'
-require_relative 'results_saver'
 
 class DictionaryUI
 
-  attr_accessor :dictionaryL, :dictionaryS, :results_saver, :dictionary
+  attr_accessor :dictionaryL, :dictionary
 
   def initialize
     @dictionaryL = DictionaryLoader.new
-    # @dictionaryS = DictionarySearcher.new
-    # @results_saver = ResultsSaver.new
   end
 
   def run
     get_dictionary
-    # search_dictionary
-    # process_save
   end
 
   def get_dictionary
@@ -34,34 +28,34 @@ class DictionaryUI
     @dictionary = @dictionaryL.dict_file
   end
 
-  def search_instructions
-    puts "*******************"
-    puts "What kind of search?"
-    puts "1. Exact matches"
-    puts "2. Partial matches"
-    puts "3. Begins With"
-    puts "4. Ends With"
-  end
+  # def search_instructions
+  #   puts "*******************"
+  #   puts "What kind of search?"
+  #   puts "1. Exact matches"
+  #   puts "2. Partial matches"
+  #   puts "3. Begins With"
+  #   puts "4. Ends With"
+  # end
 
-  def search_dictionary
+  # def search_dictionary
 
-    search_instructions
-    search_method = gets.chomp
+  #   search_instructions
+  #   search_method = gets.chomp
 
-    until search_method == "1" || search_method == "2" ||search_method == "3" || search_method == "4"
-      puts 'Search method not valid, please specify your search method again'
-      search_method = gets.chomp
-    end
+  #   until search_method == "1" || search_method == "2" ||search_method == "3" || search_method == "4"
+  #     puts 'Search method not valid, please specify your search method again'
+  #     search_method = gets.chomp
+  #   end
 
-    search_method = search_method.to_i
+  #   search_method = search_method.to_i
 
-    puts "Enter the search term"
-    search_term = gets.chomp
+  #   puts "Enter the search term"
+  #   search_term = gets.chomp
 
-    @dictionaryS.search(search_method, search_term, @dictionary.words
-      )
-    @dictionaryS.output_matches
-  end
+  #   @dictionaryS.search(search_method, search_term, @dictionary.words
+  #     )
+  #   @dictionaryS.output_matches
+  # end
 
  
 
