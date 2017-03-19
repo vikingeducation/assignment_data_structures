@@ -39,6 +39,13 @@ class Stack
 
   end
 
+  def peek
+  	return "empty" if empty?
+
+  	puts @stack[@stack.length-1]
+  	
+  end
+
 	def empty?
     #checks if array is empty
 		@stack.length == 0
