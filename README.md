@@ -61,5 +61,5 @@ Run the Hashtable class
 - Load the dictionary and generate the codes
 ht.generate_codes
 
- - Following this you can search the dictionary for definition or print the list
+ - Following this you can search the dictionary for a definition or print the list
 
