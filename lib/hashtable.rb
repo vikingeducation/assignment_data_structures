@@ -3,14 +3,6 @@ require_relative 'linked_list.rb'
 
 class HashTable
 
-
-  # Hash function to index into an array
-  # - sum value of each letter - sum of value of all letters and modulo - .ord of the value of letter better than first letter of string
-  # e.g. use the first letter of the string to help to index into the array
-  # Use the returned number - key - use that index into array and then have linked list to store the info into the right bucket
-
-  # linked list stored into the array
-
   attr_accessor :buckets, :dictionary_arr
 
   def initialize
@@ -44,8 +36,7 @@ class HashTable
     steps = 0
     ll = @buckets[hash_loc]
     len = ll.size
-
-    puts "size of linked list is #{len}"
+    found = false
 
     if(ll.nil?)
       puts "Word: #{word} not found in dictionary"
@@ -54,13 +45,15 @@ class HashTable
         steps += 1
         result = ll.find_node(index)
         if (result.word == word)
-          puts "The definition of #{word} is #{result.defn}"
+          puts "The definition of #{word} is: #{result.defn}"
+          found = true
           break
-        # else
-        #   ll.next
-        #   steps += 1
-        # end
+        end
       end
+    end
+
+    if !(found)
+      puts "Word: #{word} not found in dictionary"
     end
     puts "It took #{steps} steps to run."
   end

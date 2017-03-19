@@ -8,7 +8,6 @@ class DictionaryLoader
   def load(file_path)
     dict_arr = read_file(file_path)
     @dict_file = Dictionary.new(dict_arr)
-    # output_dict_loaded
   end
 
   def read_file(file_path)
@@ -18,7 +17,6 @@ class DictionaryLoader
     end
     arr
   end
-
 end
 
 

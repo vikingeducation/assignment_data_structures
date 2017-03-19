@@ -45,3 +45,21 @@ Worst case in o(n)
 
 ** Retrieving the keys of a Hash ({ foo: "bar" }.keys)
 O(n), as you have to retrieve each key to be able to retrieve them as a collection
+
+*********************************************
+
+Run the Hashtable class
+
+# load 'hashtable.rb'
+
+# Create a new has table 
+# ht = HashTable.new
+
+# Following the prompt to ask where the dictionary file is, type the following
+../5desk.txt
+
+# Load the dictionary and generate the codes
+ht.generate_codes
+
+#Following this you can search the dictionary for definition or print the list
+ 

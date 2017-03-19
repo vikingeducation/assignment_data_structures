@@ -52,8 +52,6 @@ attr_accessor :head, :last, :size
       current_node = current_node.next
       counter += 1
     end
-
-    puts "Found node at index #{index} with value: #{current_node.word} and definition #{current_node.defn}"
     current_node
   end
 
@@ -91,7 +89,6 @@ attr_accessor :head, :last, :size
       curr = next_node
     end
      # Store the original first node as the tail/last node
-    # list.@head = prev
     @head = prev
   end
 end
