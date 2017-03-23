@@ -105,22 +105,22 @@ describe LinkedList do
     end
 
     it "sets the tail as the head" do 
-      list.reverse
+      list.reverse(list.head)
       expect(list.head.word).to eq("cat")          
     end
 
     it "sets the head as the tail" do 
-      list.reverse
+      list.reverse(list.head)
       expect(list.last_node.word).to eq("dog")      
     end
 
     it "points the new head to the 2nd last node" do 
-      list.reverse
+      list.reverse(list.head)
       expect(list.head.next_node.word).to eq("tiger")
     end
 
     it "points the 'tiger' node to the 'dog' node" do 
-      list.reverse
+      list.reverse(list.head)
       expect(list.read_node(1).next_node.word).to eq("dog")
     end
   end

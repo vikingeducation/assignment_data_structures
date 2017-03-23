@@ -11,6 +11,11 @@ describe HashTable do
   end
 
   describe "#hash" do 
+
+    it "returns 2 for 'cause" do 
+      expect(h.hash("'cause")).to eq(2)
+    end
+    
     it "returns 0 for the word apple" do 
       expect(h.hash("apple")).to eq(0)
     end

@@ -9,7 +9,8 @@ class HashTable
   end
 
   def hash(word, definition = nil)
-    word[0].ord - "a".ord
+    first_letter = word.split("").find { |letter| letter.downcase.ord >= 97 }.downcase
+    first_letter.ord - 97
   end
 
   def insert(word, definition = nil)

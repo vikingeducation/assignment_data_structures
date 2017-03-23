@@ -58,24 +58,20 @@ class LinkedList
   end
 
   # O(1), list in place
-  def reverse
-    previous_node = nil
-    current_node = @head
-    @last_node = current_node
+  def reverse(node, previous_node = nil)
+    target_node = node.next_node
+    node.next_node = previous_node
+    previous_node = node
 
-    until current_node == nil
-      target_node = current_node.next_node      
-      current_node.next_node = previous_node
-      previous_node = current_node
-      current_node = target_node
-    end
+    target_node ? reverse(target_node, previous_node) : node
 
-    @head = previous_node
+    first_node = @head
+    @head = @last_node
+    @last_node = first_node
   end
 
 end
 
-# Node1 ===> Node2 ===> Node3 ===> Node4
 
 
 
