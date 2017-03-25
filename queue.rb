@@ -8,6 +8,8 @@ class Queue
 	end
 
 	def dequeue
+		#checks if empty
+		return "empty" if empty?
 		#take first element from array
 		popped = @queue[0]
     #sets up empty array
@@ -24,6 +26,21 @@ class Queue
 		popped
 		puts @queue
 
+	end
+
+	def enqueue(element)
+		#pushes element into queue
+		@queue[@queue.length] = element
+	end
+
+	def peek
+		return "empty" if empty?
+		@queue[0]
+
+	end
+
+	def empty?
+		@queue == 0
 	end
 	
 end

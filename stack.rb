@@ -13,9 +13,6 @@ class Stack
       
       #removes last element in array
 			popped = @stack[@stack.length-1]
-
-			#returns last element
-      popped
       
       #setup empty array and counter
       new_array = []
@@ -43,7 +40,7 @@ class Stack
   	return "empty" if empty?
 
   	puts @stack[@stack.length-1]
-  	
+
   end
 
 	def empty?
