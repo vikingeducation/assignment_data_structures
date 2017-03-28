@@ -1,53 +1,37 @@
-class Stack
-	attr_accessor :stack
+class MyStack
+	
 
 	#sets up stack
-	def initialize(stack = [])
-
-		@stack = stack
+	def initialize
+   @values = []
+   @size = 0
 	end
-
-	def pop
-		  #outputs error message if array length is zero
-			return "empty" if empty?
-      
-      #removes last element in array
-			popped = @stack[@stack.length-1]
-      
-      #setup empty array and counter
-      new_array = []
-      index = 0
-      
-      #crawls through array and places each element into new array
-      while index < (@stack.length - 1)
-
-        new_array[index] = @stack[index]
-        index += 1
-      end
-
-       #returns updated array and popped element
-       @stack = new_array
-       popped
-  end
-
-  def push(element)
-  	#pushes element onto end of array
-    @stack[@stack.length] = element
-
-  end
-
+  #returns last item
   def peek
-  	return "empty" if empty?
-
-  	puts @stack[@stack.length-1]
-
+    @values[@size - 1]
+  end
+  #pushes element into array and increases size variable
+  def push(value)
+    @values[@size] = value
+    @size += 1
+    value
+  end
+  #removes last element and sets last array index to nil
+  def pop
+    return nil if @size <= 0
+    value = @values[@size - 1]
+    @values[@size -1] = nil
+    @size -= 1
+    value
   end
 
-	def empty?
-    #checks if array is empty
-		@stack.length == 0
+  def size
+    @size
+  end
 
-	end
+  def empty?
+    @size == 0
+  end
 
 end
 

@@ -28,5 +28,3 @@ class HashTable
 
 end
 
-hash = HashTable.new
-hash.insert("test").inspect

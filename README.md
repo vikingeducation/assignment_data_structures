@@ -21,12 +21,30 @@ Linear time O(n), same as unshifting a new array is created in memory to add new
 
 4. Upcasing a string
 
-Linear time O(n), you have to iterate through each char in the string and change it.
+Linear time O(n), you have to iterate through each char in the string and put each char into new array.
 
 5. Reversing a string
 
-Linear time O(n)
+Linear time O(n), iterate through array and pop each char and push into new array
 
+6. Enumerable#each method
+
+Linear time O(n), iterates through each element in array
+
+7. Enumerable#include? method
+
+Linear time O(n), iterates through "each" element and checks condition
+
+8. Finding the max of an array
+Linear time 0(n), you need to check every element to see if it is the new maximum value
+
+9. Linear time O(n), you have to iterate through each char in string.
+
+10. Inserting value to a Hash
+Constant time O(1)
+
+11. Retrieving the keys of a Hash
+Constant time O(1)
 
 
 
