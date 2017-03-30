@@ -26,7 +26,8 @@ class LinkedList
 
     nil
   end
-  
+
+  # O(1)
   def insert_at_end(data)
     node = Node.new(data, nil)
 
