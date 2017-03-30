@@ -5,32 +5,24 @@ class Stack
   end
 
   def peek
-    contents[self.size - 1] unless empty?
+    @contents[@size - 1] unless empty?
   end
 
   def push(item)
-    contents[self.size] = item
-    self.size += 1
+    @contents[@size] = item
+    @size += 1
   end
 
   def pop
     unless empty?
-      item = contents[self.size - 1]
-      contents[self.size - 1] = nil
-      self.size -= 1
+      item = @contents[@size - 1]
+      @contents[@size - 1] = nil
+      @size -= 1
       item
     end
   end
 
   def empty?
-    self.size == 0
+    @size == 0
   end
-
-  private
-
-  attr_reader :contents
-
-  protected
-
-  attr_accessor :size
 end
