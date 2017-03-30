@@ -23,8 +23,10 @@ class LinkedList
         break
       end
     end
-  end
 
+    nil
+  end
+  
   def insert_at_end(data)
     node = Node.new(data, nil)
 
