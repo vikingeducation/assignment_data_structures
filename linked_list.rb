@@ -1,6 +1,6 @@
-Node = Struct.new(:data, :next_node)
-
 class LinkedList
+  Node = Struct.new(:data, :next_node)
+
   def initialize
     @first = nil
     @last = nil
@@ -25,8 +25,16 @@ class LinkedList
     end
   end
 
-  def insert_at_end(node)
-    @last.nil? ? @last = node : @last.next_node = node
+  def insert_at_end(data)
+    node = Node.new(data, nil)
+
+    if @last.nil?
+      @last = node
+      @first = node
+    else
+      @last.next_node = node
+      @last = node
+    end
   end
 
   def insert_at_index(index, node)
