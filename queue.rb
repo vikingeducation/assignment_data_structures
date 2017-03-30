@@ -9,13 +9,8 @@ class Queue
   end
 
   def enqueue(item)
-    if empty?
-      @contents[0] = item
-      @size += 1
-    else
-      @contents[@size] = item
-      @size += 1
-    end
+    @contents[@size] = item
+    @size += 1
   end
 
   def dequeue
