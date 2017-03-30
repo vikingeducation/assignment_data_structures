@@ -16,8 +16,15 @@ class Stack
   def pop
     unless empty?
       item = @contents[@size - 1]
-      @contents[@size - 1] = nil
+
+      temp_array = []
+      for i in (0..@size - 2)
+        temp_array[i] = @contents[i]
+      end
+
+      @contents = temp_array
       @size -= 1
+
       item
     end
   end
