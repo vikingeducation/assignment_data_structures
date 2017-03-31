@@ -74,4 +74,24 @@ class LinkedList
       end
     end
   end
+
+  def reverse
+    if @first == @last
+      puts "No nodes to reverse."
+      return nil
+    end
+
+    cursor = nil
+    next_node = nil
+    @last = @first
+
+    while (@first) do
+      next_node = @first.next_node
+      @first.next_node = cursor
+      cursor = @first
+      @first = next_node
+    end
+
+    cursor
+  end
 end
