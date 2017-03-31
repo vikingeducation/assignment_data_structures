@@ -40,6 +40,7 @@ class LinkedList
     end
   end
 
+  # O(n), where n is the index specified
   def insert_at(index, data)
     # invalid index
     if index < 0
@@ -58,16 +59,19 @@ class LinkedList
         @first = node
       end
     else
-      # inserting at arbitrary index
       crawler = @first
       (index - 1).times { crawler = crawler.next_node }
-      if crawler.nil?
-        puts "Invalid index."
-        return nil
-      end
 
-      node = Node.new(data, crawler.next_node)
-      crawler.next_node = node
+      # inserting at the last node
+      if crawler == @last
+        node = Node.new(data, nil)
+        crawler.next_node = node
+        @last = node
+      else
+        # inserting in between the first and last nodes
+        node = Node.new(data, crawler.next_node)
+        crawler.next_node = node
+      end
     end
   end
 end
