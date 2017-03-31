@@ -75,6 +75,7 @@ class LinkedList
     end
   end
 
+  # O(n), in-place reversal.
   def reverse
     if @first == @last
       puts "No nodes to reverse."
