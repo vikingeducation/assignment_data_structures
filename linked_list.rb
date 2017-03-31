@@ -40,18 +40,34 @@ class LinkedList
     end
   end
 
-  def insert_at_index(index, node)
-    current_node = @first
-    for i in (0..index)
-      current_node = current_node.next_node
-
-      if current_node.nil?
-        puts "Invalid index to insert at."
-        return nil
-      end
+  def insert_at(index, data)
+    # invalid index
+    if index < 0
+      puts "Invalid index."
+      return nil
     end
 
-    node.next_node = current_node.next_node
-    current_node.next_node = node
+    # inserting at the beginning
+    if index == 0
+      if @first.nil?
+        @first = Node.new(data, nil)
+        @last = @first
+      else
+        node = Node.new(data, nil)
+        node.next_node = @first
+        @first = node
+      end
+    else
+      # inserting at arbitrary index
+      crawler = @first
+      (index - 1).times { crawler = crawler.next_node }
+      if crawler.nil?
+        puts "Invalid index."
+        return nil
+      end
+
+      node = Node.new(data, crawler.next_node)
+      crawler.next_node = node
+    end
   end
 end
