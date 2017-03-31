@@ -1,5 +1,5 @@
 class LinkedList
-  Node = Struct.new(:data, :next_node)
+  Node = Struct.new(:word, :definition, :next_node)
 
   def initialize
     @first = nil
@@ -15,7 +15,7 @@ class LinkedList
 
     current_node = @first
     for i in (0..index)
-      puts "Currently at node #{i} with data: #{current_node.data}"
+      puts "Currently at node #{i} - #{current_node.word}: #{current_node.definition}"
       current_node = current_node.next_node
 
       if current_node.nil?
@@ -28,8 +28,8 @@ class LinkedList
   end
 
   # O(1)
-  def insert_at_end(data)
-    node = Node.new(data, nil)
+  def insert_at_end(word, definition)
+    node = Node.new(word, definition, nil)
 
     if @last.nil?
       @last = node
@@ -41,7 +41,7 @@ class LinkedList
   end
 
   # O(n), where n is the index specified
-  def insert_at(index, data)
+  def insert_at(index, word, definition)
     # invalid index
     if index < 0
       puts "Invalid index."
@@ -51,10 +51,10 @@ class LinkedList
     # inserting at the beginning
     if index == 0
       if @first.nil?
-        @first = Node.new(data, nil)
+        @first = Node.new(word, definition, nil)
         @last = @first
       else
-        node = Node.new(data, nil)
+        node = Node.new(word, definition, nil)
         node.next_node = @first
         @first = node
       end
@@ -64,12 +64,12 @@ class LinkedList
 
       # inserting at the last node
       if crawler == @last
-        node = Node.new(data, nil)
+        node = Node.new(word, definition, nil)
         crawler.next_node = node
         @last = node
       else
         # inserting in between the first and last nodes
-        node = Node.new(data, crawler.next_node)
+        node = Node.new(word, definition, crawler.next_node)
         crawler.next_node = node
       end
     end
