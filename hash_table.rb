@@ -26,4 +26,6 @@ class HashTable
       puts
     end
   end
+
+  
 end

@@ -1,6 +1,9 @@
 class LinkedList
   Node = Struct.new(:word, :definition, :next_node)
 
+  attr_reader :first,
+              :last
+
   def initialize
     @first = nil
     @last = nil
