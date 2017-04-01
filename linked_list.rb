@@ -7,24 +7,42 @@ class LinkedList
   end
 
   # O(n)
-  def read(index)
+  def read(index = nil)
     if @first.nil?
       puts "There are no nodes available to read."
       return nil
     end
 
-    current_node = @first
-    for i in (0..index)
-      puts "Currently at node #{i} - #{current_node.word}: #{current_node.definition}"
-      current_node = current_node.next_node
+    output = []
+    crawler = @first
 
-      if current_node.nil?
-        puts "No more nodes left to crawl."
-        break
+    # if no index is provided, assume we want to read all available nodes.
+    if index.nil?
+      i = 0
+      while (crawler) do
+        output << "#{i}: #{crawler.word} - #{crawler.definition}"
+        i += 1
+        crawler = crawler.next_node
       end
+
+      return output
     end
 
-    nil
+    # if an index is provided, check that it's valid.
+    if index < 0 || !index.is_a?(Integer)
+      puts "Invalid index."
+      return nil
+    end
+
+    # if an index is provided, read available nodes up to that index.
+    for i in (0..index)
+      output << "#{i}: #{crawler.word} - #{crawler.definition}"
+
+      crawler = crawler.next_node
+      break if crawler.nil?
+    end
+
+    output
   end
 
   # O(1)
