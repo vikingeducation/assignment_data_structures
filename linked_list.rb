@@ -113,4 +113,18 @@ class LinkedList
 
     cursor
   end
+
+  # O(n)
+  def length
+    0 if @first.nil?
+
+    len = 0
+    crawler = @first
+    while (crawler)
+      crawler = crawler.next_node
+      len += 1
+    end
+
+    len
+  end
 end
