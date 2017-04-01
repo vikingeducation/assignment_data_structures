@@ -27,5 +27,23 @@ class HashTable
     end
   end
 
-  
+  def define(word)
+    index = hash(word)
+    bucket = @buckets[index]
+
+    current_node = bucket.first
+    steps_taken = 0
+
+    while(current_node)
+      if current_node.word == word
+        puts "Your word was found in #{steps_taken} steps."
+        return current_node.definition
+      end
+
+      current_node = current_node.next_node
+      steps_taken += 1
+    end
+
+    puts "Your word couldn't be found in #{steps_taken} steps."
+  end
 end
