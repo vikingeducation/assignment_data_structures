@@ -33,7 +33,7 @@ class HashTable
     steps_taken = 0
 
     if bucket.nil?
-      puts "Your word was not found in #{steps_taken} steps."
+      puts "Your word '#{word}' was not found in #{steps_taken} steps."
       return nil
     end
 
@@ -41,7 +41,7 @@ class HashTable
 
     while(current_node)
       if current_node.word == word
-        puts "Your word was found in #{steps_taken} steps."
+        puts "Your word '#{word}' was found in #{steps_taken} steps."
         return current_node.definition
       end
 
@@ -49,6 +49,6 @@ class HashTable
       steps_taken += 1
     end
 
-    puts "Your word couldn't be found in #{steps_taken} steps."
+    puts "Your word '#{word}' couldn't be found in #{steps_taken} steps."
   end
 end
