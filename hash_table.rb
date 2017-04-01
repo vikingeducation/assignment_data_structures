@@ -30,9 +30,14 @@ class HashTable
   def define(word)
     index = hash(word)
     bucket = @buckets[index]
+    steps_taken = 0
+
+    if bucket.nil?
+      puts "Your word was not found in #{steps_taken} steps."
+      return nil
+    end
 
     current_node = bucket.first
-    steps_taken = 0
 
     while(current_node)
       if current_node.word == word
