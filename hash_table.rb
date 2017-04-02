@@ -1,30 +1,23 @@
-require './link_list'
-
 class HashTable
-  attr_accessor :word, :definition
+	#sets up empty array
 	def initialize
-		#creates 26 empty arrays for each letter of the alphabet
-    @buckets = Array.new(26)
+		@buckets = []
   end
 
-	def hash(word)
-		#returns a number based on words first letter
-		word[0].downcase.ord - 97
+  def hash(word)
+  	puts word.chars.first.upcase.ord - 65
   end
 
-	def insert(word)
-		index = hash(word)
-		if @buckets[index] = nil?
-			 @buckets[index] = LinkedList.new
-		end
-	  
-	  @buckets[index].add_node(word, definition, nil) 
-	end
+  def insert(word, definition)
+   index = hash(word)
 
-	def render_list(index)
-		puts "List is Empty" if @buckets[index].nil?
+  	@buckets[index] = 
+  end
 
-	end
 
 end
+
+hashtable = HashTable.new
+
+hashtable.hash("chad")
 

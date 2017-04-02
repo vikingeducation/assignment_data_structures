@@ -4,9 +4,9 @@ class LinkedList
 
   attr_accessor :head, :last
 
-	def initialize(first_node = nil)
-		@head = first_node
-		@last = first_node
+	def initialize(head = nil)
+		@head = head
+		@last = head
 	end
 
 	def add_first_node(word, definition)
@@ -15,7 +15,7 @@ class LinkedList
 
 	end
 
-	def add_node(word, definition)
+	def append(word, definition)
 		if @head.nil?
 			add_first_node(word, definition)
 
@@ -29,17 +29,38 @@ class LinkedList
 
    end
 
-   def find_node(index)
-   	counter = 0
-   	current_node = @head
-   	while counter < index
-   		current_node = current_node.next
-   		puts "#Index: {inxex} word: #{current_node.word} definition: #{current_node.definition}"
-
-   	end
-
-   	
+   def find(index)
+   	node = head
+   	index.times { node = node.next}
+   	node
    end
+
+   def find_word(word)
+   	node = head
+   	steps = 0
+   	until node.word == word || node == nil
+      steps += 1
+      puts "#{steps} steps so far"
+      node.next
+    end
+   	return node
+   end
+
+   def size
+   	return 0 if @head.nil?
+   	count = 1
+   	node = @head
+
+   	until node == @tail
+   		count += 1
+   		node = node.next
+   	end
+   	count
+   end
+
+   
+   	
+  
 
 
 end
