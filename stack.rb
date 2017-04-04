@@ -1,35 +1,41 @@
 class Stack < Array
   def initialize(stack)
-    @stack = []
-  end
-
-  def self.empty?
-    return self.length = 0
-  end
-
-  def push(el)
-    self[self.length] = el
-  end
-
-  def pop
-    if !self.empty?
-      self.delete_at(self.length - 1)
-    end
+    @values = []
+    @size = 0
   end
 
   def peek
-    if !self.empty?
-      return self[self.length - 1]
+    if !@values.empty?
+      return @values[@size - 1]
     end
   end
+
+  def self.empty?
+    return @size = 0
+  end
+
+  def push(el)
+    @values[@size] = el
+    @size += 1
+  end
+
+  def pop
+    if !@values.empty?
+      el = @values[@size - 1]
+      @values[@size - 1] = nil
+      @size -= 1
+      return el
+    end
+  end
+
 
   def rev(string)
     letter_array = string.split("")
     (letter_array.length).times do
       last = letter_array.pop
-      @stack << last
+      @values << last
     end
-    puts @stack.join("")
+    puts @values.join("")
   end
 end
 stack = Stack.new(stack)

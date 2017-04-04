@@ -1,41 +1,39 @@
 require 'linked_list'
-class Hash_Table < Array
+class HashTable < Array
   def initialize
     @buckets = []
 
   end
 
   def hash(word)
-    letter_array = word.split("")
-    return letter_array.downcase.ord - 97
+    return word.downcase.ord - 97
   end
 
-  def insert(key, word)
-    if @buckets[key].is_nil?
-      @list = LinkedList.new
-      list.add_node(word)
-    else
-      LinkedList.add_node(word)
+  def insert(word, meaning)
+    key = hash(word)
+    @buckets[key] = LinkedList.new if @buckets[key].nil?
+    @buckets[key].append(word, meaning)
+  end
+
+  def bucket_sizes
+    0.upto(25) do |i|
+      print "bucket #{i}: "
+      puts @buckets[i] ? @buckets[i].size : "empty"
     end
-  end
-
-  def self.render
-    puts self
   end
 
   def define(word)
-    @list.find(word)
-    if @list.include?(word)
-    puts "#{definition}"
-    else
-      puts "Word was not found"
-    end
+    key = hash(word)
+    return "Not found" unless @buckets[key]
+    meaning = @buckets[index].find_word(word).meaning
+    meaning ? meaning : "Not found"
   end
 end
 
 dict_array = File("5desk.txt", readlines)
+table = HashTable.new
 dict_array.each do |word|
   word.definition = word
-  hash_table.hash(word)
-  hash_table.insert(word)
+  table.hash(word)
+  table.insert(word)
 end

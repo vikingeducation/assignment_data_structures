@@ -1,29 +1,17 @@
 Node.Struct.new(:word, :meaning, :next)
 class LinkedLists
-  attr_accessor :head, :last
+  attr_accessor :head, :tail
+
   def initialize(first_node = nil)
     @head = first_node
-    @last = first_node
+    @tail = first_node
   end
-  def add_first_node(data)
-    @head = Node.new(data, nil)
-    @last = @head
+
+  def add_first_node(word, meaning)
+    @head = Node.new(word, meaning, nil)
+    @tail = @head
   end
-  #Add Node is Constant time
-  def add_node(data)
-    if @head.nil?
-      add_first_node(data)
-    else
-      new_node = Node.new(data)
-      @last.next = new_node
-      @last = new_node
-    end
-  end
-  def insert_node(index, data)
-    find_node(index)
-    inserted_node = Node.new(data)
-    current.next = inserted_node
-  end
+
   def find_node(index)
     counter = 0
     current_node = @head
@@ -34,6 +22,54 @@ class LinkedLists
     puts "Found node at index #{index} with value of #{current_node}."
     puts "Number of steps was #{counter}"
   end
+
+  def find_word(word)
+    current_node = @head
+    counter = 0
+    until node.word == word || node == nil
+      counter += 1
+      current_node = current_node.next
+    end
+    puts "#{counter} steps to find #{word}"
+    return current_node
+  end
+
+  def size
+    return 0 if @head.nil?
+    count = 1
+    current_node = @head
+    until current_node == @tail
+      count += 1
+      current_node = current_node.next
+    end
+    return count
+  end
+
+  def insert_node(word, meaning, index)
+    inserted_node = Node.new(word, meaning)
+    if index < 1
+      inserted_node.next = @head
+      @head = inserted_node
+    else
+      prev = self.find(index - 1)
+      fol = self.find(index)
+      prev.next = inserted_node
+      inserted_node.next = fol
+      @tail = inserted_node if fol.nil?
+    end
+  end
+
+  #Add Node is Constant time
+  def add_node(word, meaning)
+    if @head.nil?
+      add_first_node(word, meaning)
+    else
+      new_node = Node.new(word, meaning)
+      @tail.next = new_node
+      @tail = new_node
+    end
+  end
+  
   #Big O is Linear time O(n)
   def self.reverse
     @head = self.next
