@@ -54,11 +54,10 @@ RSpec.describe MyStack do
     end
   end
 
-  describe 'pop' do
+  describe '#pop' do
     before { stack.push item }
 
     it 'returns the top-most item' do
-      stack.push item
       expect(stack.pop).to eq item
     end
 
