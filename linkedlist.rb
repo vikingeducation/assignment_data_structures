@@ -58,8 +58,6 @@ class LinkedList
       previous_node = current_node
       current_node = current_node.next
     end
-    temp = @head
-    @head = @last
-    @last = temp
+    @head, @last = @last, @head
   end
 end
