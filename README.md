@@ -38,7 +38,7 @@ Big O
 
 8. Finding the max of an array
   
-  Big O = O(n^2). For every element of the array, needs to check all other elements, so it's a nested iteration.
+  Big O = O(n). Needs to check every value of the array to ensure we have the max value.
 
 9. Splitting a string
 

@@ -5,7 +5,7 @@ class Queue
 	end
 
   def enqueue(item)
-    @stack[length] = item
+    @stack[@queue.length] = item
   end
 
   def dequeue
@@ -23,7 +23,7 @@ class Queue
   end
 
   def peek
-    @queue[length-1]
+    @queue[@queue.length-1]
   end
 
   def empty?

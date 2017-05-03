@@ -5,7 +5,7 @@ class Stack
 	end
 
   def push(item)
-    @stack[length] = item
+    @stack[@stack.length] = item
   end
 
   def pop
