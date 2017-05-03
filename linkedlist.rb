@@ -12,6 +12,7 @@ class LinkedList
   def append_node(word, definition)
     if @head.nil?
       @head = Node.new(word, definition, nil)
+      @last = @head
     else
       new_node = Node.new(word, definition, nil)
       @last.next = new_node
