@@ -25,7 +25,7 @@ class LinkedLists
   def find_word(word)
     current_node = @head
     counter = 0
-    until node.word == word || node == nil
+    until node.word == word || node.nil?
       counter += 1
       current_node = current_node.next
     end
