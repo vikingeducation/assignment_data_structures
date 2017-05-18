@@ -13,9 +13,8 @@ class LinkedLists
   end
 
   def find_node(index)
-    counter = 0
     current_node = @head
-    while counter < index
+    index.times do
       current_node = current_node.next
       counter += 1
     end
@@ -69,7 +68,7 @@ class LinkedLists
       @tail = new_node
     end
   end
-  
+
   #Big O is Linear time O(n)
   def self.reverse
     @head = self.next
